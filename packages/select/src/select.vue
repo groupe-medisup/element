@@ -694,7 +694,7 @@
           input.style.height = this.selected.length === 0
             ? sizeInMap + 'px'
             : Math.max(
-              tags ? (tags.clientHeight + (tags.clientHeight > sizeInMap ? 12 : 0)) : 0,
+              tags ? (tagsHeight + (tagsHeight > sizeInMap ? 12 : 0)) : 0,
               sizeInMap
             ) + 'px';
           if (this.visible && this.emptyText !== false) {
