@@ -1,4 +1,69 @@
 @use "sass:math";
+
+/// Customize element-ui theme
+/// @link https://element.eleme.io/#/en-US/component/custom-theme#update-scss-variables-in-your-project
+///
+
+$text-extra-small:  12px; // 12px Extra Small
+$text-small:        13px; // 13px Body (small)	13px Small
+$text:              14px; // 14px Body Base
+$text-medium:       16px; // 16px Small Title Medium
+$text-large:        18px; // 18px Title large
+$text-extra-large:  20px; // 20px Main Title	Extra large
+
+/* Typography
+-------------------------- */
+$--font-size-base: $text;
+$--avatar-text-font-size: $text;
+$--dialog-content-font-size: $text;
+$--input-medium-font-size: $text;
+$--select-input-font-size: $text;
+
+/* Size
+-------------------------- */
+$--size-base: $text;
+
+/// Colors
+///
+
+// element-ui default variables overrides
+$--color-primary: #2C4B6F;
+$--color-primary-light-2: #7793B4;
+$--color-primary-light-9: #F5F8FB;
+$--color-success: #4FB51C;
+/// color|1|Functional Color|1
+$--color-danger: #F56C6C !default;
+$--color-dark-danger: #BF0000 !default;
+
+$--checkbox-checked-font-color: $--color-success;
+$--checkbox-checked-input-border-color: $--color-success;
+/// color||Color|0
+$--checkbox-checked-background-color: $--color-success;
+$--checkbox-input-border-color-hover: $--color-success;
+
+$--checkbox-error-font-color: $--color-danger;
+$--checkbox-error-input-border-color: $--color-danger;
+$--checkbox-error-background-color: $--color-danger;
+
+$--input-font-color: #000;
+$--radio-font-color: #000;
+$--select-option-color: #000;
+
+$--switch-on-color: $--color-success;
+
+$--table-font-color:  #000;
+
+$--input-focus-border: #D0D0D0;
+$--input-hover-border: #D0D0D0;
+$--select-input-focus-border-color: #D0D0D0;
+$--select-border-color-hover: #D0D0D0;
+$--pagination-hover-color: #D0D0D0;
+
+// Input
+//
+
+$--input-height: 36px;
+
 /* Element Chalk Variables */
 
 // Special comment for theme configurator
@@ -36,8 +101,6 @@ $--color-success: #67C23A !default;
 /// color|1|Functional Color|1
 $--color-warning: #E6A23C !default;
 /// color|1|Functional Color|1
-$--color-danger: #F56C6C !default;
-/// color|1|Functional Color|1
 $--color-info: #909399 !default;
 
 $--color-success-light: mix($--color-white, $--color-success, 80%) !default;
@@ -52,11 +115,11 @@ $--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
 /// color|1|Font Color|2
 $--color-text-primary: #303133 !default;
 /// color|1|Font Color|2
-$--color-text-regular: #606266 !default;
+$--color-text-regular: $--color-black !default;
 /// color|1|Font Color|2
 $--color-text-secondary: #909399 !default;
 /// color|1|Font Color|2
-$--color-text-placeholder: #C0C4CC !default;
+$--color-text-placeholder: #959595 !default;
 /// color|1|Border Color|3
 $--border-color-base: #DCDFE6 !default;
 /// color|1|Border Color|3
@@ -107,17 +170,17 @@ $--fill-base: $--color-white !default;
 $--font-path: 'fonts' !default;
 $--font-display: 'auto' !default;
 /// fontSize|1|Font Size|0
-$--font-size-extra-large: 20px !default;
+$--font-size-extra-large: $text-extra-large !default;
 /// fontSize|1|Font Size|0
-$--font-size-large: 18px !default;
+$--font-size-large: $text-large !default;
 /// fontSize|1|Font Size|0
-$--font-size-medium: 16px !default;
+$--font-size-medium: $text-medium !default;
 /// fontSize|1|Font Size|0
-$--font-size-base: 14px !default;
+$--font-size-base: $text !default;
 /// fontSize|1|Font Size|0
-$--font-size-small: 13px !default;
+$--font-size-small: $text-small !default;
 /// fontSize|1|Font Size|0
-$--font-size-extra-small: 12px !default;
+$--font-size-extra-small: $text-extra-small !default;
 /// fontWeight|1|Font Weight|1
 $--font-weight-primary: 500 !default;
 /// fontWeight|1|Font Weight|1
@@ -129,7 +192,7 @@ $--font-line-height-secondary: 16px !default;
 $--font-color-disabled-base: #bbb !default;
 /* Size
 -------------------------- */
-$--size-base: 14px !default;
+$--size-base: $text !default;
 
 /* z-index
 -------------------------- */
@@ -151,13 +214,13 @@ $--icon-color-base: $--color-info !default;
 /* Checkbox
 -------------------------- */
 /// fontSize||Font|1
-$--checkbox-font-size: 14px !default;
+$--checkbox-font-size: $text !default;
 /// fontWeight||Font|1
 $--checkbox-font-weight: $--font-weight-primary !default;
 /// color||Color|0
 $--checkbox-font-color: $--color-text-regular !default;
-$--checkbox-input-height: 14px !default;
-$--checkbox-input-width: 14px !default;
+$--checkbox-input-height: $text !default;
+$--checkbox-input-width: $text !default;
 /// borderRadius||Border|2
 $--checkbox-border-radius: $--border-radius-small !default;
 /// color||Color|0
@@ -290,7 +353,7 @@ $--select-multiple-input-color: #666 !default;
 /// color||Color|0
 $--select-input-focus-border-color: $--color-primary !default;
 /// fontSize||Font|1
-$--select-input-font-size: 14px !default;
+$--select-input-font-size: $text !default;
 
 $--select-option-color: $--color-text-regular !default;
 $--select-option-disabled-color: $--color-text-placeholder !default;
@@ -304,7 +367,7 @@ $--select-option-selected-hover: $--background-color-base !default;
 
 $--select-group-color: $--color-info !default;
 $--select-group-height: 30px !default;
-$--select-group-font-size: 12px !default;
+$--select-group-font-size: $text-extra-small !default;
 
 $--select-dropdown-background: $--color-white !default;
 $--select-dropdown-shadow: $--box-shadow-light !default;
@@ -321,13 +384,13 @@ $--alert-padding: 8px 16px !default;
 /// borderRadius||Border|2
 $--alert-border-radius: $--border-radius-base !default;
 /// fontSize||Font|1
-$--alert-title-font-size: 13px !default;
+$--alert-title-font-size: $text-small !default;
 /// fontSize||Font|1
-$--alert-description-font-size: 12px !default;
+$--alert-description-font-size: $text-extra-small !default;
 /// fontSize||Font|1
-$--alert-close-font-size: 12px !default;
+$--alert-close-font-size: $text-extra-small !default;
 /// fontSize||Font|1
-$--alert-close-customed-font-size: 13px !default;
+$--alert-close-customed-font-size: $text-small !default;
 
 $--alert-success-color: $--color-success-lighter !default;
 $--alert-info-color: $--color-info-lighter !default;
@@ -352,7 +415,7 @@ $--messagebox-content-font-size: $--font-size-base !default;
 /// color||Color|0
 $--messagebox-content-color: $--color-text-regular !default;
 /// fontSize||Font|1
-$--messagebox-error-font-size: 12px !default;
+$--messagebox-error-font-size: $text-extra-small !default;
 $--msgbox-padding-primary: 15px !default;
 /// color||Color|0
 $--messagebox-success-color: $--color-success !default;
@@ -403,7 +466,7 @@ $--notification-content-font-size: $--font-size-base !default;
 /// color||Color|0
 $--notification-content-color: $--color-text-regular !default;
 /// fontSize||Font|1
-$--notification-title-font-size: 16px !default;
+$--notification-title-font-size: $text-medium !default;
 /// color||Color|0
 $--notification-title-color: $--color-text-primary !default;
 
@@ -423,7 +486,7 @@ $--notification-danger-icon-color: $--color-danger !default;
 
 /* Input
 -------------------------- */
-$--input-font-size: $--font-size-base !default;
+$--input-font-size: 14px !default;
 /// color||Color|0
 $--input-font-color: $--color-text-regular !default;
 /// height||Other|4
@@ -457,15 +520,15 @@ $--input-disabled-color: $--disabled-color-base !default;
 $--input-disabled-placeholder-color: $--color-text-placeholder !default;
 
 /// fontSize||Font|1
-$--input-medium-font-size: 14px !default;
+$--input-medium-font-size: $text !default;
 /// height||Other|4
 $--input-medium-height: 36px !default;
 /// fontSize||Font|1
-$--input-small-font-size: 13px !default;
+$--input-small-font-size: $text-small !default;
 /// height||Other|4
-$--input-small-height: 32px !default;
+$--input-small-height: 36px !default;
 /// fontSize||Font|1
-$--input-mini-font-size: 12px !default;
+$--input-mini-font-size: $text-extra-small !default;
 /// height||Other|4
 $--input-mini-height: 28px !default;
 
@@ -476,7 +539,7 @@ $--cascader-menu-font-color: $--color-text-regular !default;
 /// color||Color|0
 $--cascader-menu-selected-font-color: $--color-primary !default;
 $--cascader-menu-fill: $--fill-base !default;
-$--cascader-menu-font-size: $--font-size-base !default;
+$--cascader-menu-font-size: $text !default; //$text-small !default;
 $--cascader-menu-radius: $--border-radius-base !default;
 $--cascader-menu-border: solid 1px $--border-color-light !default;
 $--cascader-menu-shadow: $--box-shadow-light !default;
@@ -510,7 +573,7 @@ $--tab-vertical-header-count-fill: $--color-text-secondary !default;
 /* Button
 -------------------------- */
 /// fontSize||Font|1
-$--button-font-size: $--font-size-base !default;
+$--button-font-size: $text !default;
 /// fontWeight||Font|1
 $--button-font-weight: $--font-weight-primary !default;
 /// borderRadius||Border|2
@@ -521,7 +584,7 @@ $--button-padding-vertical: 12px !default;
 $--button-padding-horizontal: 20px !default;
 
 /// fontSize||Font|1
-$--button-medium-font-size: $--font-size-base !default;
+$--button-medium-font-size: $text !default;
 /// borderRadius||Border|2
 $--button-medium-border-radius: $--border-radius-base !default;
 /// padding||Spacing|3
@@ -530,14 +593,14 @@ $--button-medium-padding-vertical: 10px !default;
 $--button-medium-padding-horizontal: 20px !default;
 
 /// fontSize||Font|1
-$--button-small-font-size: 12px !default;
+$--button-small-font-size: $text !default;
 $--button-small-border-radius: #{$--border-radius-base - 1} !default;
 /// padding||Spacing|3
 $--button-small-padding-vertical: 9px !default;
 /// padding||Spacing|3
 $--button-small-padding-horizontal: 15px !default;
 /// fontSize||Font|1
-$--button-mini-font-size: 12px !default;
+$--button-mini-font-size: $text-small !default;
 $--button-mini-border-radius: #{$--border-radius-base - 1} !default;
 /// padding||Spacing|3
 $--button-mini-padding-vertical: 7px !default;
@@ -577,11 +640,11 @@ $--button-warning-font-color: $--color-white !default;
 /// color||Color|0
 $--button-warning-background-color: $--color-warning !default;
 /// color||Color|0
-$--button-danger-border-color: $--color-danger !default;
+$--button-danger-border-color: $--color-dark-danger !default;
 /// color||Color|0
 $--button-danger-font-color: $--color-white !default;
 /// color||Color|0
-$--button-danger-background-color: $--color-danger !default;
+$--button-danger-background-color: $--color-dark-danger !default;
 /// color||Color|0
 $--button-info-border-color: $--color-info !default;
 /// color||Color|0
@@ -611,7 +674,7 @@ $--switch-width: 40px !default;
 // height||Other|4
 $--switch-height: 20px !default;
 // height||Other|4
-$--switch-button-size: 16px !default;
+$--switch-button-size: $text-medium !default;
 
 /* Dialog
 -------------------------- */
@@ -620,7 +683,7 @@ $--dialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
 /// fontSize||Font|1
 $--dialog-title-font-size: $--font-size-large !default;
 /// fontSize||Font|1
-$--dialog-content-font-size: 14px !default;
+$--dialog-content-font-size: $text !default;
 /// fontLineHeight||LineHeight|2
 $--dialog-font-line-height: $--font-line-height-primary !default;
 /// padding||Spacing|3
@@ -629,7 +692,7 @@ $--dialog-padding-primary: 20px !default;
 /* Table
 -------------------------- */
 /// color||Color|0
-$--table-border-color: $--border-color-lighter !default;
+$--table-border-color: #C5C6C9 !default;
 $--table-border: 1px solid $--table-border-color !default;
 /// color||Color|0
 $--table-font-color: $--color-text-regular !default;
@@ -645,7 +708,7 @@ $--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
 /* Pagination
 -------------------------- */
 /// fontSize||Font|1
-$--pagination-font-size: 13px !default;
+$--pagination-font-size: $text-small !default;
 /// color||Color|0
 $--pagination-background-color: $--color-white !default;
 /// color||Color|0
@@ -684,7 +747,7 @@ $--popover-arrow-size: 6px !default;
 $--popover-padding: 12px !default;
 $--popover-padding-large: 18px 20px !default;
 /// fontSize||Font|1
-$--popover-title-font-size: 16px !default;
+$--popover-title-font-size: $text-medium !default;
 /// color||Color|0
 $--popover-title-font-color: $--color-text-primary !default;
 
@@ -695,7 +758,7 @@ $--tooltip-fill: $--color-text-primary !default;
 /// color|1|Color|0
 $--tooltip-color: $--color-white !default;
 /// fontSize||Font|1
-$--tooltip-font-size: 12px !default;
+$--tooltip-font-size: $text-extra-small !default;
 /// color||Color|0
 $--tooltip-border-color: $--color-text-primary !default;
 $--tooltip-arrow-size: 6px !default;
@@ -715,7 +778,7 @@ $--tag-warning-color: $--color-warning !default;
 /// color||Color|0
 $--tag-danger-color: $--color-danger !default;
 /// fontSize||Font|1
-$--tag-font-size: 12px !default;
+$--tag-font-size: $text-extra-small !default;
 $--tag-border-radius: 4px !default;
 $--tag-padding: 0 10px !default;
 
@@ -740,7 +803,7 @@ $--dropdown-menuItem-hover-color: $--link-color !default;
 $--badge-background-color: $--color-danger !default;
 $--badge-radius: 10px !default;
 /// fontSize||Font|1
-$--badge-font-size: 12px !default;
+$--badge-font-size: $text-extra-small !default;
 /// padding||Spacing|3
 $--badge-padding: 6px !default;
 /// height||Other|4
@@ -834,7 +897,7 @@ $--scrollbar-hover-background-color: rgba($--color-text-secondary, .5) !default;
 /* Carousel
 --------------------------*/
 /// fontSize||Font|1
-$--carousel-arrow-font-size: 12px !default;
+$--carousel-arrow-font-size: $text-extra-small !default;
 $--carousel-arrow-size: 36px !default;
 $--carousel-arrow-background: rgba(31, 45, 61, 0.11) !default;
 $--carousel-arrow-hover-background: rgba(31, 45, 61, 0.23) !default;
@@ -857,11 +920,11 @@ $--collapse-header-background-color: $--color-white !default;
 /// color||Color|0
 $--collapse-header-font-color: $--color-text-primary !default;
 /// fontSize||Font|1
-$--collapse-header-font-size: 13px !default;
+$--collapse-header-font-size: $text !default;
 /// color||Color|0
 $--collapse-content-background-color: $--color-white !default;
 /// fontSize||Font|1
-$--collapse-content-font-size: 13px !default;
+$--collapse-content-font-size: $text !default;
 /// color||Color|0
 $--collapse-content-font-color: $--color-text-primary !default;
 
@@ -898,7 +961,7 @@ $--main-padding: 20px !default;
 
 /* Timeline
 --------------------------*/
-$--timeline-node-size-normal: 12px !default;
+$--timeline-node-size-normal: $text-extra-small !default;
 $--timeline-node-size-large: 14px !default;
 $--timeline-node-color: $--border-color-light !default;
 
@@ -944,7 +1007,7 @@ $--calendar-cell-width: 85px !default;
 /* Form
 -------------------------- */
 /// fontSize||Font|1
-$--form-label-font-size: $--font-size-base !default;
+$--form-label-font-size: $text !default;
 
 /* Avatar
 --------------------------*/
@@ -953,9 +1016,9 @@ $--avatar-font-color: #fff !default;
 /// color||Color|0
 $--avatar-background-color: #C0C4CC !default;
 /// fontSize||Font Size|1
-$--avatar-text-font-size: 14px !default;
+$--avatar-text-font-size: $text !default;
 /// fontSize||Font Size|1
-$--avatar-icon-font-size: 18px !default;
+$--avatar-icon-font-size: $text-large !default;
 /// borderRadius||Border|2
 $--avatar-border-radius: $--border-radius-base !default;
 /// size|1|Avatar Size|3

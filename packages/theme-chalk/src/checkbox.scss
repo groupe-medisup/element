@@ -188,6 +188,11 @@
         }
       }
     }
+    @include when(error) {
+      & + .el-checkbox__label {
+        color: $--checkbox-error-font-color !important;
+      }
+    }
   }
   @include e(inner) {
     display: inline-block;

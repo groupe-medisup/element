@@ -168,7 +168,7 @@ const PopperMixin = {
 
 const InputSizeMap = {
   medium: 36,
-  small: 32,
+  small: 36,
   mini: 28
 };
 

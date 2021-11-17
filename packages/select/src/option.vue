@@ -9,7 +9,7 @@
       'is-disabled': disabled || groupDisabled || limitReached,
       'hover': hover
     }">
-    <slot>
+    <slot v-bind="{ currentLabel }">
       <span>{{ currentLabel }}</span>
     </slot>
   </li>

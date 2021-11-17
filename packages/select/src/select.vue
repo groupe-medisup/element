@@ -11,20 +11,22 @@
       :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%' }">
       <span v-if="collapseTags && selected.length">
         <el-tag
-          :closable="!selectDisabled"
-          :size="collapseTagSize"
+          :closable="tagClosable"
+          :size="tagProps.size || collapseTagSize"
           :hit="selected[0].hitState"
-          type="info"
+          :type="tagProps.type || 'info'"
           @close="deleteTag($event, selected[0])"
-          disable-transitions>
-          <span class="el-select__tags-text">{{ selected[0].currentLabel }}</span>
+          disable-transitions
+          v-bind="tagProps">
+          <span class="el-select__tags-text">{{ isObject(selected[0][tagLabelKey]) ? selected[0][tagLabelKey][valueKey] : selected[0][tagLabelKey] }}</span>
         </el-tag>
         <el-tag
           v-if="selected.length > 1"
           :closable="false"
-          :size="collapseTagSize"
-          type="info"
-          disable-transitions>
+          :size="tagProps.size || collapseTagSize"
+          :type="tagProps.type || 'info'"
+          disable-transitions
+          v-bind="tagProps">
           <span class="el-select__tags-text">+ {{ selected.length - 1 }}</span>
         </el-tag>
       </span>
@@ -32,13 +34,14 @@
         <el-tag
           v-for="item in selected"
           :key="getValueKey(item)"
-          :closable="!selectDisabled"
-          :size="collapseTagSize"
+          :closable="tagClosable"
+          :size="tagProps.size || collapseTagSize"
           :hit="item.hitState"
-          type="info"
+          :type="tagProps.type || 'info'"
           @close="deleteTag($event, item)"
-          disable-transitions>
-          <span class="el-select__tags-text">{{ item.currentLabel }}</span>
+          disable-transitions
+          v-bind="tagProps">
+          <span class="el-select__tags-text">{{ isObject(item[tagLabelKey]) ? item[tagLabelKey][valueKey] : item[tagLabelKey] }}</span>
         </el-tag>
       </transition-group>
 
@@ -118,6 +121,7 @@
           :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0 }"
           v-show="options.length > 0 && !loading">
           <el-option
+            :label="allowCreateLabel && allowCreateLabel(query)"
             :value="query"
             created
             v-if="showNewOption">
@@ -149,6 +153,7 @@
   import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
   import scrollIntoView from 'element-ui/src/utils/scroll-into-view';
   import { getValueByPath, valueEquals, isIE, isEdge } from 'element-ui/src/utils/util';
+  import { isObject } from 'element-ui/src/utils/types';
   import NavigationMixin from './navigation-mixin';
   import { isKorean } from 'element-ui/src/utils/shared';
 
@@ -196,7 +201,7 @@
       },
 
       iconClass() {
-        return this.remote && this.filterable ? '' : (this.visible ? 'arrow-up is-reverse' : 'arrow-up');
+        return this.visible ? 'arrow-up is-reverse' : 'arrow-up';
       },
 
       debounce() {
@@ -212,6 +217,10 @@
             return this.noMatchText || this.t('el.select.noMatch');
           }
           if (this.options.length === 0) {
+            if (this.noEmptyText) {
+              return this.query ? this.noEmptyText : false;
+            }
+
             return this.noDataText || this.t('el.select.noData');
           }
         }
@@ -220,7 +229,7 @@
 
       showNewOption() {
         let hasExistingOption = this.options.filter(option => !option.created)
-          .some(option => option.currentLabel === this.query);
+          .some(option => option[this.tagLabelKey] === this.query);
         return this.filterable && this.allowCreate && this.query !== '' && !hasExistingOption;
       },
 
@@ -239,6 +248,10 @@
       },
       propPlaceholder() {
         return typeof this.placeholder !== 'undefined' ? this.placeholder : this.t('el.select.placeholder');
+      },
+
+      tagClosable() {
+        return this.tagAllowClose && !this.selectDisabled;
       }
     },
 
@@ -304,6 +317,26 @@
       popperAppendToBody: {
         type: Boolean,
         default: true
+      },
+      tagLabelKey: {
+        type: String,
+        validator(value) {
+          return ['currentLabel', 'currentValue'].indexOf(value) !== -1;
+        },
+        default: 'currentLabel'
+      },
+      tagProps: {
+        type: Object,
+        default: () => ({})
+      },
+      allowCreateLabel: Function,
+      tagAllowClose: {
+        type: Boolean,
+        default: true
+      },
+      noEmptyText: {
+        type: [ String, Boolean ],
+        default: false
       }
     },
 
@@ -443,6 +476,7 @@
     },
 
     methods: {
+      isObject,
       handleNavigate(direction) {
         if (this.isOnComposition) return;
 
@@ -536,7 +570,8 @@
           ? String(value) : '';
         let newOption = {
           value: value,
-          currentLabel: label
+          currentLabel: isObject ? getValueByPath(value, this.valueKey) : label,
+          currentValue: isObject ? getValueByPath(value, this.valueKey) : value
         };
         if (this.multiple) {
           newOption.hitState = false;
@@ -659,7 +694,7 @@
           input.style.height = this.selected.length === 0
             ? sizeInMap + 'px'
             : Math.max(
-              tags ? (tagsHeight + (tagsHeight > sizeInMap ? 6 : 0)) : 0,
+              tags ? (tags.clientHeight + (tags.clientHeight > sizeInMap ? 12 : 0)) : 0,
               sizeInMap
             ) + 'px';
           if (this.visible && this.emptyText !== false) {
@@ -876,7 +911,7 @@
       if (reference && reference.$el) {
         const sizeMap = {
           medium: 36,
-          small: 32,
+          small: 36,
           mini: 28
         };
         const input = reference.$el.querySelector('input');

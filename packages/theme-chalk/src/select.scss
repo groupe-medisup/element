@@ -133,9 +133,17 @@
     max-width: 100%;
     align-items: center;
 
+    // &--closable {
+    //   .el-select__tags-text {
+    //     margin-top: -2px;
+    //   }
+    // }
+
     &__close.el-icon-close {
-      background-color: $--color-text-placeholder;
-      top: 0;
+      // background-color: $--color-text-placeholder;
+      // right: -5px;
+      // top: 0;
+      // margin-top: 0;
       color: $--color-white;
       flex-shrink: 0;
 
@@ -143,10 +151,10 @@
         background-color: $--color-text-secondary;
       }
 
-      &::before {
-        display: block;
-        transform: translate(0, .5px);
-      }
+      // &::before {
+      //   display: block;
+      //   transform: translate(0, .5px);
+      // }
     }
   }
 }

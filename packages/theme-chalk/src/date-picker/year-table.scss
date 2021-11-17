@@ -11,8 +11,11 @@
 
   td {
     text-align: center;
-    padding: 20px 3px;
-    cursor: pointer;
+    padding: 10px 3px;
+
+    .cell {
+      cursor: pointer;
+    }
 
     &.today {
       .cell {
@@ -32,12 +35,13 @@
     }
 
     .cell {
-      width: 48px;
+      // width: 48px;
       height: 32px;
       display: block;
       line-height: 32px;
       color: $--datepicker-font-color;
-      margin: 0 auto;
+      white-space: nowrap;
+      text-decoration: none !important;
 
       &:hover {
         color: $--datepicker-hover-font-color;
@@ -46,6 +50,12 @@
 
     &.current:not(.disabled) .cell {
       color: $--datepicker-active-color;
+    }
+
+    &.current:not(.disabled) .cell,
+    &.active:not(.disabled) .cell {
+      background-color: $--background-color-base;
+      border-radius: 4px;
     }
   }
 }

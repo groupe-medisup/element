@@ -144,7 +144,7 @@
     }
   }
   @include e(content) {
-    overflow: hidden;
+    // overflow: hidden;
     position: relative;
   }
   @include m(card) {
@@ -203,6 +203,9 @@
             width: 14px;
           }
         }
+      }
+      &:not(.is-active) {
+        background-color: #eff1f5;
       }
     }
   }

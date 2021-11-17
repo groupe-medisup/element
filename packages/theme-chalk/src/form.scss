@@ -51,17 +51,17 @@
     .el-form-item__label {
       line-height: 36px;
     }
-    .el-form-item__content {
-      line-height: 36px;
-    }
+    // .el-form-item__content {
+    //   line-height: 36px;
+    // }
   }
   @include m(small) {
     .el-form-item__label {
       line-height: 32px;
     }
-    .el-form-item__content {
-      line-height: 32px;
-    }
+    // .el-form-item__content {
+    //   line-height: 32px;
+    // }
     &.el-form-item {
       margin-bottom: 18px;
     }
@@ -73,9 +73,9 @@
     .el-form-item__label {
       line-height: 28px;
     }
-    .el-form-item__content {
-      line-height: 28px;
-    }
+    // .el-form-item__content {
+    //   line-height: 28px;
+    // }
     &.el-form-item {
       margin-bottom: 18px;
     }
@@ -103,9 +103,9 @@
     box-sizing: border-box;
   }
   @include e(content) {
-    line-height: 40px;
+    // line-height: 40px;
     position: relative;
-    font-size: 14px;
+    font-size: 13px;
     @include utils-clearfix;
 
     .el-input-group {
@@ -132,11 +132,11 @@
 
   @include when(required) {
     @include pseudo('not(.is-no-asterisk)') {
-      & > .el-form-item__label:before,
-      & .el-form-item__label-wrap > .el-form-item__label:before {
+      & > .el-form-item__label:after,
+      & .el-form-item__label-wrap > .el-form-item__label:after {
         content: '*';
         color: $--color-danger;
-        margin-right: 4px;
+        // margin-left: 4px;
       }
     }
   }
