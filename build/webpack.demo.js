@@ -152,7 +152,7 @@ if (isProd) {
     cacheGroups: {
       vendor: {
         test: /\/src\//,
-        name: 'element-ui',
+        name: '@jack-agency/element',
         chunks: 'all'
       }
     }

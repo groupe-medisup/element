@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import Popup from 'element-ui/src/utils/popup';
-import emitter from 'element-ui/src/mixins/emitter';
+import Popup from '@jack-agency/element/src/utils/popup';
+import emitter from '@jack-agency/element/src/mixins/emitter';
 
 export default {
   name: 'ElDrawer',

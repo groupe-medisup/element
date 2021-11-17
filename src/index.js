@@ -63,8 +63,8 @@ import TableColumn from '../packages/table-column/index.js';
 import Tabs from '../packages/tabs/index.js';
 import Tag from '../packages/tag/index.js';
 import Tooltip from '../packages/tooltip/index.js';
-import locale from 'element-ui/src/locale';
-import CollapseTransition from 'element-ui/src/transitions/collapse-transition';
+import locale from '@jack-agency/element/src/locale';
+import CollapseTransition from '@jack-agency/element/src/transitions/collapse-transition';
 
 const components = [
   Alert,
