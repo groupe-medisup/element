@@ -78,7 +78,9 @@
 
         modifiersIgnored: [],
 
-        forceAbsolute: false
+        forceAbsolute: false,
+
+        axisOffset: [],
     };
 
     /**
@@ -424,6 +426,9 @@
             } else {
                 popperOffsets.left = referenceOffsets.right;
             }
+        } else if (placement === 'same') {
+            popperOffsets.top = referenceOffsets.top + (this._options.axisOffset[0] || 0);
+            popperOffsets.left = referenceOffsets.left + (this._options.axisOffset[1] || this._options.axisOffset[0] || 0);
         } else {
             popperOffsets.left = referenceOffsets.left + referenceOffsets.width / 2 - popperRect.width / 2;
             if (placement === 'top') {
@@ -526,12 +531,17 @@
             var scrollTop = data.offsets.popper.position === 'fixed' ? 0 : getScrollTopValue(scrollParent);
             var scrollLeft = data.offsets.popper.position === 'fixed' ? 0 : getScrollLeftValue(scrollParent);
 
-            boundaries = {
-                top: 0 - (offsetParentRect.top - scrollTop),
-                right: root.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
-                bottom: root.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
-                left: 0 - (offsetParentRect.left - scrollLeft)
-            };
+            if (data.placement === 'same') {
+                boundaries.top = data.offsets.popper.top;
+                boundaries.left = data.offsets.popper.left;
+            } else {
+                boundaries = {
+                    top: 0 - (offsetParentRect.top - scrollTop),
+                    right: root.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
+                    bottom: root.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
+                    left: 0 - (offsetParentRect.left - scrollLeft)
+                };
+            }
         } else {
             if (getOffsetParent(this._popper) === boundariesElement) {
                 boundaries = {
