@@ -107,8 +107,10 @@
     </el-input>
     <transition
       name="el-zoom-in-top"
+      @after-enter="handleMenuAfterEnter"
       @before-enter="handleMenuEnter"
-      @after-leave="doDestroy">
+      @after-leave="doDestroy"
+    >
       <el-select-menu
         ref="popper"
         :append-to-body="popperAppendToBody"
@@ -543,6 +545,10 @@
         this.$nextTick(() => this.scrollToOption(this.selected));
       },
 
+      handleMenuAfterEnter() {
+        this.$emit('after-enter');
+      },
+
       emitChange(val) {
         if (!valueEquals(this.value, val)) {
           this.$emit('change', val);
@@ -641,6 +647,7 @@
 
       doDestroy() {
         this.$refs.popper && this.$refs.popper.doDestroy();
+        this.$emit('after-leave');
       },
 
       handleClose() {
