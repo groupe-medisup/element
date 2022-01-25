@@ -11,7 +11,7 @@
       :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%' }">
       <span v-if="collapseTags && selected.length">
         <el-tag
-          :closable="tagClosable"
+          :closable="closable ? closable(item.value): tagClosable"
           :size="tagProps.size || collapseTagSize"
           :hit="selected[0].hitState"
           :type="tagProps.type || 'info'"
@@ -34,14 +34,16 @@
         <el-tag
           v-for="item in selected"
           :key="getValueKey(item)"
-          :closable="tagClosable"
+          :closable="closable ? closable(item.value): tagClosable"
           :size="tagProps.size || collapseTagSize"
           :hit="item.hitState"
           :type="tagProps.type || 'info'"
           @close="deleteTag($event, item)"
           disable-transitions
           v-bind="tagProps">
-          <span class="el-select__tags-text">{{ isObject(item[tagLabelKey]) ? item[tagLabelKey][valueKey] : item[tagLabelKey] }}</span>
+          <slot name="tag" v-bind="{ item: item.value }">
+            <span class="el-select__tags-text">{{ isObject(item[tagLabelKey]) ? item[tagLabelKey][valueKey] : item[tagLabelKey] }}</span>
+          </slot>
         </el-tag>
       </transition-group>
 
@@ -339,6 +341,10 @@
       noEmptyText: {
         type: [ String, Boolean ],
         default: false
+      },
+      closable: {
+        type: Function,
+        default: undefined
       }
     },
 
