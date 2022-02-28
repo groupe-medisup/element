@@ -60,6 +60,8 @@ import Switch from '../packages/switch/index.js';
 import TabPane from '../packages/tab-pane/index.js';
 import Table from '../packages/table/index.js';
 import TableColumn from '../packages/table-column/index.js';
+import TimePicker from '../packages/time-picker/index.js';
+import TimeSelect from '../packages/time-select/index.js';
 import Tabs from '../packages/tabs/index.js';
 import Tag from '../packages/tag/index.js';
 import Tooltip from '../packages/tooltip/index.js';
@@ -122,6 +124,8 @@ const components = [
   TabPane,
   Table,
   TableColumn,
+  TimePicker,
+  TimeSelect,
   Tabs,
   Tag,
   Tooltip,
@@ -225,6 +229,8 @@ export default {
   TabPane,
   Table,
   TableColumn,
+  TimePicker,
+  TimeSelect,
   Tabs,
   Tag,
   Tooltip

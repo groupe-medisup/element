@@ -59,6 +59,8 @@
   "tab-pane": "./packages/tab-pane/index.js",
   "table": "./packages/table/index.js",
   "table-column": "./packages/table-column/index.js",
+  "time-picker": "./packages/time-picker/index.js",
+  "time-select": "./packages/time-select/index.js",
   "tabs": "./packages/tabs/index.js",
   "tag": "./packages/tag/index.js",
   "tooltip": "./packages/tooltip/index.js"
