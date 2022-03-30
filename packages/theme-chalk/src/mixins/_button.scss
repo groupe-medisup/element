@@ -1,20 +1,19 @@
 @import "../common/var";
+
 @mixin button-plain($color) {
   color: $color;
-  background: mix($--color-white, $color, 90%);
-  border-color: mix($--color-white, $color, 60%);
+  border-color: $--button-default-border-color;
+  background-color: transparent;
 
   &:hover,
-  &:focus {
-    background: $color;
-    border-color: $color;
-    color: $--color-white;
+  &:focus,
+  &:active {
+    color: $color;
+    border-color: $--button-default-border-color;
+    background-color: $--button-default-background-color;
   }
 
   &:active {
-    background: mix($--color-black, $color, $--button-active-shade-percent);
-    border-color: mix($--color-black, $color, $--button-active-shade-percent);
-    color: $--color-white;
     outline: none;
   }
 
@@ -32,27 +31,41 @@
 
 @mixin button-variant($color, $background-color, $border-color) {
   color: $color;
-  background-color: $background-color;
   border-color: $border-color;
+  background-color: $background-color;
+
+  &.is-light {
+    color: $background-color;
+  }
 
   &:hover,
   &:focus {
-    background: mix($--color-white, $background-color, $--button-hover-tint-percent);
+    color: $color;
     border-color: mix($--color-white, $border-color, $--button-hover-tint-percent);
-    color: $color;
+    background: mix($--color-white, $background-color, $--button-hover-tint-percent);
+
+    &.is-light {
+      color: $background-color;
+      border-color: mix($--color-white, $background-color, 50%);
+      background: $--button-default-background-color;
+    }
   }
-  
+
   &:active {
-    background: mix($--color-black, $background-color, $--button-active-shade-percent);
-    border-color: mix($--color-black, $border-color, $--button-active-shade-percent);
-    color: $color;
     outline: none;
   }
 
+  &:active,
   &.is-active {
-    background: mix($--color-black, $background-color, $--button-active-shade-percent);
-    border-color: mix($--color-black, $border-color, $--button-active-shade-percent);
     color: $color;
+    border-color: mix($--color-black, $border-color, $--button-active-shade-percent);
+    background: mix($--color-black, $background-color, $--button-active-shade-percent);
+
+    &.is-light {
+      color: $background-color;
+      border-color: mix($--color-white, $color, 50%);
+      background: mix($--color-white, $--button-default-background-color, $--button-active-shade-percent);
+    }
   }
 
   &.is-disabled {
@@ -61,13 +74,25 @@
     &:focus,
     &:active {
       color: $--color-white;
-      background-color: mix($background-color, $--color-white);
       border-color: mix($border-color, $--color-white);
+      background-color: mix($background-color, $--color-white);
     }
   }
 
   &.is-plain {
     @include button-plain($background-color);
+
+    &.is-light {
+      @include button-plain($color);
+    }
+  }
+
+  &.is-text {
+    @include button-text($background-color);
+
+    &.is-light {
+      @include button-text($color);
+    }
   }
 }
 
@@ -75,7 +100,33 @@
   padding: $padding-vertical $padding-horizontal;
   font-size: $font-size;
   border-radius: $border-radius;
+
   &.is-round {
     padding: $padding-vertical $padding-horizontal;
+  }
+}
+
+@mixin button-text($color) {
+  padding: 0;
+
+  &,
+  &:hover,
+  &:focus,
+  &:active,
+  &.is-active {
+    color: $color;
+    background-color: transparent;
+    border: none;
+  }
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:active {
+    outline: none;
+
+    & span {
+      text-decoration: underline;
+    }
   }
 }

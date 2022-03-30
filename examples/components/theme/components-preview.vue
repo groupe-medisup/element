@@ -34,49 +34,100 @@
     display: flex;
     align-items: center;
   }
+
+  hr {
+    border: 1px solid #f0f0f0;
+  }
 }
 </style>
+
 <template>
   <div class="component-preview">
     <h4>Button</h4>
+
+    <!-- text -->
     <el-row class="demo-line">
-      <el-button>Default</el-button>
-      <el-button type="primary">Primary</el-button>
-      <el-button type="success">Success</el-button>
-      <el-button type="info">Info</el-button>
-      <el-button type="warning">Warning</el-button>
-      <el-button type="danger">Danger</el-button>
+      <el-button text>Text</el-button>
+      <el-button type="primary" text>Primary</el-button>
+      <el-button type="success" text>Success</el-button>
+      <el-button type="danger" text>Danger</el-button>
     </el-row>
+    <el-row class="demo-line">
+      <el-button icon="el-icon-plus" text>Text</el-button>
+      <el-button icon="el-icon-edit" type="primary" text>Primary</el-button>
+      <el-button icon="el-icon-check" type="success" text>Success</el-button>
+      <el-button icon="el-icon-delete" type="danger" text>Danger</el-button>
+    </el-row>
+    <hr>
+
+    <!-- plain -->
     <el-row class="demo-line">
       <el-button plain>Plain</el-button>
       <el-button type="primary" plain>Primary</el-button>
       <el-button type="success" plain>Success</el-button>
-      <el-button type="info" plain>Info</el-button>
-      <el-button type="warning" plain>Warning</el-button>
       <el-button type="danger" plain>Danger</el-button>
     </el-row>
+    <el-row class="demo-line">
+      <el-button icon="el-icon-plus" plain>Plain</el-button>
+      <el-button icon="el-icon-edit" type="primary" plain>Primary</el-button>
+      <el-button icon="el-icon-check" type="success" plain>Success</el-button>
+      <el-button icon="el-icon-delete" type="danger" plain>Danger</el-button>
+    </el-row>
+    <hr>
+
+    <!-- light -->
+    <el-row class="demo-line">
+      <el-button light>Light</el-button>
+      <el-button type="primary" light>Primary</el-button>
+      <el-button type="success" light>Success</el-button>
+      <el-button type="danger" light>Danger</el-button>
+    </el-row>
+    <el-row class="demo-line">
+      <el-button icon="el-icon-plus" light>Light</el-button>
+      <el-button icon="el-icon-edit" type="primary" light>Primary</el-button>
+      <el-button icon="el-icon-check" type="success" light>Success</el-button>
+      <el-button icon="el-icon-delete" type="danger" light>Danger</el-button>
+    </el-row>
+    <hr>
+
+    <!-- default -->
+    <el-row class="demo-line">
+      <el-button>Default</el-button>
+      <el-button type="primary">Primary</el-button>
+      <el-button type="success">Success</el-button>
+      <el-button type="danger">Danger</el-button>
+    </el-row>
+    <el-row class="demo-line">
+      <el-button icon="el-icon-plus">Default</el-button>
+      <el-button icon="el-icon-edit" type="primary">Primary</el-button>
+      <el-button icon="el-icon-check" type="success">Success</el-button>
+      <el-button icon="el-icon-delete" type="danger">Danger</el-button>
+    </el-row>
+    <hr>
+
+    <!-- round -->
     <el-row class="demo-line">
       <el-button round>Round</el-button>
       <el-button type="primary" round>Primary</el-button>
       <el-button type="success" round>Success</el-button>
-      <el-button type="info" round>Info</el-button>
-      <el-button type="warning" round>Warning</el-button>
       <el-button type="danger" round>Danger</el-button>
     </el-row>
+    <el-row class="demo-line">
+      <el-button icon="el-icon-plus" round>Round</el-button>
+      <el-button icon="el-icon-edit" type="primary" round>Primary</el-button>
+      <el-button icon="el-icon-check" type="success" round>Success</el-button>
+      <el-button icon="el-icon-delete" type="danger" round>Danger</el-button>
+    </el-row>
+    <hr>
+
+    <!-- circle -->
     <el-row class="demo-line">
       <el-button icon="el-icon-search" circle></el-button>
       <el-button type="primary" icon="el-icon-edit" circle></el-button>
       <el-button type="success" icon="el-icon-check" circle></el-button>
-      <el-button type="info" icon="el-icon-message" circle></el-button>
-      <el-button type="warning" icon="el-icon-star-off" circle></el-button>
       <el-button type="danger" icon="el-icon-delete" circle></el-button>
     </el-row>
-    <el-row class="demo-line">
-      <el-button>Default</el-button>
-      <el-button size="medium">Medium</el-button>
-      <el-button size="small">Small</el-button>
-      <el-button size="mini">Mini</el-button>
-    </el-row>
+
     <h4>Radio</h4>
     <el-row class="demo-line">
       <el-radio v-model="radio" label="1">Option A</el-radio>

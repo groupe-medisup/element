@@ -13,7 +13,7 @@
       float: none;
       display: inline-block;
       text-align: left;
-      padding: 0 0 10px 0;
+      padding: 0 0 6px 0;
     }
   }
   @include m(inline) {
@@ -117,14 +117,9 @@
     font-size: 12px;
     line-height: 1;
     padding-top: 4px;
-    position: absolute;
-    top: 100%;
-    left: 0;
 
     @include m(inline) {
       position: relative;
-      top: auto;
-      left: auto;
       display: inline-block;
       margin-left: 10px;
     }
@@ -136,7 +131,6 @@
       & .el-form-item__label-wrap > .el-form-item__label:after {
         content: '*';
         color: $--color-danger;
-        // margin-left: 4px;
       }
     }
   }
