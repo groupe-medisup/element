@@ -16,12 +16,12 @@
           />
         </el-tooltip>
         <div class="button-group">
-          <el-button 
+          <el-button
             class="reset"
-            type="primary" 
-            round 
+            type="primary"
+            plain
+            round
             size="mini"
-            :disabled="isOfficial"
             @click="onReset"
           >
             {{getActionDisplayName('reset-theme')}}
@@ -47,7 +47,7 @@
         </el-option>
       </el-select>
       <div class="line"></div>
-    </div>
+  </div>
 </template>
 
 <style lang="scss">
@@ -55,6 +55,7 @@
   padding: 15px 18px 0;
   .action-group {
     padding: 5px 0;
+    display: flex;
     img {
       cursor: not-allowed;
       width: 16px;
@@ -71,25 +72,21 @@
       }
     }
     .button-group {
-      float: right;
-      .el-button {
-        padding: 6px 15px;
-        &.is-disabled {
-          color: #C0C4CC;
-          background-color: #fff;
-          border-color: #EBEEF5;
-        }
-      }
-      .reset {
-        background: #E6F1FC;
-        color: #1989FA;
-        border-color: #A2CFFC;
-      }
-      .download {
-        background: #1989FA;
-        color: #FFF;
-        border-color: #1989FA
-      }
+      flex: 1;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      // .reset {
+      //   background: #E6F1FC;
+      //   color: #1989FA;
+      //   border-color: #A2CFFC;
+      // }
+      // .download {
+      //   background: #1989FA;
+      //   color: #FFF;
+      //   border-color: #1989FA
+      // }
     }
   }
   .selector {

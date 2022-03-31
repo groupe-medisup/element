@@ -18,7 +18,7 @@ import { getActionDisplayName } from '../../theme-configurator/utils/utils';
 export default {
   mixins: [Loading, DocStyle],
   mounted() {
-    this.checkLocalThemeConfig();
+    // this.checkLocalThemeConfig();
     bus.$on(ACTION_APPLY_THEME, val => {
       this.userConfig = val;
       this.onAction();
