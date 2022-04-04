@@ -20,6 +20,7 @@
       <div class="el-input-group__prepend" v-if="$slots.prepend">
         <slot name="prepend"></slot>
       </div>
+
       <input
         :tabindex="tabindex"
         v-if="type !== 'textarea'"
@@ -84,6 +85,7 @@
         <slot name="append"></slot>
       </div>
     </template>
+
     <textarea
       v-else
       :tabindex="tabindex"
@@ -97,13 +99,12 @@
       :disabled="inputDisabled"
       :readonly="readonly"
       :autocomplete="autoComplete || autocomplete"
-      :style="textareaStyle"
       @focus="handleFocus"
       @blur="handleBlur"
       @change="handleChange"
       :aria-label="label"
-    >
-    </textarea>
+    />
+
     <span v-if="isWordLimitVisible && type === 'textarea'" class="el-input__count">{{ textLength }}/{{ upperLimit }}</span>
   </div>
 </template>
@@ -261,7 +262,7 @@
 
     watch: {
       value(val) {
-        this.$nextTick(this.resizeTextarea);
+        // this.$nextTick(this.resizeTextarea);
         if (this.validateEvent) {
           this.dispatch('ElFormItem', 'el.form.change', [val]);
         }
@@ -278,7 +279,7 @@
       type() {
         this.$nextTick(() => {
           this.setNativeInputValue();
-          this.resizeTextarea();
+          // this.resizeTextarea();
           this.updateIconOffset();
         });
       }
@@ -429,7 +430,7 @@
 
     mounted() {
       this.setNativeInputValue();
-      this.resizeTextarea();
+      // this.resizeTextarea();
       this.updateIconOffset();
     },
 
