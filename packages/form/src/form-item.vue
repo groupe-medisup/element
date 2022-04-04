@@ -14,13 +14,46 @@
   ]">
     <label-wrap
       :is-auto-width="labelStyle && labelStyle.width === 'auto'"
-      :update-all="form.labelWidth === 'auto'">
+      :update-all="form.labelWidth === 'auto'"
+    >
       <label :for="labelFor" class="el-form-item__label" :style="labelStyle" v-if="label || $slots.label">
         <slot name="label">{{label + form.labelSuffix}}</slot>
       </label>
     </label-wrap>
+
     <div class="el-form-item__content" :style="contentStyle">
+      <!-- hint before -->
+      <slot v-if="hintPosition === 'before'" name="hint" :hint="hint">
+        <div
+          v-if="hint"
+          class="el-form-item__hint el-form-item__hint--before"
+          :class="{
+              'el-form-item__hint--inline': typeof inlineMessage === 'boolean'
+                ? inlineMessage
+                : (elForm && elForm.inlineMessage || false)
+            }"
+        >
+          {{hint}}
+        </div>
+      </slot>
+
       <slot></slot>
+
+      <!-- hint after -->
+      <slot v-if="hintPosition === 'after'" name="hint" :hint="hint">
+        <div
+          v-if="hint"
+          class="el-form-item__hint el-form-item__hint--after"
+          :class="{
+              'el-form-item__hint--inline': typeof inlineMessage === 'boolean'
+                ? inlineMessage
+                : (elForm && elForm.inlineMessage || false)
+            }"
+        >
+          {{hint}}
+        </div>
+      </slot>
+
       <transition name="el-zoom-in-top">
         <slot
           v-if="validateState === 'error' && showMessage && form.showMessage"
@@ -83,6 +116,11 @@
         default: true
       },
       size: String,
+      hint: String,
+      hintPosition: {
+        type: String,
+        default: 'after'
+      },
       xs: Boolean,
       sm: Boolean,
       md: Boolean
