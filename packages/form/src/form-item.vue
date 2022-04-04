@@ -4,6 +4,7 @@
       'is-error': validateState === 'error',
       'is-validating': validateState === 'validating',
       'is-success': validateState === 'success',
+      'is-no-label': !(label || $slots.label),
       'is-required': isRequired || required,
       'is-no-asterisk': elForm && elForm.hideRequiredAsterisk,
       'is-xsmall': xs,
