@@ -5,7 +5,10 @@
       'is-validating': validateState === 'validating',
       'is-success': validateState === 'success',
       'is-required': isRequired || required,
-      'is-no-asterisk': elForm && elForm.hideRequiredAsterisk
+      'is-no-asterisk': elForm && elForm.hideRequiredAsterisk,
+      'is-xsmall': xs,
+      'is-small': sm,
+      'is-medium': md
     },
     sizeClass ? 'el-form-item--' + sizeClass : ''
   ]">
@@ -79,7 +82,10 @@
         type: Boolean,
         default: true
       },
-      size: String
+      size: String,
+      xs: Boolean,
+      sm: Boolean,
+      md: Boolean
     },
     components: {
       // use this component to calculate auto width
