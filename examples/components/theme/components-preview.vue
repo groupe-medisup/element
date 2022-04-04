@@ -36,7 +36,7 @@
   }
 
   hr {
-    border: 1px solid #f0f0f0;
+    border: 1px solid #F4F4F5;
   }
 }
 </style>
@@ -48,14 +48,18 @@
     <!-- text -->
     <el-row class="demo-line">
       <el-button text>Text</el-button>
+      <el-button type="secondary" text>Secondary</el-button>
       <el-button type="primary" text>Primary</el-button>
       <el-button type="success" text>Success</el-button>
+      <el-button type="warning" text>Warning</el-button>
       <el-button type="danger" text>Danger</el-button>
     </el-row>
     <el-row class="demo-line">
       <el-button icon="el-icon-plus" text>Text</el-button>
+      <el-button icon="el-icon-question" type="secondary" text>Secondary</el-button>
       <el-button icon="el-icon-edit" type="primary" text>Primary</el-button>
       <el-button icon="el-icon-check" type="success" text>Success</el-button>
+      <el-button icon="el-icon-warning" type="warning" text>Warning</el-button>
       <el-button icon="el-icon-delete" type="danger" text>Danger</el-button>
     </el-row>
     <hr>
@@ -63,14 +67,18 @@
     <!-- plain -->
     <el-row class="demo-line">
       <el-button plain>Plain</el-button>
+      <el-button type="secondary" plain>Secondary</el-button>
       <el-button type="primary" plain>Primary</el-button>
       <el-button type="success" plain>Success</el-button>
+      <el-button type="warning" plain>Warning</el-button>
       <el-button type="danger" plain>Danger</el-button>
     </el-row>
     <el-row class="demo-line">
       <el-button icon="el-icon-plus" plain>Plain</el-button>
+      <el-button icon="el-icon-question" type="secondary" plain>Secondary</el-button>
       <el-button icon="el-icon-edit" type="primary" plain>Primary</el-button>
       <el-button icon="el-icon-check" type="success" plain>Success</el-button>
+      <el-button icon="el-icon-warning" type="warning" plain>Warning</el-button>
       <el-button icon="el-icon-delete" type="danger" plain>Danger</el-button>
     </el-row>
     <hr>
@@ -78,14 +86,18 @@
     <!-- light -->
     <el-row class="demo-line">
       <el-button light>Light</el-button>
+      <el-button type="secondary" light>Secondary</el-button>
       <el-button type="primary" light>Primary</el-button>
       <el-button type="success" light>Success</el-button>
+      <el-button type="warning" light>Warning</el-button>
       <el-button type="danger" light>Danger</el-button>
     </el-row>
     <el-row class="demo-line">
       <el-button icon="el-icon-plus" light>Light</el-button>
+      <el-button icon="el-icon-question" type="secondary" light>Secondary</el-button>
       <el-button icon="el-icon-edit" type="primary" light>Primary</el-button>
       <el-button icon="el-icon-check" type="success" light>Success</el-button>
+      <el-button icon="el-icon-warning" type="warning" light>Warning</el-button>
       <el-button icon="el-icon-delete" type="danger" light>Danger</el-button>
     </el-row>
     <hr>
@@ -93,14 +105,18 @@
     <!-- default -->
     <el-row class="demo-line">
       <el-button>Default</el-button>
+      <el-button type="secondary">Secondary</el-button>
       <el-button type="primary">Primary</el-button>
       <el-button type="success">Success</el-button>
+      <el-button type="warning">Warning</el-button>
       <el-button type="danger">Danger</el-button>
     </el-row>
     <el-row class="demo-line">
       <el-button icon="el-icon-plus">Default</el-button>
+      <el-button icon="el-icon-question" type="secondary">Secondary</el-button>
       <el-button icon="el-icon-edit" type="primary">Primary</el-button>
       <el-button icon="el-icon-check" type="success">Success</el-button>
+      <el-button icon="el-icon-warning" type="warning">Warning</el-button>
       <el-button icon="el-icon-delete" type="danger">Danger</el-button>
     </el-row>
     <hr>
@@ -108,32 +124,78 @@
     <!-- round -->
     <el-row class="demo-line">
       <el-button round>Round</el-button>
+      <el-button type="secondary" round>Secondary</el-button>
       <el-button type="primary" round>Primary</el-button>
       <el-button type="success" round>Success</el-button>
+      <el-button type="warning" round>Warning</el-button>
       <el-button type="danger" round>Danger</el-button>
     </el-row>
     <el-row class="demo-line">
       <el-button icon="el-icon-plus" round>Round</el-button>
+      <el-button icon="el-icon-question" type="secondary" round>Secondary</el-button>
       <el-button icon="el-icon-edit" type="primary" round>Primary</el-button>
       <el-button icon="el-icon-check" type="success" round>Success</el-button>
+      <el-button icon="el-icon-warning" type="warning" round>Warning</el-button>
       <el-button icon="el-icon-delete" type="danger" round>Danger</el-button>
     </el-row>
     <hr>
 
     <!-- circle -->
     <el-row class="demo-line">
-      <el-button icon="el-icon-search" circle></el-button>
-      <el-button type="primary" icon="el-icon-edit" circle></el-button>
-      <el-button type="success" icon="el-icon-check" circle></el-button>
-      <el-button type="danger" icon="el-icon-delete" circle></el-button>
+      <el-button icon="el-icon-plus" circle></el-button>
+      <el-button icon="el-icon-question" type="secondary" circle></el-button>
+      <el-button icon="el-icon-edit" type="primary" circle></el-button>
+      <el-button icon="el-icon-check" type="success" circle></el-button>
+      <el-button icon="el-icon-warning" type="warning" circle></el-button>
+      <el-button icon="el-icon-delete" type="danger" circle></el-button>
     </el-row>
 
-    <h4>Radio</h4>
-    <el-row class="demo-line">
+    <h4>Form</h4>
+    <el-form :model="form" :rules="rules" label-position="top">
+      <el-form-item for="ccv" prop="ccv" hint="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et" xs>
+        <el-input @input="setForm('ccv', $event)" :value="form.ccv" id="ccv" placeholder="CCV"></el-input>
+      </el-form-item>
+
+      <el-form-item for="zip" prop="zip" label="Zip code" sm>
+        <el-input @input="setForm('zip', $event)" :value="form.zip" id="zip" placeholder="13000"></el-input>
+      </el-form-item>
+
+      <el-form-item for="name" label="Name" prop="name" md>
+        <el-input @input="setForm('name', $event)" :value="form.name" id="name" placeholder="Jul Saint Jean de la Puenta"></el-input>
+      </el-form-item>
+
+      <el-form-item for="desc" label="Description" prop="desc" hint="Eirmod tempor invidunt ut labore et" hint-position="before">
+        <el-input @input="setForm('desc', $event)" :value="form.desc" id="desc" placeholder="Le J c'est le S 🖕" type="textarea" rows="3"></el-input>
+      </el-form-item>
+
+      <el-form-item for="country" prop="country" label="Pays" hint="Votre pays de naissance">
+        <el-select @change="setForm('country', $event)" :value="form.country">
+          <el-option :value="null" label="Sélectionnez votre pays" disabled />
+          <el-option value="France" selected />
+          <el-option value="Belgique" />
+          <el-option value="Portugal" />
+        </el-select>
+      </el-form-item>
+
+      <el-form-item for="date" prop="date" label="Date" hint="Eirmod tempor invidunt ut labore et">
+        <el-date-picker
+          @input="setForm('date', $event)"
+          :value="form.date"
+          type="date"
+        />
+      </el-form-item>
+
+      <!-- <el-form-item>
+        <el-switch active-text="Virer Axel" v-model="switchValue"></el-switch>
+      </el-form-item> -->
+    </el-form>
+
+    <!-- <el-row class="demo-line">
       <el-radio v-model="radio" label="1">Option A</el-radio>
       <el-radio v-model="radio" label="2">Option B</el-radio>
-    </el-row>
-    <el-row class="demo-line">
+    </el-row> -->
+
+    <!-- <el-row class="demo-line">
       <el-radio-group v-model="radio1">
         <el-radio-button label="New York"></el-radio-button>
         <el-radio-button label="Washington"></el-radio-button>
@@ -141,10 +203,12 @@
         <el-radio-button label="Chicago"></el-radio-button>
       </el-radio-group>
     </el-row>
+
     <el-row class="demo-line">
       <el-radio v-model="radio2" label="1" border>Option A</el-radio>
       <el-radio v-model="radio2" label="2" border>Option B</el-radio>
     </el-row>
+
     <h4>Checkbox</h4>
     <el-row class="demo-line">
       <el-checkbox v-model="checked">Option</el-checkbox>
@@ -157,6 +221,7 @@
     <el-row class="demo-line">
       <el-checkbox v-model="checked2" label="Option1" border></el-checkbox>
     </el-row>
+    
     <h4>Input</h4>
     <el-row style="width: 180px">
       <el-input placeholder="Please input" v-model="input"></el-input>
@@ -281,7 +346,7 @@
         <el-table-column prop="name" label="Name" width="180"></el-table-column>
         <el-table-column prop="address" label="Address"></el-table-column>
       </el-table>
-    </el-row>
+    </el-row> -->
     <h4>Message</h4>
     <el-row>
       <div role="alert" class="demo-item el-message el-message--success el-message-fade-leave-active el-message-fade-leave-to" style="top: 0;left: 0;width: 100px; opacity: 1; position: relative;transform: none;"><i class="el-message__icon el-icon-success"></i><p class="el-message__content">Congrats, this is a success message.</p><!----></div>
@@ -289,19 +354,13 @@
       <div role="alert" class="demo-item el-message el-message--info el-message-fade-leave-active el-message-fade-leave-to" style="top: 0;left: 0;width: 100px; opacity: 1; position: relative;transform: none;"><i class="el-message__icon el-icon-info"></i><p class="el-message__content">This is a message.</p><!----></div>
       <div role="alert" class="demo-item el-message el-message--error is-closable el-message-fade-leave-active el-message-fade-leave-to" style="top: 0;left: 0;width: 100px; opacity: 1; position: relative;transform: none;"><i class="el-message__icon el-icon-error"></i><p class="el-message__content">Oops, this is a error message.</p><i class="el-message__closeBtn el-icon-close"></i></div>
     </el-row>
-    <h4>MessageBox</h4>
-    <el-row>
-      <div class="el-message-box"><div class="el-message-box__header"><div class="el-message-box__title"><!----><span>Warning</span></div><button type="button" aria-label="Close" class="el-message-box__headerbtn"><i class="el-message-box__close el-icon-close"></i></button></div><div class="el-message-box__content"><div class="el-message-box__status el-icon-warning"></div><div class="el-message-box__message"><p>This will permanently delete the file. Continue?</p></div><div class="el-message-box__input" style="display: none;"><div class="el-input"><!----><input type="text" autocomplete="off" placeholder="" class="el-input__inner"><!----><!----><!----></div><div class="el-message-box__errormsg" style="visibility: hidden;"></div></div></div><div class="el-message-box__btns"><button type="button" class="el-button el-button--default el-button--small"><!----><!----><span>
-          Cancel
-        </span></button><button type="button" class="el-button el-button--default el-button--small el-button--primary "><!----><!----><span>
-          OK
-        </span></button></div></div>
-    </el-row>
+
     <h4>Notification</h4>
     <el-row>
       <div role="alert" class="el-notification right" style="position: relative; left: 0;"><!----><div class="el-notification__group"><span class="el-notification__title">Notification</span><div class="el-notification__content"><div>This is a message </div></div><div class="el-notification__closeBtn el-icon-close"></div></div></div>
     </el-row>
-    <h4>Menu</h4>
+
+    <!-- <h4>Menu</h4>
     <el-row>
       <el-menu :default-active="menu" class="el-menu-demo" mode="horizontal">
         <el-menu-item index="1">Processing Center</el-menu-item>
@@ -356,7 +415,8 @@
           <span>Navigator Four</span>
         </el-menu-item>
       </el-menu>
-    </el-row>
+    </el-row> -->
+
     <h4>Tabs</h4>
     <el-row>
       <el-tabs v-model="tab" class="demo-item">
@@ -372,11 +432,8 @@
         <el-tab-pane label="Task">Task</el-tab-pane>
       </el-tabs>
     </el-row>
-    <h4>Dialog</h4>
-    <el-row>
-      <div role="dialog" aria-modal="true" aria-label="Tips" class="el-dialog" style="margin: 0"><div class="el-dialog__header"><span class="el-dialog__title">Tips</span><button type="button" aria-label="Close" class="el-dialog__headerbtn"><i class="el-dialog__close el-icon el-icon-close"></i></button></div><div class="el-dialog__body"><span>This is a message</span> </div><div class="el-dialog__footer"><span class="dialog-footer"><button type="button" class="el-button el-button--default"><!----><!----><span>Cancel</span></button> <button type="button" class="el-button el-button--primary"><!----><!----><span>Confirm</span></button></span></div></div>
-    </el-row>
-    <h4>Tooltip</h4>
+
+    <!-- <h4>Tooltip</h4>
     <el-row>
       <div role="tooltip" x-placement="top" class="el-tooltip__popper is-dark" style="position: relative; width: 40px;text-align: center;">Dark<div x-arrow="" class="popper__arrow"></div>
       </div>
@@ -413,7 +470,7 @@
           <div>Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects;</div>
         </el-collapse-item>
       </el-collapse>
-    </el-row>
+    </el-row> -->
     <h4>Avatar</h4>
     <el-row class="demo-line avatar-demo">
       <el-avatar icon="el-icon-user-solid"/>
@@ -429,6 +486,26 @@
 export default {
   data() {
     return {
+      form: {
+        name: null,
+        desc: null,
+        ccv: null,
+        zip: null,
+        country: null,
+        date: null
+      },
+      rules: {
+        ccv: [ { required: true, min: 3, max: 3 } ],
+        name: [ { required: true, message: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et' } ],
+        desc: [ { required: true, message: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et' } ],
+        country: [
+          { required: true },
+          { validator: (rule, value, next) => value === 'Portugal' ? next('Vous ne pouvez pas venir du Portugal') : next() }
+        ],
+        date: [
+          { required: true, type: 'date' }
+        ]
+      },
       radio: '1',
       radio1: 'Washington',
       radio2: '1',
@@ -585,6 +662,11 @@ export default {
         url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
       }
     };
+  },
+  methods: {
+    setForm(key, value) {
+      this.form = { ...this.form, [key]: value };
+    }
   }
 };
 </script>
