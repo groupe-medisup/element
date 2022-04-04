@@ -40,35 +40,15 @@
       <components-preview>
       </components-preview>
     </section>
-    <aside class="side">
-      <section class="editor" :style="{top: `${editorTop}px`, height: `${editorHeight}px`}" :class="{'fixed': isFixed}">
-        <theme-configurator
-          :isOfficial="isOfficial"
-          :themeConfig="themeConfig"
-          :previewConfig="previewConfig"
-          :onUserConfigUpdate="onUserConfigUpdate"
-        >
-        </theme-configurator>
-      </section>
-    </aside>
   </div>
 </template>
 <script>
-import bus from '../../bus.js';
 import ThemeConfigurator from '../../components/theme-configurator';
 import ComponentsPreview from '../../components/theme/components-preview';
 import BasicTokensPreview from '../../components/theme/basic-tokens-preview';
 import {
-  loadPreviewFromLocal,
-  loadUserThemeFromLocal,
   saveUserThemeToLocal
 } from '../../components/theme/localstorage';
-import {
-  getThemeConfigObject
-} from '../../components/theme/utils';
-import {
-  ACTION_APPLY_THEME
-} from '../../components/theme/constant.js';
 import throttle from 'throttle-debounce/throttle';
 import { getActionDisplayName } from '../../components/theme-configurator/utils/utils';
 
@@ -168,29 +148,6 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.throttledHandleScroll);
-  },
-  mounted() {
-    this.editorHeight = window.innerHeight - 40 - 5;
-    window.addEventListener('scroll', this.throttledHandleScroll);
-    this.userTheme = loadUserThemeFromLocal();
-    const previewConfig = loadPreviewFromLocal();
-    const pageRefer = this.$route.params.refer;
-    if (!previewConfig || !pageRefer) {
-      this.$alert(getActionDisplayName('no-preview-config'), getActionDisplayName('notice'), {
-        confirmButtonText: getActionDisplayName('confirm'),
-        callback: action => {
-          const newPath = this.$route.path.replace('/preview', '');
-          this.$router.replace(newPath);
-        }
-      });
-      return;
-    }
-    this.previewConfig = previewConfig;
-    const themeConfig = getThemeConfigObject(previewConfig.theme);
-    if (themeConfig) {
-      this.themeConfig = themeConfig;
-      bus.$emit(ACTION_APPLY_THEME, themeConfig);
-    }
   }
 };
 </script>
