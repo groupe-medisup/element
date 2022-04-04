@@ -68,17 +68,6 @@
     }
   }
 
-  &.is-disabled {
-    &,
-    &:hover,
-    &:focus,
-    &:active {
-      color: $--color-white;
-      border-color: mix($border-color, $--color-white);
-      background-color: mix($background-color, $--color-white);
-    }
-  }
-
   &.is-plain {
     @include button-plain($background-color);
 
@@ -92,6 +81,17 @@
 
     &.is-light {
       @include button-text($color);
+    }
+  }
+
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: $--color-white;
+      border-color: mix($border-color, $--color-white);
+      background-color: mix($background-color, $--color-white);
     }
   }
 }

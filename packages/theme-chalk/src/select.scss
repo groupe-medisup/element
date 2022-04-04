@@ -20,6 +20,10 @@
   &:hover {
     .el-input__inner {
       border-color: $--select-border-color-hover;
+
+      // @at-root .is-error & {
+      //   border-color: $--color-danger;
+      // }
     }
   }
 
