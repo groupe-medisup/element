@@ -13,6 +13,7 @@ $text-extra-large:  20px; // 20px Main Title	Extra large
 
 $--width-xsmall: 60px;
 $--width-small: 120px;
+$--width-small: 120px;
 $--width-medium: 320px;
 
 $--width-map: (
@@ -129,7 +130,7 @@ $--color-text-secondary: #8E8E8E !default;
 /// color|1|Font Color|2
 $--color-text-placeholder: $--color-text-secondary !default;
 /// color|1|Border Color|3
-$--border-color-base: #E4E7ED !default;
+$--border-color-base: #E7EAEF !default;
 /// color|1|Border Color|3
 $--border-color-light: #F4F4F5 !default;
 /// color|1|Border Color|3
@@ -245,7 +246,7 @@ $--checkbox-disabled-checked-input-border-color: $--border-color-base !default;
 $--checkbox-disabled-checked-icon-color: $--color-text-placeholder !default;
 
 /// color||Color|0
-$--checkbox-checked-font-color: $--color-success !default;
+$--checkbox-checked-font-color: $--color-black !default;
 $--checkbox-checked-input-border-color: $--color-success !default;
 /// color||Color|0
 $--checkbox-checked-background-color: $--color-success !default;
@@ -313,15 +314,15 @@ $--radio-disabled-checked-input-fill: $--disabled-fill-base !default;
 $--radio-disabled-checked-icon-color: $--color-text-placeholder !default;
 
 /// color||Color|0
-$--radio-checked-font-color: $--color-primary !default;
+$--radio-checked-font-color: $--color-black !default;
 /// color||Color|0
-$--radio-checked-input-border-color: $--color-primary !default;
+$--radio-checked-input-border-color: $--color-success !default;
 /// color||Color|0
 $--radio-checked-input-background-color: $--color-white !default;
 /// color||Color|0
-$--radio-checked-icon-color: $--color-primary !default;
+$--radio-checked-icon-color: $--color-success !default;
 
-$--radio-input-border-color-hover: $--color-primary !default;
+$--radio-input-border-color-hover: $--color-success !default;
 
 $--radio-bordered-height: 40px !default;
 $--radio-bordered-padding: 12px 20px 0 10px !default;
@@ -375,7 +376,8 @@ $--select-option-selected-hover: $--background-color-base !default;
 
 $--select-group-color: $--color-info !default;
 $--select-group-height: 30px !default;
-$--select-group-font-size: $text-extra-small !default;
+$--select-group-font-size: $text !default;
+$--select-group-font-weight: 700 !default;
 
 $--select-dropdown-background: $--color-white !default;
 $--select-dropdown-shadow: $--box-shadow-light !default;
@@ -910,7 +912,8 @@ $--datepicker-inrange-hover-background-color: $--border-color-extra-light !defau
 $--datepicker-active-color: $--color-primary !default;
 /// color||Color|0
 $--datepicker-hover-font-color: $--color-primary !default;
-$--datepicker-cell-hover-color: #fff !default;
+$--datepicker-cell-hover-background-color: $--cascader-tag-background !default;
+$--datepickercell-hover-border: 1px solid $--background-color-base !default;
 
 /* Loading
 --------------------------*/

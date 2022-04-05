@@ -92,7 +92,7 @@
 }
 
 @include b(tag) {
-  @include genTheme(10%, 20%, 100%, 100%);
+  // @include genTheme(10%, 20%, 100%, 100%);
   display: inline-flex;
   flex-direction: row;
   align-items: center;
@@ -132,7 +132,7 @@
     cursor: pointer;
     font-size: 12px;
     height: 16px;
-    width: 18px;
+    width: 16px;
     line-height: 16px;
     // vertical-align: middle;
     margin-top: 1px;
@@ -144,13 +144,13 @@
     }
   }
 
-  @include m(dark) {
-    @include genTheme(100%, 100%, 0, 80%);
-  }
+  // @include m(dark) {
+  //   @include genTheme(100%, 100%, 0, 80%);
+  // }
 
-  @include m(plain) {
-    @include genTheme(0, 40%, 100%, 100%);
-  }
+  // @include m(plain) {
+  //   @include genTheme(0, 40%, 100%, 100%);
+  // }
 
   // @include m(medium) {
   //   height: 28px;
