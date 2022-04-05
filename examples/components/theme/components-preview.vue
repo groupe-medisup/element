@@ -171,17 +171,72 @@
       <el-form-item for="country" prop="country" label="Pays" hint="Votre pays de naissance">
         <el-select @change="setForm('country', $event)" :value="form.country">
           <el-option :value="null" label="Sélectionnez votre pays" disabled />
-          <el-option value="France" selected />
-          <el-option value="Belgique" />
-          <el-option value="Portugal" />
+
+          <el-option-group label="Europe">
+            <el-option value="France" selected />
+            <el-option value="Belgique" />
+            <el-option value="Portugal" />
+          </el-option-group>
+
+          <el-option-group label="Afrique">
+            <el-option value="Maroc" />
+            <el-option value="République démocratique du Congo" />
+          </el-option-group>
         </el-select>
       </el-form-item>
 
-      <el-form-item for="date" prop="date" label="Date" hint="Eirmod tempor invidunt ut labore et">
+      <el-form-item for="sauce" prop="sauce" label="Sauce">
+        <el-radio-group
+          @input="setForm('sauce', $event)"
+          :value="form.sauce"
+        >
+          <el-radio label="Mayo">Mayo</el-radio>
+          <el-radio label="Ketchup">Ketchup</el-radio>
+          <el-radio label="Algérienne">Algérienne</el-radio>
+        </el-radio-group>
+      </el-form-item>
+
+      <el-form-item for="sauceArr" prop="sauceArr" label="Sauce">
+        <el-checkbox-group
+          @input="setForm('sauceArr', $event)"
+          :value="form.sauceArr"
+        >
+          <el-checkbox label="Mayo">Mayo</el-checkbox>
+          <el-checkbox label="Ketchup">Ketchup</el-checkbox>
+          <el-checkbox label="Algérienne">Algérienne</el-checkbox>
+        </el-checkbox-group>
+      </el-form-item>
+
+      <el-form-item for="date" prop="date" label="Date et heure" hint="Eirmod tempor invidunt ut labore et">
+        <el-date-picker
+          @input="setForm('date', $event)"
+          :value="form.date"
+          type="datetime"
+        />
+      </el-form-item>
+
+      <el-form-item for="date" prop="date" label="Date" sm>
         <el-date-picker
           @input="setForm('date', $event)"
           :value="form.date"
           type="date"
+        />
+      </el-form-item>
+
+      <el-form-item for="date" prop="date" label="Année scolaire" sm>
+        <el-date-picker
+          @input="setForm('date', $event)"
+          :value="form.date"
+          type="schoolyear"
+        />
+      </el-form-item>
+
+      <el-form-item for="date" prop="schoolyears" label="Années scolaires" sm>
+        <el-date-picker
+          @change="setForm('schoolyears', $event)"
+          :value="form.schoolyears"
+          tags-visible
+          type="schoolyears"
         />
       </el-form-item>
 
@@ -492,7 +547,10 @@ export default {
         ccv: null,
         zip: null,
         country: null,
-        date: null
+        sauce: null,
+        sauceArr: [],
+        date: null,
+        schoolyears: null
       },
       rules: {
         ccv: [ { required: true, min: 3, max: 3 } ],
@@ -501,6 +559,9 @@ export default {
         country: [
           { required: true },
           { validator: (rule, value, next) => value === 'Portugal' ? next('Vous ne pouvez pas venir du Portugal') : next() }
+        ],
+        sauce: [
+          { required: true, type: 'enum', enum: [ 'Mayo', 'Ketchup' ] }
         ],
         date: [
           { required: true, type: 'date' }
@@ -665,6 +726,12 @@ export default {
   },
   methods: {
     setForm(key, value) {
+      console.log(key, value);
+
+      if (this.form[key] === undefined) {
+        return;
+      }
+
       this.form = { ...this.form, [key]: value };
     }
   }
