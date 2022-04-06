@@ -129,6 +129,7 @@
     color: $--color-text-secondary;
     font-size: $--input-font-size-sibling;
     max-width: $--width-medium;
+    line-height: 1.2;
 
     @include m(before) {
       padding-bottom: $--input-padding-sibling-vertical;
