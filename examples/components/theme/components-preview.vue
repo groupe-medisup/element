@@ -168,7 +168,7 @@
         <el-input @input="setForm('desc', $event)" :value="form.desc" id="desc" placeholder="Le J c'est le S 🖕" type="textarea" rows="3"></el-input>
       </el-form-item>
 
-      <el-form-item for="country" prop="country" label="Pays" hint="Votre pays de naissance">
+      <el-form-item for="country" prop="country" label="Pays" hint="Votre pays de naissance" sm>
         <el-select @change="setForm('country', $event)" :value="form.country">
           <el-option :value="null" label="Sélectionnez votre pays" disabled />
 
@@ -183,6 +183,10 @@
             <el-option value="République démocratique du Congo" />
           </el-option-group>
         </el-select>
+      </el-form-item>
+
+      <el-form-item for="region" prop="region" label="Région" md>
+        <el-cascader @input="setForm('region', $event)" :options="[{value: 1, label: 'Europe', children:[{value: 1, label: 'EMEA'}]}]" :props="{ multiple: true }" :value="form.region" />
       </el-form-item>
 
       <el-form-item for="sauce" prop="sauce" label="Sauce">
@@ -547,6 +551,7 @@ export default {
         ccv: null,
         zip: null,
         country: null,
+        region: [],
         sauce: null,
         sauceArr: [],
         date: null,

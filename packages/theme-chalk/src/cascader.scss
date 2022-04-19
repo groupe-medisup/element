@@ -11,6 +11,9 @@
   font-size: $--font-size-base;
   // line-height: $--input-height;
 
+  // @include width-map();
+  // @include input-require-indicator();
+
   &:not(.is-disabled):hover {
     .el-input__inner {
       cursor: pointer;

@@ -12,6 +12,9 @@
   display: inline-block;
   position: relative;
 
+  // @include width-map();
+  // @include input-require-indicator();
+
   .el-select__tags
     >span {
       display: contents;
