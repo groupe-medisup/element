@@ -103,9 +103,9 @@
       text-overflow: ellipsis;
       background: $--cascader-tag-background;
 
-      &:not(.is-hit) {
-        border-color: transparent;
-      }
+      // &:not(.is-hit) {
+      //   border-color: transparent;
+      // }
 
       > span:not(.label) {
         flex: 1;
@@ -114,14 +114,19 @@
       }
 
       .el-icon-close {
-        flex: none;
-        background-color: $--color-text-placeholder;
-        color: $--color-white;
-
-        &:hover {
-          background-color: $--color-text-secondary;
-        }
+        color: inherit;
+        background-color: transparent !important;
       }
+
+      // .el-icon-close {
+      //   flex: none;
+      //   background-color: $--color-text-placeholder;
+      //   color: $--color-white;
+
+      //   &:hover {
+      //     background-color: $--color-text-secondary;
+      //   }
+      // }
     }
   }
 
