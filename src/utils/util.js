@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { isString, isObject } from '@jack-agency/element/src/utils/types';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
-const OBJECT_NUMERIC_KEY = /\d+/;
+const OBJECT_NUMERIC_KEY = /^\d+$/;
 
 export function noop() {};
 
