@@ -38,6 +38,7 @@
           :size="tagProps.size || collapseTagSize"
           :hit="item.hitState"
           :type="tagProps.type || 'info'"
+          @click="$emit('tag-click', item, $event)"
           @close="deleteTag($event, item)"
           disable-transitions
           v-bind="tagProps">
