@@ -12,14 +12,19 @@ $text-large:        18px; // 18px Title large
 $text-extra-large:  20px; // 20px Main Title	Extra large
 
 $--width-xsmall: 60px;
+$--width-xsmall2: 90px;
 $--width-small: 120px;
-$--width-small: 120px;
+$--width-small2: 280px;
 $--width-medium: 320px;
+$--width-medium2: 400px;
 
 $--width-map: (
   "xsmall" $--width-xsmall,
+  "xsmall2" $--width-xsmall2,
   "small" $--width-small,
+  "small2" $--width-small2,
   "medium" $--width-medium,
+  "medium2" $--width-medium2,
 );
 
 $--font-line-height-base: 1.3;
