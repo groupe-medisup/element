@@ -15,6 +15,7 @@
           :size="tagProps.size || collapseTagSize"
           :hit="selected[0].hitState"
           :type="tagProps.type || 'info'"
+          @click="clickTag($event, selected[0])"
           @close="deleteTag($event, selected[0])"
           disable-transitions
           v-bind="tagProps">
@@ -38,7 +39,7 @@
           :size="tagProps.size || collapseTagSize"
           :hit="item.hitState"
           :type="tagProps.type || 'info'"
-          @click="$emit('tag-click', item, $event)"
+          @click="clickTag($event, item)"
           @close="deleteTag($event, item)"
           disable-transitions
           v-bind="tagProps">
@@ -827,6 +828,14 @@
           this.$emit('input', value);
           this.emitChange(value);
           this.$emit('remove-tag', tag.value);
+        }
+        event.stopPropagation();
+      },
+
+      clickTag(event, tag) {
+        let index = this.selected.indexOf(tag);
+        if (index > -1 && !this.selectDisabled) {
+          this.$emit('tag-click', tag, event);
         }
         event.stopPropagation();
       },
