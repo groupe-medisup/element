@@ -252,9 +252,14 @@
         const validator = new AsyncValidator(descriptor);
         const model = {};
 
+        let messages;
+        if (this.$asyncValidator && typeof this.$asyncValidator.messages === 'function') {
+          messages = this.$asyncValidator.messages();
+        }
+
         model[this.prop] = this.fieldValue;
 
-        validator.validate(model, { firstFields: true }, (errors, invalidFields) => {
+        validator.validate(model, { suppressWarning: true, firstFields: true, messages }, (errors, invalidFields) => {
           this.validateState = !errors ? 'success' : 'error';
           this.validateMessage = errors ? errors[0].message : '';
 
