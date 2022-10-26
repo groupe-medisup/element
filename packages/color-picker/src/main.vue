@@ -24,6 +24,7 @@
        @pick="confirmValue"
        @clear="clearValue"
        :color="color"
+       :hide-clear="hideClear"
        :show-alpha="showAlpha"
        :predefine="predefine">
     </picker-dropdown>
@@ -48,7 +49,8 @@
       disabled: Boolean,
       size: String,
       popperClass: String,
-      predefine: Array
+      predefine: Array,
+      hideClear: Boolean
     },
 
     inject: {

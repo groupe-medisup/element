@@ -20,6 +20,7 @@
           </el-input>
         </span>
         <el-button
+          v-if="!hideClear"
           size="mini"
           type="text"
           class="el-color-dropdown__link-btn"
@@ -67,6 +68,7 @@
         required: true
       },
       showAlpha: Boolean,
+      hideClear: Boolean,
       predefine: Array
     },
 
