@@ -31,7 +31,7 @@
           <span class="el-select__tags-text">+ {{ selected.length - 1 }}</span>
         </el-tag>
       </span>
-      <transition-group @after-leave="resetInputHeight" v-if="!collapseTags">
+      <transition-group @after-leave="resetInputHeight" v-if="!collapseTags && multipleLimit !== 1">
         <el-tag
           v-for="item in selected"
           :key="getValueKey(item)"
@@ -105,8 +105,8 @@
         <slot name="prefix"></slot>
       </template>
       <template slot="suffix">
-        <i v-show="!showClose" :class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"></i>
-        <i v-if="showClose" class="el-select__caret el-input__icon el-icon-circle-close" @click="handleClearClick"></i>
+        <i v-show="(multipleLimit === 1 && hasValue) ? false : !showClose" :class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"></i>
+        <i v-if="(multipleLimit === 1 && hasValue) || showClose" class="el-select__caret el-input__icon el-icon-circle-close" @click="handleClearClick"></i>
       </template>
     </el-input>
     <transition
@@ -195,14 +195,17 @@
         return !this.filterable || this.multiple || (!isIE() && !isEdge() && !this.visible);
       },
 
-      showClose() {
-        let hasValue = this.multiple
+      hasValue() {
+        return this.multiple
           ? Array.isArray(this.value) && this.value.length > 0
           : this.value !== undefined && this.value !== null && this.value !== '';
+      },
+
+      showClose() {
         let criteria = this.clearable &&
           !this.selectDisabled &&
           this.inputHovering &&
-          hasValue;
+          this.hasValue;
         return criteria;
       },
 
@@ -416,7 +419,9 @@
           if (this.$refs.input) {
             this.$refs.input.blur();
           }
-          this.query = '';
+          if (!this.reserveKeyword) {
+            this.query = '';
+          }
           this.previousQuery = null;
           this.selectedLabel = '';
           this.inputLength = 20;
@@ -437,7 +442,7 @@
               } else {
                 this.selectedLabel = this.selected.currentLabel;
               }
-              if (this.filterable) this.query = this.selectedLabel;
+              if (this.filterable && !this.reserveKeyword && this.multipleLimit !== 1) this.query = this.selectedLabel;
             }
 
             if (this.filterable) {
@@ -447,7 +452,9 @@
         } else {
           this.broadcast('ElSelectDropdown', 'updatePopper');
           if (this.filterable) {
-            this.query = this.remote ? '' : this.selectedLabel;
+            if (!this.reserveKeyword) {
+              this.query = this.remote ? '' : this.selectedLabel;
+            }
             this.handleQueryChange(this.query);
             if (this.multiple) {
               this.$refs.input.focus();
@@ -631,6 +638,10 @@
         } else {
           this.softFocus = false;
         }
+
+        if (this.reserveKeyword && this.multipleLimit === 1) {
+          this.emitChange([ this.query ].filter(value => !!value))
+        }
       },
 
       blur() {
@@ -650,6 +661,7 @@
       },
 
       handleClearClick(event) {
+        this.query = '';
         this.deleteSelected(event);
       },
 
@@ -734,17 +746,23 @@
 
       handleOptionSelect(option, byClick) {
         if (this.multiple) {
-          const value = (this.value || []).slice();
+          let value = (this.value || []).slice();
           const optionIndex = this.getValueIndex(value, option.value);
+
           if (optionIndex > -1) {
             value.splice(optionIndex, 1);
+          } else if (this.multipleLimit === 1) {
+            value = [option.value];
+            this.query = isObject(option[this.tagLabelKey]) ? option[this.tagLabelKey][this.valueKey] : option[this.tagLabelKey];
           } else if (this.multipleLimit <= 0 || value.length < this.multipleLimit) {
             value.push(option.value);
           }
           this.$emit('input', value);
           this.emitChange(value);
           if (option.created) {
-            this.query = '';
+            if (this.reserveKeyword && this.multipleLimit !== 1) {
+              this.query = '';
+            }
             this.handleQueryChange('');
             this.inputLength = 20;
           }
@@ -927,6 +945,16 @@
     mounted() {
       if (this.multiple && Array.isArray(this.value) && this.value.length > 0) {
         this.currentPlaceholder = '';
+
+        if (this.multipleLimit === 1 && this.hasValue) {
+          const option = this.multiple
+            ? this.value[0]
+            : this.value;
+          
+          this.query = isObject(option)
+            ? option[this.valueKey]
+            : option;
+        }
       }
       addResizeListener(this.$el, this.handleResize);
 

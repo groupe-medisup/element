@@ -6,7 +6,7 @@
     v-show="visible"
     :class="{
       'selected': itemSelected,
-      'is-disabled': disabled || groupDisabled || limitReached,
+      'is-disabled': disabled || groupDisabled,
       'hover': hover
     }">
     <slot v-bind="{ currentLabel }">
