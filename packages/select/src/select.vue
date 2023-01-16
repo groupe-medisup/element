@@ -639,9 +639,9 @@
           this.softFocus = false;
         }
 
-        if (this.reserveKeyword && this.multipleLimit === 1) {
-          this.emitChange([ this.query ].filter(value => !!value))
-        }
+        // if (this.reserveKeyword && this.multipleLimit === 1) {
+        //   this.emitChange([ this.query ].filter(value => !!value))
+        // }
       },
 
       blur() {
@@ -751,10 +751,10 @@
 
           if (optionIndex > -1) {
             value.splice(optionIndex, 1);
-          } else if (this.multipleLimit === 1) {
+          } /*else if (this.multipleLimit === 1) {
             value = [option.value];
             this.query = isObject(option[this.tagLabelKey]) ? option[this.tagLabelKey][this.valueKey] : option[this.tagLabelKey];
-          } else if (this.multipleLimit <= 0 || value.length < this.multipleLimit) {
+          }*/ else if (this.multipleLimit <= 0 || value.length < this.multipleLimit) {
             value.push(option.value);
           }
           this.$emit('input', value);
@@ -946,15 +946,15 @@
       if (this.multiple && Array.isArray(this.value) && this.value.length > 0) {
         this.currentPlaceholder = '';
 
-        if (this.multipleLimit === 1 && this.hasValue) {
-          const option = this.multiple
-            ? this.value[0]
-            : this.value;
+        // if (this.multipleLimit === 1 && this.hasValue) {
+        //   const option = this.multiple
+        //     ? this.value[0]
+        //     : this.value;
           
-          this.query = isObject(option)
-            ? option[this.valueKey]
-            : option;
-        }
+        //   this.query = isObject(option)
+        //     ? option[this.valueKey]
+        //     : option;
+        // }
       }
       addResizeListener(this.$el, this.handleResize);
 
