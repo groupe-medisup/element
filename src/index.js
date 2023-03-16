@@ -65,6 +65,7 @@ import TimeSelect from '../packages/time-select/index.js';
 import Tabs from '../packages/tabs/index.js';
 import Tag from '../packages/tag/index.js';
 import Tooltip from '../packages/tooltip/index.js';
+import Tree from '../packages/tree/index.js';
 import locale from '@jack-agency/element/src/locale';
 import CollapseTransition from '@jack-agency/element/src/transitions/collapse-transition';
 
@@ -129,6 +130,7 @@ const components = [
   Tabs,
   Tag,
   Tooltip,
+  Tree,
   CollapseTransition
 ];
 
@@ -164,7 +166,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '2.19.0',
+  version: '2.19.1',
   locale: locale.use,
   i18n: locale.i18n,
   install,
@@ -233,5 +235,6 @@ export default {
   TimeSelect,
   Tabs,
   Tag,
-  Tooltip
+  Tooltip,
+  Tree
 };
