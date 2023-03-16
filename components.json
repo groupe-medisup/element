@@ -63,5 +63,6 @@
   "time-select": "./packages/time-select/index.js",
   "tabs": "./packages/tabs/index.js",
   "tag": "./packages/tag/index.js",
-  "tooltip": "./packages/tooltip/index.js"
+  "tooltip": "./packages/tooltip/index.js",
+  "tree": "./packages/tree/index.js"
 }
