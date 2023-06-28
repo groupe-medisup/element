@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "common/var";
+/// @import "common/var";
 @import "mixins/button";
 @import "mixins/mixins";
 @import "mixins/utils";
@@ -50,6 +50,10 @@
 
     & + span {
       margin-left: 12px;
+
+      @at-root .el-button-group & {
+        margin-left: 8px;
+      }
     }
   }
 
@@ -138,7 +142,11 @@
   }
 
   // color variants
-  @each $type, $color, $background-color, $border-color in $--button-variants-map {
+  @each $type, $value in $--button-variants-map {
+    $color: nth($value, 1);
+    $background-color: nth($value, 2);
+    $border-color: nth($value, 3);
+
     @include m($type) {
       @include button-variant($color, $background-color, $border-color);
     }

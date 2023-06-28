@@ -26,7 +26,8 @@
   import Locale from '@jack-agency/element/src/mixins/locale';
   import { on, off, getScrollContainer, isInContainer } from '@jack-agency/element/src/utils/dom';
   import { isString, isHtmlElement } from '@jack-agency/element/src/utils/types';
-  import throttle from 'throttle-debounce/throttle';
+  // import throttle from 'throttle-debounce/throttle';
+  import { throttle } from 'throttle-debounce';
 
   const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined;
 

@@ -1,6 +1,6 @@
 @import "mixins/mixins";
 @import "mixins/utils";
-@import "common/var";
+/// @import "common/var";
 @import "common/transition";
 
 @mixin menu-item {
@@ -30,11 +30,10 @@
     background-color: $--menu-item-hover-fill;
   }
 
-  @include when(disabled) {
-    opacity: 0.25;
-    cursor: not-allowed;
-    background: none !important;
-  }
+  // @include when(disabled) {
+  //   color: red;
+  //   background: none !important;
+  // }
 }
 
 @include b(menu) {

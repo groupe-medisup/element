@@ -58,7 +58,8 @@
   </div>
 </template>
 <script>
-  import debounce from 'throttle-debounce/debounce';
+  // import debounce from 'throttle-debounce/debounce';
+  import { debounce } from 'throttle-debounce';
   import ElInput from '@jack-agency/element/packages/input';
   import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
   import ElAutocompleteSuggestions from './autocomplete-suggestions.vue';

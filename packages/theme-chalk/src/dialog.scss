@@ -1,6 +1,6 @@
 @import "mixins/mixins";
 @import "mixins/utils";
-@import "common/var";
+/// @import "common/var";
 @import "common/popup";
 
 @include b(dialog) {
@@ -61,6 +61,7 @@
     line-height: $--dialog-font-line-height;
     font-size: $--dialog-title-font-size;
     color: $--color-text-primary;
+    font-weight: 700;
   }
 
   @include e(body) {

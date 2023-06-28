@@ -1,4 +1,5 @@
-import throttle from 'throttle-debounce/debounce';
+// import debounce from 'throttle-debounce/debounce';
+import { debounce as throttle } from 'throttle-debounce';
 import {
   isHtmlElement,
   isFunction,

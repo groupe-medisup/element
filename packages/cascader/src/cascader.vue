@@ -127,7 +127,8 @@ import { isEqual, isEmpty, kebabCase } from '@jack-agency/element/src/utils/util
 import { isUndefined, isFunction } from '@jack-agency/element/src/utils/types';
 import { isDef } from '@jack-agency/element/src/utils/shared';
 import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
-import debounce from 'throttle-debounce/debounce';
+// import debounce from 'throttle-debounce/debounce';
+import { debounce } from 'throttle-debounce';
 
 const { keys: KeyCode } = AriaUtils;
 const MigratingProps = {

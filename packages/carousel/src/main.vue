@@ -55,7 +55,8 @@
 </template>
 
 <script>
-import throttle from 'throttle-debounce/throttle';
+// import throttle from 'throttle-debounce/throttle';
+import { throttle } from 'throttle-debounce';
 import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
 
 export default {

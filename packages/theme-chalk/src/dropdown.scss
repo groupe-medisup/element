@@ -1,13 +1,13 @@
 @import "mixins/mixins";
-@import "common/var";
+/// @import "common/var";
 @import "button";
 @import "./popper";
 
 @include b(dropdown) {
   display: inline-block;
   position: relative;
-  color: $--color-text-regular;
-  font-size: $--font-size-base;
+  // color: $--color-text-regular;
+  // font-size: $--font-size-base;
 
   .el-button-group {
     display: block;

@@ -1,5 +1,5 @@
 @import "mixins/mixins";
-@import "common/var";
+/// @import "common/var";
 
 @include b(tabs) {
   @include e(header) {
@@ -146,9 +146,28 @@
   @include e(content) {
     // overflow: hidden;
     position: relative;
+
+    @at-root .el-tabs.flex & {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      > .el-tab-pane {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
   }
   @include m(card) {
+    width: 100%;
+    > .el-tabs__content {
+      margin-top: -1px;
+    }
     > .el-tabs__header {
+      margin-bottom: 0;
       border-bottom: 1px solid $--border-color-light;
     }
     > .el-tabs__header .el-tabs__nav-wrap::after {
@@ -157,7 +176,7 @@
     > .el-tabs__header .el-tabs__nav {
       border: 1px solid $--border-color-light;
       border-bottom: none;
-      border-radius: 4px 4px 0 0;
+      // border-radius: 4px 4px 0 0;
       box-sizing: border-box;
     }
     > .el-tabs__header .el-tabs__active-bar {
@@ -417,7 +436,7 @@
       }
 
       .el-tabs__nav {
-        border-radius: 4px 0 0 4px;
+        // border-radius: 4px 0 0 4px;
         border-bottom: 1px solid $--border-color-light;
         border-right: none;
       }
@@ -489,7 +508,7 @@
       }
 
       .el-tabs__nav {
-        border-radius: 0 4px 4px 0;
+        // border-radius: 0 4px 4px 0;
         border-bottom: 1px solid $--border-color-light;
         border-left: none;
       }
