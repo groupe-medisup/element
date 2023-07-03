@@ -5,7 +5,7 @@ const sass = require('gulp-dart-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssmin = require('gulp-cssmin');
 const map = require('map-stream');
-const { Buffer } = require('node:buffer');
+// const { Buffer } = require('buffer');
 
 const VAR_RE = /\/\/\/VAR (\@import\s["'][\w\.\/\-]+["'];)/i;
 
