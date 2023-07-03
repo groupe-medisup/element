@@ -1,5 +1,5 @@
 @import "mixins/mixins";
-/// @import "common/var";
+///VAR @import "common/var";
 
 @mixin genTheme($backgroundColorWeight, $borderColorWeight, $fontColorWeight, $hoverColorWeight) {
   background-color: mix($--tag-primary-color, $--color-white, $backgroundColorWeight);

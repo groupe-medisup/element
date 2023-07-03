@@ -1,6 +1,6 @@
 @import "mixins/mixins";
+///VAR @import "common/var";
 @import "progress";
-/// @import "common/var";
 
 @include b(upload) {
   display: inline-block;

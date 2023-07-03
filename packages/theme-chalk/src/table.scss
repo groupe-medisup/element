@@ -1,8 +1,8 @@
 @import "mixins/mixins";
+///VAR @import "common/var";
 @import "checkbox";
 @import "tag";
 @import "tooltip";
-/// @import "common/var";
 
 @include b(table) {
   position: relative;
