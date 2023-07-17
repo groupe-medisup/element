@@ -6,6 +6,7 @@
     padding: 0;
     position: relative;
     margin: 0 0 15px;
+    display: flex;
   }
   @include e(active-bar) {
     position: absolute;
@@ -18,21 +19,34 @@
     list-style: none;
   }
   @include e(new-tab) {
-    float: right;
-    border: 1px solid #d3dce6;
-    height: 18px;
-    width: 18px;
-    line-height: 18px;
-    margin: 12px 0 9px 10px;
-    border-radius: 3px;
+    // float: right;
+    display: block;
+    border-left: 1px solid $--border-color-base;
+    height: 34px;
+    min-width: 34px;
+    line-height: 34px;
+    // margin: 12px 0 9px 10px;
+    // border-radius: 3px;
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     color: #d3dce6;
     cursor: pointer;
     transition: all .15s;
+    transform: translateX(-1px);
+
+    @at-root .el-tabs--border-card & {
+      border-right: 1px solid $--border-color-base;
+    }
 
     .el-icon-plus {
       transform: scale(0.8, 0.8);
+    }
+
+    &.has-label {
+      padding-right: 12px;
+      padding-left: 12px;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
     &:hover {
@@ -56,7 +70,7 @@
     }
 
     @include when(scrollable) {
-      padding: 0 20px;
+      padding: 0 24px;
       box-sizing: border-box;
     }
   }
@@ -93,10 +107,10 @@
     }
   }
   @include e(item) {
-    padding: 0 20px;
-    height: 40px;
+    padding: 0 24px;
+    height: 36px;
     box-sizing: border-box;
-    line-height: 40px;
+    line-height: 36px;
     display: inline-block;
     list-style: none;
     font-size: 14px;
@@ -203,8 +217,8 @@
       }
       &.is-closable {
         &:hover {
-          padding-left: 13px;
-          padding-right: 13px;
+          padding-left: 24px;
+          padding-right: 24px;
 
           & .el-icon-close {
             width: 14px;
@@ -215,29 +229,29 @@
         border-bottom-color: $--color-white;
 
         &.is-closable {
-          padding-left: 20px;
-          padding-right: 20px;
+          padding-left: 24px;
+          padding-right: 24px;
 
           .el-icon-close {
             width: 14px;
           }
         }
       }
-      &:not(.is-active) {
-        background-color: #eff1f5;
-      }
+      // &:not(.is-active) {
+      //   background-color: #eff1f5;
+      // }
     }
   }
   @include m(border-card) {
     background: $--color-white;
     border: 1px solid $--border-color-base;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.04);
+    // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.04);
 
     > .el-tabs__content {
-      padding: 15px;
+      padding: 16px 24px 32px;
     }
     > .el-tabs__header {
-      background-color: $--background-color-base;
+      // background-color: $--background-color-base;
       border-bottom: 1px solid $--border-color-light;
       margin: 0;
     }
@@ -249,6 +263,8 @@
       border: 1px solid transparent;
       margin-top: -1px;
       color: $--color-text-secondary;
+      border-right-color: $--border-color-base;
+      border-left-color: $--border-color-base;
 
       &:first-child {
         margin-left: -1px;
@@ -261,8 +277,7 @@
       &.is-active {
         color: $--color-primary;
         background-color: $--color-white;
-        border-right-color: $--border-color-base;
-        border-left-color: $--border-color-base;
+        border-bottom-color: #FFF;
       }
       &:not(.is-disabled):hover {
         color: $--color-primary;
@@ -290,10 +305,10 @@
     .el-tabs--left, .el-tabs--right {
       > .el-tabs__header {
         .el-tabs__item:nth-child(2) {
-          padding-left: 20px;
+          padding-left: 24px;
         }
         .el-tabs__item:last-child {
-          padding-right: 20px;
+          padding-right: 24px;
         }
       }
     }
@@ -414,7 +429,7 @@
         border-left: none;
         border-right: 1px solid $--border-color-light;
         border-bottom: none;
-        border-top: 1px solid $--border-color-light;
+        border-top: 1px solid red;
         text-align: left;
       }
       .el-tabs__item.is-left:first-child {
@@ -439,10 +454,6 @@
         // border-radius: 4px 0 0 4px;
         border-bottom: 1px solid $--border-color-light;
         border-right: none;
-      }
-
-      .el-tabs__new-tab {
-        float: none;
       }
     }
 

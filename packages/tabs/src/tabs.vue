@@ -10,6 +10,7 @@
 
     props: {
       type: String,
+      addLabel: String,
       activeName: String,
       closable: Boolean,
       addable: Boolean,
@@ -120,18 +121,20 @@
         editable,
         addable,
         tabPosition,
-        stretch
+        stretch,
+        addLabel
       } = this;
 
       const newButton = editable || addable
         ? (
           <span
-            class="el-tabs__new-tab"
+            class={ [ 'el-tabs__new-tab', !!addLabel && 'has-label' ] }
             on-click={ handleTabAdd }
             tabindex="0"
             on-keydown={ (ev) => { if (ev.keyCode === 13) { handleTabAdd(); }} }
           >
             <i class="el-icon-plus"></i>
+            { addLabel && <span>{ addLabel }</span> }
           </span>
         )
         : null;
@@ -150,8 +153,8 @@
       };
       const header = (
         <div class={['el-tabs__header', `is-${tabPosition}`]}>
-          {newButton}
           <tab-nav { ...navData }></tab-nav>
+          {newButton}
         </div>
       );
       const panels = (
