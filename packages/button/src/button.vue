@@ -22,6 +22,7 @@
     <i class="el-icon-loading" v-if="loading"></i>
     <i :class="icon" v-if="icon && !loading"></i>
     <span v-if="$slots.default"><slot></slot></span>
+    <slot name="afterDefault" />
   </button>
 </template>
 <script>
