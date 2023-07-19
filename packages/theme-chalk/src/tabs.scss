@@ -5,7 +5,6 @@
   @include e(header) {
     padding: 0;
     position: relative;
-    margin: 0 0 15px;
     display: flex;
   }
   @include e(active-bar) {
@@ -38,15 +37,15 @@
       border-right: 1px solid $--border-color-base;
     }
 
-    .el-icon-plus {
-      transform: scale(0.8, 0.8);
-    }
-
     &.has-label {
       padding-right: 12px;
       padding-left: 12px;
       font-weight: 700;
       white-space: nowrap;
+
+      .el-tabs__new-tab__icon {
+        margin-right: 8px;
+      }
     }
 
     &:hover {
@@ -181,14 +180,13 @@
       margin-top: -1px;
     }
     > .el-tabs__header {
-      margin-bottom: 0;
-      border-bottom: 1px solid $--border-color-light;
+      // border-bottom: 1px solid $--border-color-base;
     }
     > .el-tabs__header .el-tabs__nav-wrap::after {
       content: none;
     }
     > .el-tabs__header .el-tabs__nav {
-      border: 1px solid $--border-color-light;
+      border: 1px solid $--border-color-base;
       border-bottom: none;
       // border-radius: 4px 4px 0 0;
       box-sizing: border-box;
@@ -210,8 +208,23 @@
     }
     > .el-tabs__header .el-tabs__item {
       border-bottom: 1px solid transparent;
-      border-left: 1px solid $--border-color-light;
+      border-left: 1px solid $--border-color-base;
       transition: color .3s cubic-bezier(.645,.045,.355,1), padding .3s cubic-bezier(.645,.045,.355,1);
+      color: $--tab-item-text-default;
+      border-bottom: 1px solid $--border-color-base;
+
+      &.is-active {
+        color: $--tab-item-text-active;
+        background-color: $--color-white;
+        border-bottom-color: #FFF;
+      }
+      &:not(.is-disabled):hover {
+        color: $--tab-item-text-active;
+      }
+      &.is-disabled {
+        color: $--disabled-color-base;
+      }
+
       &:first-child {
         border-left: none;
       }
@@ -243,18 +256,26 @@
     }
   }
   @include m(border-card) {
-    background: $--color-white;
-    border: 1px solid $--border-color-base;
+    // background: $--color-white;
+    // border: 1px solid $--border-color-base;
     // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.04);
 
     > .el-tabs__content {
-      margin-top: -1px;
+      // margin-top: -1px;
       padding: 16px 24px 32px;
-      border-top: 1px solid $--border-color-light;
+      border: 1px solid $--border-color-base;
     }
     > .el-tabs__header {
       // background-color: $--background-color-base;
+      border-left: 1px solid $--border-color-base;
       margin: 0;
+
+      &.is-top {
+        .el-tabs__nav-wrap,
+        .el-tabs__new-tab {
+          border-top: 1px solid $--border-color-base;
+        }
+      }
     }
     > .el-tabs__header .el-tabs__nav-wrap::after {
       content: none;
@@ -263,7 +284,7 @@
       transition: all .3s cubic-bezier(.645,.045,.355,1);
       border: 1px solid transparent;
       margin-top: -1px;
-      color: $--color-text-secondary;
+      color: $--tab-item-text-default;
       border-right-color: $--border-color-base;
       border-left-color: $--border-color-base;
 
@@ -276,12 +297,12 @@
       }
 
       &.is-active {
-        color: $--color-primary;
+        color: $--tab-item-text-active;
         background-color: $--color-white;
         border-bottom-color: #FFF;
       }
       &:not(.is-disabled):hover {
-        color: $--color-primary;
+        color: $--tab-item-text-active;
       }
       &.is-disabled {
         color: $--disabled-color-base;

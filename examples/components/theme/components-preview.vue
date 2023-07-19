@@ -484,7 +484,7 @@
         <el-tab-pane label="Role" name="third">Role</el-tab-pane>
         <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
       </el-tabs>
-      <el-tabs type="card" class="demo-item">
+      <el-tabs type="card" addable add-label="Ajouter un truc">
         <el-tab-pane label="User">User</el-tab-pane>
         <el-tab-pane label="Config">Config</el-tab-pane>
         <el-tab-pane label="Role">Role</el-tab-pane>

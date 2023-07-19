@@ -11,6 +11,7 @@
     props: {
       type: String,
       addLabel: String,
+      addIcon: { type: String, default: 'el-icon-plus' },
       activeName: String,
       closable: Boolean,
       addable: Boolean,
@@ -122,7 +123,8 @@
         addable,
         tabPosition,
         stretch,
-        addLabel
+        addLabel,
+        addIcon
       } = this;
 
       const newButton = editable || addable
@@ -133,8 +135,8 @@
             tabindex="0"
             on-keydown={ (ev) => { if (ev.keyCode === 13) { handleTabAdd(); }} }
           >
-            <i class="el-icon-plus"></i>
-            { addLabel && <span>{ addLabel }</span> }
+            { addIcon && <i class={[ 'el-tabs__new-tab__icon', addIcon ]} />}
+            { addLabel && <span class="el-tabs__new-tab__label">{ addLabel }</span> }
           </span>
         )
         : null;
