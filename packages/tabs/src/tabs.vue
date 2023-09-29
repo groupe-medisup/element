@@ -59,8 +59,11 @@
     methods: {
       calcPaneInstances(isForceUpdate = false) {
         if (this.$slots.default) {
-          const paneSlots = this.$slots.default.filter(vnode => vnode.tag &&
-            vnode.componentOptions && vnode.componentOptions.Ctor.options.name === 'ElTabPane');
+          const paneSlots = this.$slots.default.filter(vnode => (
+            vnode.tag &&
+            vnode.componentOptions &&
+            vnode.componentOptions.Ctor.options.name === 'ElTabPane'
+          ));
           // update indeed
           const panes = paneSlots.map(({ componentInstance }) => componentInstance);
           const panesChanged = !(panes.length === this.panes.length && panes.every((pane, index) => pane === this.panes[index]));
@@ -155,6 +158,7 @@
       };
       const header = (
         <div class={['el-tabs__header', `is-${tabPosition}`]}>
+          {this.$slots.beforeNav}
           <tab-nav { ...navData }></tab-nav>
           {newButton}
         </div>
@@ -176,7 +180,7 @@
         </div>
       );
     },
-  
+
     created() {
       if (!this.currentName) {
         this.setCurrentName('0');
