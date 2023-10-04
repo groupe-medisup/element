@@ -497,7 +497,6 @@
       },
 
       isValidValue(value) {
-        console.log('isValidValue', value, typeof this.disabledDate === 'function');
         return value && !isNaN(value) && (
           typeof this.disabledDate === 'function'
             ? !this.disabledDate(value)

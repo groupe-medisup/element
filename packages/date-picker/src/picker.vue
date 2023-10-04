@@ -25,9 +25,10 @@
       </template>
 
       <input
+        tabindex="0"
         @focus="handleFocus"
         @input="event => userInput = event.target.value"
-        @keydown.delete.prevent.stop="deletePrevTag"
+        @keydown.delete="deletePrevTag"
         @keydown="handleKeydown"
         ref="input"
         class="el-select__input"
@@ -48,6 +49,7 @@
       :placeholder="(!value && !userInput && (!ready || (ready && !tags.length)) && placeholder) || ''"
       :size="pickerSize"
       :validateEvent="false"
+      tabindex="1"
     >
       <i slot="prefix"
         v-if="prefixIcon"
@@ -403,6 +405,29 @@ const validator = function(val) {
     (Array.isArray(val) && val.length === 2 && val.every(isString))
   );
 };
+
+const formatStringToDateString = (string, format) => {
+  const dateFormat = format;
+  const inputString = string;
+
+  let remainingChars = inputString;
+  const formatSeparator = dateFormat.match(/[^a-zA-Z]/)[0];
+
+  let formattedResult = '';
+
+  dateFormat.split(formatSeparator).forEach((formatPart, index) => {
+    const segment = remainingChars.slice(0, formatPart.length);
+    remainingChars = remainingChars.slice(formatPart.length);
+
+    formattedResult += segment;
+
+    if (index < dateFormat.split(formatSeparator).length - 1) {
+      formattedResult += formatSeparator;
+    }
+  });
+
+  return formattedResult;
+}
 
 export default {
   mixins: [Emitter, NewPopper],
@@ -768,7 +793,14 @@ export default {
 
     handleChange() {
       if (this.userInput) {
-        const value = this.parseString(this.displayValue);
+        let value;
+        if ( this.type === 'date' && this.userInput.match(/^\d+$/)) {
+          value = this.parseString(formatStringToDateString(this.userInput, this.format))
+        } else {
+          value = this.parseString(this.userInput);
+        }
+        // console.log(formatStringToDateString(this.userInput, this.format));
+        // console.log("🚀 ~ file: picker.vue:775 ~ handleChange ~ value:", value)
         if (value) {
           this.picker.value = value;
           if (this.isValidValue(value)) {
@@ -856,19 +888,17 @@ export default {
       this.userInput = initialValue === '' ? null : initialValue;
     },
 
-    handleFocus() {
-      if (this.$refs.input) {
+    handleFocus(e) {
+      if (this.tagsVisible && this.$refs.input) {
         this.$refs.input.focus();
       }
 
-      this.$emit('focus', this);
-      this.$nextTick(() => {
-        const type = this.type;
+      const type = this.type;
 
-        if (HAVE_TRIGGER_TYPES.indexOf(type) !== -1 && !this.pickerVisible) {
-          this.pickerVisible = true;
-        }
-      });
+      if (HAVE_TRIGGER_TYPES.indexOf(type) !== -1 && !this.pickerVisible) {
+        this.pickerVisible = true;
+      }
+      this.$emit('focus', this);
     },
 
     handleKeydown(event) {
@@ -1112,6 +1142,13 @@ export default {
     },
 
     deletePrevTag(e) {
+      if (!this.tagsVisible) {
+        return
+      }
+
+      e.preventDefault();
+      e.stopPropagation();
+
       if (e.target.value.length <= 0) {
         this.deletePrevTagCount = this.deletePrevTagCount + 1;
       }
