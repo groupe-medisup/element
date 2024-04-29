@@ -50,13 +50,13 @@ export default {
       if (Array.isArray(this.wrapStyle)) {
         style = toObject(this.wrapStyle);
         style.marginRight = style.marginBottom = gutterWith;
-        style.height = `${gutter}px`
+        style.height = `${gutter}px`;
       } else if (typeof this.wrapStyle === 'string') {
         style += gutterStyle;
       } else {
         style = gutterStyle;
       }
-      console.log('style', style)
+      console.log('style', style);
     }
     const view = h(this.tag, {
       class: ['el-scrollbar__view', this.viewClass],
