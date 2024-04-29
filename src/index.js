@@ -25,6 +25,7 @@ import Dropdown from '../packages/dropdown/index.js';
 import DropdownMenu from '../packages/dropdown-menu/index.js';
 import DropdownItem from '../packages/dropdown-item/index.js';
 import Cascader from '../packages/cascader/index.js';
+import CascaderPanel from '../packages/cascader-panel/index.js';
 import Form from '../packages/form/index.js';
 import FormItem from '../packages/form-item/index.js';
 import Header from '../packages/header/index.js';
@@ -95,6 +96,7 @@ const components = [
   DropdownMenu,
   DropdownItem,
   Cascader,
+  CascaderPanel,
   Form,
   FormItem,
   Header,
@@ -166,7 +168,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '2.19.12',
+  version: '2.19.13',
   locale: locale.use,
   i18n: locale.i18n,
   install,
@@ -197,6 +199,7 @@ export default {
   DropdownMenu,
   DropdownItem,
   Cascader,
+  CascaderPanel,
   Form,
   FormItem,
   Header,
