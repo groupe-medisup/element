@@ -45,12 +45,12 @@ export default {
 
     if (gutter) {
       const gutterWith = `-${gutter}px`;
-      const gutterStyle = `margin-bottom: ${gutterWith}; margin-right: ${gutterWith}; height: ${gutter}px;`;
+      const gutterStyle = `margin-bottom: ${gutterWith}; margin-right: ${gutterWith}; height: calc(100 + ${gutter}px);`;
 
       if (Array.isArray(this.wrapStyle)) {
         style = toObject(this.wrapStyle);
         style.marginRight = style.marginBottom = gutterWith;
-        style.height = `${gutter}px`;
+        style.height = `calc(100 + ${gutter}px)`;
       } else if (typeof this.wrapStyle === 'string') {
         style += gutterStyle;
       } else {
