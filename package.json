@@ -1,6 +1,6 @@
 {
   "name": "@jack-agency/element",
-  "version": "2.19.12",
+  "version": "2.19.13",
   "description": "A Component Library for Vue.js.",
   "main": "lib/element-ui.common.js",
   "publishConfig": {
