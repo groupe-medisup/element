@@ -20,6 +20,7 @@ import DatePicker from '../packages/date-picker/index.js';
 import Dialog from '../packages/dialog/index.js';
 import Divider from '../packages/divider/index.js';
 import Drawer from '../packages/drawer/index.js';
+import Scrollbar from '../packages/scrollbar/index.js';
 import Dropdown from '../packages/dropdown/index.js';
 import DropdownMenu from '../packages/dropdown-menu/index.js';
 import DropdownItem from '../packages/dropdown-item/index.js';
@@ -51,7 +52,6 @@ import Radio from '../packages/radio/index.js';
 import RadioGroup from '../packages/radio-group/index.js';
 import RadioButton from '../packages/radio-button/index.js';
 import Row from '../packages/row/index.js';
-import Scrollbar from '../packages/scrollbar/index.js';
 import Select from '../packages/select/index.js';
 import Step from '../packages/step/index.js';
 import Steps from '../packages/steps/index.js';
@@ -90,6 +90,7 @@ const components = [
   Dialog,
   Divider,
   Drawer,
+  Scrollbar,
   Dropdown,
   DropdownMenu,
   DropdownItem,
@@ -116,7 +117,6 @@ const components = [
   RadioGroup,
   RadioButton,
   Row,
-  Scrollbar,
   Select,
   Step,
   Steps,
@@ -166,7 +166,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '2.19.11',
+  version: '2.19.12',
   locale: locale.use,
   i18n: locale.i18n,
   install,
@@ -192,6 +192,7 @@ export default {
   Dialog,
   Divider,
   Drawer,
+  Scrollbar,
   Dropdown,
   DropdownMenu,
   DropdownItem,
@@ -222,7 +223,6 @@ export default {
   RadioGroup,
   RadioButton,
   Row,
-  Scrollbar,
   Select,
   Step,
   Steps,
