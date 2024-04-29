@@ -24,6 +24,7 @@
   "dropdown-menu": "./packages/dropdown-menu/index.js",
   "dropdown-item": "./packages/dropdown-item/index.js",
   "cascader": "./packages/cascader/index.js",
+  "cascader-panel": "./packages/cascader-panel/index.js",
   "form": "./packages/form/index.js",
   "form-item": "./packages/form-item/index.js",
   "header": "./packages/header/index.js",
