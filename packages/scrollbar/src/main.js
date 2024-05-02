@@ -45,18 +45,17 @@ export default {
 
     if (gutter) {
       const gutterWith = `-${gutter}px`;
-      const gutterStyle = `margin-bottom: ${gutterWith}; margin-right: ${gutterWith}; height: calc(100 + ${gutter}px);`;
+      const gutterStyle = `margin-bottom: ${gutterWith}; margin-right: ${gutterWith}; height: calc(100% + ${gutter}px);`;
 
       if (Array.isArray(this.wrapStyle)) {
         style = toObject(this.wrapStyle);
         style.marginRight = style.marginBottom = gutterWith;
-        style.height = `calc(100 + ${gutter}px)`;
+        style.height = `calc(100% + ${gutter}px)`;
       } else if (typeof this.wrapStyle === 'string') {
         style += gutterStyle;
       } else {
         style = gutterStyle;
       }
-      console.log('style', style);
     }
     const view = h(this.tag, {
       class: ['el-scrollbar__view', this.viewClass],
