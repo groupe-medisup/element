@@ -208,7 +208,7 @@
 
         this.triggerElm = splitButton
           ? this.$refs.trigger.$el
-          : [].concat(typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default)[0].elm;
+          : this.$slots.default[0].elm;
 
         let dropdownElm = this.dropdownElm;
 
@@ -266,14 +266,14 @@
       if (splitButton) {
         triggerElm = <el-button-group>
           <el-button type={type} size={dropdownSize} nativeOn-click={handleMainButtonClick} disabled={disabled}>
-            {typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default}
+            {this.$slots.default}
           </el-button>
           <el-button ref="trigger" type={type} size={dropdownSize} class="el-dropdown__caret-button" disabled={disabled}>
             <i class="el-dropdown__icon el-icon-arrow-down"></i>
           </el-button>
         </el-button-group>;
       } else {
-        triggerElm = [].concat(typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default);
+        triggerElm = this.$slots.default;
         const vnodeData = triggerElm[0].data || {};
         let { attrs = {} } = vnodeData;
         if (disabled && !attrs.disabled) {
