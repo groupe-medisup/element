@@ -208,7 +208,7 @@
 
         this.triggerElm = splitButton
           ? this.$refs.trigger.$el
-          : ((typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default) || [])[0].elm;
+          : [].concat(typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default)[0].elm;
 
         let dropdownElm = this.dropdownElm;
 
@@ -273,7 +273,7 @@
           </el-button>
         </el-button-group>;
       } else {
-        triggerElm = typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default;
+        triggerElm = [].concat(typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default);
         const vnodeData = triggerElm[0].data || {};
         let { attrs = {} } = vnodeData;
         if (disabled && !attrs.disabled) {
