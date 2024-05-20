@@ -205,9 +205,10 @@
       },
       initEvent() {
         let { trigger, show, hide, handleClick, splitButton, handleTriggerKeyDown, handleItemKeyDown } = this;
+
         this.triggerElm = splitButton
           ? this.$refs.trigger.$el
-          : this.$slots.default[0].elm;
+          : ((typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default) || [])[0].elm;
 
         let dropdownElm = this.dropdownElm;
 
@@ -254,6 +255,7 @@
     },
 
     render(h) {
+      let triggerElm = null;
       let { hide, splitButton, type, dropdownSize, disabled } = this;
 
       const handleMainButtonClick = (event) => {
@@ -261,18 +263,17 @@
         hide();
       };
 
-      let triggerElm = null;
       if (splitButton) {
         triggerElm = <el-button-group>
           <el-button type={type} size={dropdownSize} nativeOn-click={handleMainButtonClick} disabled={disabled}>
-            {this.$slots.default}
+            {typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default}
           </el-button>
           <el-button ref="trigger" type={type} size={dropdownSize} class="el-dropdown__caret-button" disabled={disabled}>
             <i class="el-dropdown__icon el-icon-arrow-down"></i>
           </el-button>
         </el-button-group>;
       } else {
-        triggerElm = this.$slots.default;
+        triggerElm = typeof this.$scopedSlots.default === 'function' ? this.$scopedSlots.default() : this.$slots.default;
         const vnodeData = triggerElm[0].data || {};
         let { attrs = {} } = vnodeData;
         if (disabled && !attrs.disabled) {
@@ -280,7 +281,10 @@
           vnodeData.attrs = attrs;
         }
       }
-      const menuElm = disabled ? null : this.$slots.dropdown;
+
+      const menuElm = disabled
+        ? null
+        : (typeof this.$scopedSlots.dropdown === 'function' ? this.$scopedSlots.dropdown() : this.$slots.dropdown);
 
       return (
         <div class="el-dropdown" v-clickoutside={hide} aria-disabled={disabled}>
