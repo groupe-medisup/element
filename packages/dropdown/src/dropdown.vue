@@ -63,6 +63,10 @@
       disabled: {
         type: Boolean,
         default: false
+      },
+      icon: {
+        type: String,
+        default: ''
       }
     },
 
@@ -256,7 +260,7 @@
 
     render(h) {
       let triggerElm = null;
-      let { hide, splitButton, type, dropdownSize, disabled } = this;
+      let { hide, splitButton, type, dropdownSize, disabled, icon } = this;
 
       const handleMainButtonClick = (event) => {
         this.$emit('click', event);
@@ -265,7 +269,7 @@
 
       if (splitButton) {
         triggerElm = <el-button-group>
-          <el-button type={type} size={dropdownSize} nativeOn-click={handleMainButtonClick} disabled={disabled}>
+          <el-button type={type} size={dropdownSize} nativeOn-click={handleMainButtonClick} disabled={disabled} icon={icon}>
             {this.$slots.default}
           </el-button>
           <el-button ref="trigger" type={type} size={dropdownSize} class="el-dropdown__caret-button" disabled={disabled}>
