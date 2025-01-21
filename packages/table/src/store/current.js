@@ -1,4 +1,4 @@
-import { arrayFind } from '@jack-agency/element/src/utils/util';
+import { arrayFind } from '@groupe-medisup/element/src/utils/util';
 import { getRowIdentity } from '../util';
 
 export default {

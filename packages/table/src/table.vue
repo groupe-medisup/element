@@ -213,12 +213,12 @@
 </template>
 
 <script type="text/babel">
-  import ElCheckbox from '@jack-agency/element/packages/checkbox';
+  import ElCheckbox from '@groupe-medisup/element/packages/checkbox';
   import { debounce, throttle } from 'throttle-debounce';
-  import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
-  import Mousewheel from '@jack-agency/element/src/directives/mousewheel';
-  import Locale from '@jack-agency/element/src/mixins/locale';
-  import Migrating from '@jack-agency/element/src/mixins/migrating';
+  import { addResizeListener, removeResizeListener } from '@groupe-medisup/element/src/utils/resize-event';
+  import Mousewheel from '@groupe-medisup/element/src/directives/mousewheel';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
+  import Migrating from '@groupe-medisup/element/src/mixins/migrating';
   import { createStore, mapStates } from './store/helper';
   import TableLayout from './table-layout';
   import TableBody from './table-body';

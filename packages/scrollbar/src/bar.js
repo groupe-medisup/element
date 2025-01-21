@@ -1,4 +1,4 @@
-import { on, off } from '@jack-agency/element/src/utils/dom';
+import { on, off } from '@groupe-medisup/element/src/utils/dom';
 import { renderThumbStyle, BAR_MAP } from './util';
 
 /* istanbul ignore next */

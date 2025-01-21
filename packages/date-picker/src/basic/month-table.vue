@@ -13,10 +13,10 @@
 </template>
 
 <script type="text/babel">
-  import Locale from '@jack-agency/element/src/mixins/locale';
-  import { isDate, range, getDayCountOfMonth, nextDate } from '@jack-agency/element/src/utils/date-util';
-  import { hasClass } from '@jack-agency/element/src/utils/dom';
-  import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '@jack-agency/element/src/utils/util';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
+  import { isDate, range, getDayCountOfMonth, nextDate } from '@groupe-medisup/element/src/utils/date-util';
+  import { hasClass } from '@groupe-medisup/element/src/utils/dom';
+  import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '@groupe-medisup/element/src/utils/util';
 
   const datesInMonth = (year, month) => {
     const numOfDays = getDayCountOfMonth(year, month);

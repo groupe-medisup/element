@@ -101,9 +101,9 @@
 </template>
 
 <script type="text/babel">
-  import { getRangeHours, getRangeMinutes, modifyTime } from '@jack-agency/element/src/utils/date-util';
-  import ElScrollbar from '@jack-agency/element/packages/scrollbar';
-  import RepeatClick from '@jack-agency/element/src/directives/repeat-click';
+  import { getRangeHours, getRangeMinutes, modifyTime } from '@groupe-medisup/element/src/utils/date-util';
+  import ElScrollbar from '@groupe-medisup/element/packages/scrollbar';
+  import RepeatClick from '@groupe-medisup/element/src/directives/repeat-click';
 
   export default {
     components: { ElScrollbar },

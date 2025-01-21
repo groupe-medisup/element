@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import { hasClass, addClass, removeClass } from '@jack-agency/element/src/utils/dom';
-import ElCheckbox from '@jack-agency/element/packages/checkbox';
+import { hasClass, addClass, removeClass } from '@groupe-medisup/element/src/utils/dom';
+import ElCheckbox from '@groupe-medisup/element/packages/checkbox';
 import FilterPanel from './filter-panel.vue';
 import LayoutObserver from './layout-observer';
 import { mapStates } from './store/helper';

@@ -121,13 +121,13 @@
 
 <script>
 import Vue from 'vue';
-import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
-import { formatDate, parseDate, isDateObject, getWeekNumber } from '@jack-agency/element/src/utils/date-util';
-import Popper from '@jack-agency/element/src/utils/vue-popper';
-import Emitter from '@jack-agency/element/src/mixins/emitter';
-import ElInput from '@jack-agency/element/packages/input';
-import merge from '@jack-agency/element/src/utils/merge';
-import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
+import Clickoutside from '@groupe-medisup/element/src/utils/clickoutside';
+import { formatDate, parseDate, isDateObject, getWeekNumber } from '@groupe-medisup/element/src/utils/date-util';
+import Popper from '@groupe-medisup/element/src/utils/vue-popper';
+import Emitter from '@groupe-medisup/element/src/mixins/emitter';
+import ElInput from '@groupe-medisup/element/packages/input';
+import merge from '@groupe-medisup/element/src/utils/merge';
+import { addResizeListener, removeResizeListener } from '@groupe-medisup/element/src/utils/resize-event';
 
 const NewPopper = {
   props: {

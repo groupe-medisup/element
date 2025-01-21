@@ -34,8 +34,8 @@
 <script>
   import Color from './color';
   import PickerDropdown from './components/picker-dropdown.vue';
-  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
+  import Clickoutside from '@groupe-medisup/element/src/utils/clickoutside';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
 
   export default {
     name: 'ElColorPicker',

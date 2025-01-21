@@ -1,8 +1,8 @@
-import { arrayFindIndex } from '@jack-agency/element/src/utils/util';
+import { arrayFindIndex } from '@groupe-medisup/element/src/utils/util';
 import { getCell, getColumnByCell, getRowIdentity } from './util';
-import { getStyle, hasClass, removeClass, addClass } from '@jack-agency/element/src/utils/dom';
-import ElCheckbox from '@jack-agency/element/packages/checkbox';
-import ElTooltip from '@jack-agency/element/packages/tooltip';
+import { getStyle, hasClass, removeClass, addClass } from '@groupe-medisup/element/src/utils/dom';
+import ElCheckbox from '@groupe-medisup/element/packages/checkbox';
+import ElTooltip from '@groupe-medisup/element/packages/tooltip';
 // import debounce from 'throttle-debounce/debounce';
 import { debounce } from 'throttle-debounce';
 import LayoutObserver from './layout-observer';

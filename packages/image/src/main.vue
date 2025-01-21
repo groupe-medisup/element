@@ -23,9 +23,9 @@
 
 <script>
   import ImageViewer from './image-viewer';
-  import Locale from '@jack-agency/element/src/mixins/locale';
-  import { on, off, getScrollContainer, isInContainer } from '@jack-agency/element/src/utils/dom';
-  import { isString, isHtmlElement } from '@jack-agency/element/src/utils/types';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
+  import { on, off, getScrollContainer, isInContainer } from '@groupe-medisup/element/src/utils/dom';
+  import { isString, isHtmlElement } from '@groupe-medisup/element/src/utils/types';
   // import throttle from 'throttle-debounce/throttle';
   import { throttle } from 'throttle-debounce';
 

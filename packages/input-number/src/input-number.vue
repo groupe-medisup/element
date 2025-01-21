@@ -46,9 +46,9 @@
   </div>
 </template>
 <script>
-  import ElInput from '@jack-agency/element/packages/input';
-  import Focus from '@jack-agency/element/src/mixins/focus';
-  import RepeatClick from '@jack-agency/element/src/directives/repeat-click';
+  import ElInput from '@groupe-medisup/element/packages/input';
+  import Focus from '@groupe-medisup/element/src/mixins/focus';
+  import RepeatClick from '@groupe-medisup/element/src/directives/repeat-click';
 
   export default {
     name: 'ElInputNumber',

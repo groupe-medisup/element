@@ -36,9 +36,9 @@
   </div>
 </template>
 <script>
-  import emitter from '@jack-agency/element/src/mixins/emitter';
-  import Focus from '@jack-agency/element/src/mixins/focus';
-  import Migrating from '@jack-agency/element/src/mixins/migrating';
+  import emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import Focus from '@groupe-medisup/element/src/mixins/focus';
+  import Migrating from '@groupe-medisup/element/src/mixins/migrating';
 
   export default {
     name: 'ElSwitch',

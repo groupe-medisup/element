@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { on } from '@jack-agency/element/src/utils/dom';
+import { on } from '@groupe-medisup/element/src/utils/dom';
 
 const nodeList = [];
 const ctx = '@@clickoutsideContext';

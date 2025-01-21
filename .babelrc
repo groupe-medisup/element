@@ -29,9 +29,9 @@
       ],
       "plugins": [
         ["module-resolver", {
-          "root": ["@jack-agency/element"],
+          "root": ["@groupe-medisup/element"],
           "alias": {
-            "@jack-agency/element/src": "@jack-agency/element/lib"
+            "@groupe-medisup/element/src": "@groupe-medisup/element/lib"
           }
         }]
       ]

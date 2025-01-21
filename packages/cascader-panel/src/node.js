@@ -1,5 +1,5 @@
-import { isEqual, capitalize } from '@jack-agency/element/src/utils/util';
-import { isDef } from '@jack-agency/element/src/utils/shared';
+import { isEqual, capitalize } from '@groupe-medisup/element/src/utils/util';
+import { isDef } from '@groupe-medisup/element/src/utils/shared';
 
 let uid = 0;
 

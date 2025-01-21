@@ -44,9 +44,9 @@
 </template>
 
 <script type="text/babel">
-  import { hasClass } from '@jack-agency/element/src/utils/dom';
-  import { isDate, range, nextDate, getDayCountOfYear } from '@jack-agency/element/src/utils/date-util';
-  import { arrayFindIndex, coerceTruthyValueToArray } from '@jack-agency/element/src/utils/util';
+  import { hasClass } from '@groupe-medisup/element/src/utils/dom';
+  import { isDate, range, nextDate, getDayCountOfYear } from '@groupe-medisup/element/src/utils/date-util';
+  import { arrayFindIndex, coerceTruthyValueToArray } from '@groupe-medisup/element/src/utils/util';
 
   const datesInYear = year => {
     const numOfDays = getDayCountOfYear(year);

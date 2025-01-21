@@ -1,8 +1,8 @@
-import Popper from '@jack-agency/element/src/utils/vue-popper';
+import Popper from '@groupe-medisup/element/src/utils/vue-popper';
 // import debounce from 'throttle-debounce/debounce';
 import { debounce } from 'throttle-debounce';
-import { addClass, removeClass, on, off } from '@jack-agency/element/src/utils/dom';
-import { generateId } from '@jack-agency/element/src/utils/util';
+import { addClass, removeClass, on, off } from '@groupe-medisup/element/src/utils/dom';
+import { generateId } from '@groupe-medisup/element/src/utils/util';
 import Vue from 'vue';
 
 export default {

@@ -1,8 +1,8 @@
 <script type="text/jsx">
-  import emitter from '@jack-agency/element/src/mixins/emitter';
-  import Migrating from '@jack-agency/element/src/mixins/migrating';
-  import Menubar from '@jack-agency/element/src/utils/menu/aria-menubar';
-  import { addClass, removeClass, hasClass } from '@jack-agency/element/src/utils/dom';
+  import emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import Migrating from '@groupe-medisup/element/src/mixins/migrating';
+  import Menubar from '@groupe-medisup/element/src/utils/menu/aria-menubar';
+  import { addClass, removeClass, hasClass } from '@groupe-medisup/element/src/utils/dom';
 
   export default {
     name: 'ElMenu',

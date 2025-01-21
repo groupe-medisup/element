@@ -1,5 +1,5 @@
-import fecha from '@jack-agency/element/src/utils/date';
-import { t } from '@jack-agency/element/src/locale';
+import fecha from '@groupe-medisup/element/src/utils/date';
+import { t } from '@groupe-medisup/element/src/locale';
 
 const weeks = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];

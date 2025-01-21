@@ -1,4 +1,4 @@
-import defaultLang from '@jack-agency/element/src/locale/lang/fr';
+import defaultLang from '@groupe-medisup/element/src/locale/lang/fr';
 import Vue from 'vue';
 import deepmerge from 'deepmerge';
 import Format from './format';

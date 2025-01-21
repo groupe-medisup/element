@@ -1,7 +1,7 @@
 <script>
-  import ElCheckbox from '@jack-agency/element/packages/checkbox';
-  import ElRadio from '@jack-agency/element/packages/radio';
-  import { isEqual } from '@jack-agency/element/src/utils/util';
+  import ElCheckbox from '@groupe-medisup/element/packages/checkbox';
+  import ElRadio from '@groupe-medisup/element/packages/radio';
+  import { isEqual } from '@groupe-medisup/element/src/utils/util';
 
   const stopPropagation = e => e.stopPropagation();
 

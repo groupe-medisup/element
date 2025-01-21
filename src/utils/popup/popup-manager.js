@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { addClass, removeClass } from '@jack-agency/element/src/utils/dom';
+import { addClass, removeClass } from '@groupe-medisup/element/src/utils/dom';
 
 let hasModal = false;
 let hasInitZIndex = false;

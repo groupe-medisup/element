@@ -44,7 +44,7 @@
   </label>
 </template>
 <script>
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
 
   export default {
     name: 'ElCheckboxButton',

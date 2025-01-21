@@ -9,21 +9,21 @@ var transitionList = fs.readdirSync(path.resolve(__dirname, '../src/transitions'
 var externals = {};
 
 Object.keys(Components).forEach(function(key) {
-  externals[`@jack-agency/element/packages/${key}`] = `@jack-agency/element/lib/${key}`;
+  externals[`@groupe-medisup/element/packages/${key}`] = `@groupe-medisup/element/lib/${key}`;
 });
 
-externals['@jack-agency/element/src/locale'] = '@jack-agency/element/lib/locale';
+externals['@groupe-medisup/element/src/locale'] = '@groupe-medisup/element/lib/locale';
 utilsList.forEach(function(file) {
   file = path.basename(file, '.js');
-  externals[`@jack-agency/element/src/utils/${file}`] = `@jack-agency/element/lib/utils/${file}`;
+  externals[`@groupe-medisup/element/src/utils/${file}`] = `@groupe-medisup/element/lib/utils/${file}`;
 });
 mixinsList.forEach(function(file) {
   file = path.basename(file, '.js');
-  externals[`@jack-agency/element/src/mixins/${file}`] = `@jack-agency/element/lib/mixins/${file}`;
+  externals[`@groupe-medisup/element/src/mixins/${file}`] = `@groupe-medisup/element/lib/mixins/${file}`;
 });
 transitionList.forEach(function(file) {
   file = path.basename(file, '.js');
-  externals[`@jack-agency/element/src/transitions/${file}`] = `@jack-agency/element/lib/transitions/${file}`;
+  externals[`@groupe-medisup/element/src/transitions/${file}`] = `@groupe-medisup/element/lib/transitions/${file}`;
 });
 
 externals = [Object.assign({
@@ -36,7 +36,7 @@ exports.alias = {
   main: path.resolve(__dirname, '../src'),
   packages: path.resolve(__dirname, '../packages'),
   examples: path.resolve(__dirname, '../examples'),
-  '@jack-agency/element': path.resolve(__dirname, '../')
+  '@groupe-medisup/element': path.resolve(__dirname, '../')
 };
 
 exports.vue = {

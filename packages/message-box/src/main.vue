@@ -79,13 +79,13 @@
 </template>
 
 <script type="text/babel">
-  import Popup from '@jack-agency/element/src/utils/popup';
-  import Locale from '@jack-agency/element/src/mixins/locale';
-  import ElInput from '@jack-agency/element/packages/input';
-  import ElButton from '@jack-agency/element/packages/button';
-  import { addClass, removeClass } from '@jack-agency/element/src/utils/dom';
-  import { t } from '@jack-agency/element/src/locale';
-  import Dialog from '@jack-agency/element/src/utils/aria-dialog';
+  import Popup from '@groupe-medisup/element/src/utils/popup';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
+  import ElInput from '@groupe-medisup/element/packages/input';
+  import ElButton from '@groupe-medisup/element/packages/button';
+  import { addClass, removeClass } from '@groupe-medisup/element/src/utils/dom';
+  import { t } from '@groupe-medisup/element/src/locale';
+  import Dialog from '@groupe-medisup/element/src/utils/aria-dialog';
 
   let messageBox;
   let typeMap = {

@@ -2,7 +2,7 @@
   <div class="el-tabs__active-bar" :class="`is-${ rootTabs.tabPosition }`" :style="barStyle"></div>
 </template>
 <script>
-  import { arrayFind } from '@jack-agency/element/src/utils/util';
+  import { arrayFind } from '@groupe-medisup/element/src/utils/util';
   export default {
     name: 'TabBar',
 

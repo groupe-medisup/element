@@ -67,8 +67,8 @@ import Tabs from '../packages/tabs/index.js';
 import Tag from '../packages/tag/index.js';
 import Tooltip from '../packages/tooltip/index.js';
 import Tree from '../packages/tree/index.js';
-import locale from '@jack-agency/element/src/locale';
-import CollapseTransition from '@jack-agency/element/src/transitions/collapse-transition';
+import locale from '@groupe-medisup/element/src/locale';
+import CollapseTransition from '@groupe-medisup/element/src/transitions/collapse-transition';
 
 const components = [
   Alert,

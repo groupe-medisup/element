@@ -39,9 +39,9 @@
 </template>
 
 <script>
-  import Popup from '@jack-agency/element/src/utils/popup';
-  import Migrating from '@jack-agency/element/src/mixins/migrating';
-  import emitter from '@jack-agency/element/src/mixins/emitter';
+  import Popup from '@groupe-medisup/element/src/utils/popup';
+  import Migrating from '@groupe-medisup/element/src/mixins/migrating';
+  import emitter from '@groupe-medisup/element/src/mixins/emitter';
 
   export default {
     name: 'ElDialog',

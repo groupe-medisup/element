@@ -1,4 +1,4 @@
-import { getValueByPath } from '@jack-agency/element/src/utils/util';
+import { getValueByPath } from '@groupe-medisup/element/src/utils/util';
 
 export const getCell = function(event) {
   let cell = event.target;

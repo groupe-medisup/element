@@ -1,8 +1,8 @@
 <script>
-import ElScrollbar from '@jack-agency/element/packages/scrollbar';
+import ElScrollbar from '@groupe-medisup/element/packages/scrollbar';
 import CascaderNode from './cascader-node.vue';
-import Locale from '@jack-agency/element/src/mixins/locale';
-import { generateId } from '@jack-agency/element/src/utils/util';
+import Locale from '@groupe-medisup/element/src/mixins/locale';
+import { generateId } from '@groupe-medisup/element/src/utils/util';
 
 export default {
   name: 'ElCascaderMenu',

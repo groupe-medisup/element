@@ -45,9 +45,9 @@
   </div>
 </template>
 <script>
-  import ElCollapseTransition from '@jack-agency/element/src/transitions/collapse-transition';
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
-  import { generateId } from '@jack-agency/element/src/utils/util';
+  import ElCollapseTransition from '@groupe-medisup/element/src/transitions/collapse-transition';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import { generateId } from '@groupe-medisup/element/src/utils/util';
 
   export default {
     name: 'ElCollapseItem',

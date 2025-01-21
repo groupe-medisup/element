@@ -1,8 +1,8 @@
 <script>
-  import ElCollapseTransition from '@jack-agency/element/src/transitions/collapse-transition';
+  import ElCollapseTransition from '@groupe-medisup/element/src/transitions/collapse-transition';
   import menuMixin from './menu-mixin';
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
-  import Popper from '@jack-agency/element/src/utils/vue-popper';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import Popper from '@groupe-medisup/element/src/utils/vue-popper';
 
   const poperMixins = {
     props: {

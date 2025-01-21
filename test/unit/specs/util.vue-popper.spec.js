@@ -1,4 +1,4 @@
-import VuePopper from '@jack-agency/element/src/utils/vue-popper';
+import VuePopper from '@groupe-medisup/element/src/utils/vue-popper';
 import { createTest } from '../util';
 
 const Popper = Object.assign({}, VuePopper, {

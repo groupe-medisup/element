@@ -1,9 +1,9 @@
-import { kebabCase } from '@jack-agency/element/src/utils/util';
+import { kebabCase } from '@groupe-medisup/element/src/utils/util';
 /**
  * Show migrating guide in browser console.
  *
  * Usage:
- * import Migrating from '@jack-agency/element/src/mixins/migrating';
+ * import Migrating from '@groupe-medisup/element/src/mixins/migrating';
  *
  * mixins: [Migrating]
  *

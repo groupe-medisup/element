@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import { on, off } from '@jack-agency/element/src/utils/dom';
-import { rafThrottle, isFirefox } from '@jack-agency/element/src/utils/util';
-import { PopupManager } from '@jack-agency/element/src/utils/popup';
+import { on, off } from '@groupe-medisup/element/src/utils/dom';
+import { rafThrottle, isFirefox } from '@groupe-medisup/element/src/utils/util';
+import { PopupManager } from '@groupe-medisup/element/src/utils/popup';
 
 const Mode = {
   CONTAIN: {

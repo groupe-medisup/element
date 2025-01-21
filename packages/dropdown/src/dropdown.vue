@@ -1,10 +1,10 @@
 <script>
-  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
-  import Migrating from '@jack-agency/element/src/mixins/migrating';
-  import ElButton from '@jack-agency/element/packages/button';
-  import ElButtonGroup from '@jack-agency/element/packages/button-group';
-  import { generateId } from '@jack-agency/element/src/utils/util';
+  import Clickoutside from '@groupe-medisup/element/src/utils/clickoutside';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import Migrating from '@groupe-medisup/element/src/mixins/migrating';
+  import ElButton from '@groupe-medisup/element/packages/button';
+  import ElButtonGroup from '@groupe-medisup/element/packages/button-group';
+  import { generateId } from '@groupe-medisup/element/src/utils/util';
 
   export default {
     name: 'ElDropdown',

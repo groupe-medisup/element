@@ -1,6 +1,6 @@
 <script>
-import fecha from '@jack-agency/element/src/utils/date';
-import { range as rangeArr, getFirstDayOfMonth, getPrevMonthLastDays, getMonthDays, getI18nSettings, validateRangeInOneMonth } from '@jack-agency/element/src/utils/date-util';
+import fecha from '@groupe-medisup/element/src/utils/date';
+import { range as rangeArr, getFirstDayOfMonth, getPrevMonthLastDays, getMonthDays, getI18nSettings, validateRangeInOneMonth } from '@groupe-medisup/element/src/utils/date-util';
 
 export default {
   props: {
