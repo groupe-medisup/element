@@ -1,6 +1,6 @@
-///VAR @import "common/var";
 @import "mixins/mixins";
 @import "mixins/utils";
+///VAR @import "common/var";
 
 @include b(row) {
   position: relative;

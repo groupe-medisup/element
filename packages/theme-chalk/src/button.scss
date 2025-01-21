@@ -1,8 +1,8 @@
 @charset "UTF-8";
-///VAR @import "common/var";
 @import "mixins/button";
 @import "mixins/mixins";
 @import "mixins/utils";
+///VAR @import "common/var";
 
 @include b(button) {
   display: inline-flex;
