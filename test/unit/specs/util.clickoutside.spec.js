@@ -1,4 +1,4 @@
-import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
+import Clickoutside from '@groupe-medisup/element/src/utils/clickoutside';
 const ctx = '@@clickoutsideContext';
 
 import { triggerEvent, triggerClick } from '../util';

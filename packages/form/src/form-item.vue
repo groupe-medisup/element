@@ -77,9 +77,9 @@
 </template>
 <script>
   import AsyncValidator from 'async-validator';
-  import emitter from '@jack-agency/element/src/mixins/emitter';
-  import objectAssign from '@jack-agency/element/src/utils/merge';
-  import { noop, getPropByPath } from '@jack-agency/element/src/utils/util';
+  import emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import objectAssign from '@groupe-medisup/element/src/utils/merge';
+  import { noop, getPropByPath } from '@groupe-medisup/element/src/utils/util';
   import LabelWrap from './label-wrap';
   export default {
     name: 'ElFormItem',

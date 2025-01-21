@@ -1,5 +1,5 @@
 import DescriptionsRow from './descriptions-row';
-import { isFunction } from '@jack-agency/element/src/utils/types';
+import { isFunction } from '@groupe-medisup/element/src/utils/types';
 
 export default {
   name: 'ElDescriptions',

@@ -74,10 +74,10 @@
 </template>
 
 <script type="text/babel">
-  import ElInputNumber from '@jack-agency/element/packages/input-number';
+  import ElInputNumber from '@groupe-medisup/element/packages/input-number';
   import SliderButton from './button.vue';
   import SliderMarker from './marker';
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
 
   export default {
     name: 'ElSlider',

@@ -1,4 +1,4 @@
-import { hasOwn } from '@jack-agency/element/src/utils/util';
+import { hasOwn } from '@groupe-medisup/element/src/utils/util';
 
 const RE_NARGS = /(%|)\{([0-9a-zA-Z_]+)\}/g;
 /**

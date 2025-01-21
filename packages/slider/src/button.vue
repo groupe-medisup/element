@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import ElTooltip from '@jack-agency/element/packages/tooltip';
+  import ElTooltip from '@groupe-medisup/element/packages/tooltip';
 
   export default {
     name: 'ElSliderButton',

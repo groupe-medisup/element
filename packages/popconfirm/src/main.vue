@@ -36,9 +36,9 @@
 </template>
 
 <script>
-import ElPopover from '@jack-agency/element/packages/popover';
-import ElButton from '@jack-agency/element/packages/button';
-import {t} from '@jack-agency/element/src/locale';
+import ElPopover from '@groupe-medisup/element/packages/popover';
+import ElButton from '@groupe-medisup/element/packages/button';
+import {t} from '@groupe-medisup/element/src/locale';
 
 export default {
   name: 'ElPopconfirm',

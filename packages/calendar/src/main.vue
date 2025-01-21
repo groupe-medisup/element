@@ -57,12 +57,12 @@
 </template>
 
 <script>
-import Locale from '@jack-agency/element/src/mixins/locale';
-import fecha from '@jack-agency/element/src/utils/date';
-import ElButton from '@jack-agency/element/packages/button';
-import ElButtonGroup from '@jack-agency/element/packages/button-group';
+import Locale from '@groupe-medisup/element/src/mixins/locale';
+import fecha from '@groupe-medisup/element/src/utils/date';
+import ElButton from '@groupe-medisup/element/packages/button';
+import ElButtonGroup from '@groupe-medisup/element/packages/button-group';
 import DateTable from './date-table';
-import { validateRangeInOneMonth } from '@jack-agency/element/src/utils/date-util';
+import { validateRangeInOneMonth } from '@groupe-medisup/element/src/utils/date-util';
 
 const validTypes = ['prev-month', 'today', 'next-month'];
 const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

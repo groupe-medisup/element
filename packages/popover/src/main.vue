@@ -24,10 +24,10 @@
   </span>
 </template>
 <script>
-import Popper from '@jack-agency/element/src/utils/vue-popper';
-import { on, off } from '@jack-agency/element/src/utils/dom';
-import { addClass, removeClass } from '@jack-agency/element/src/utils/dom';
-import { generateId } from '@jack-agency/element/src/utils/util';
+import Popper from '@groupe-medisup/element/src/utils/vue-popper';
+import { on, off } from '@groupe-medisup/element/src/utils/dom';
+import { addClass, removeClass } from '@groupe-medisup/element/src/utils/dom';
+import { generateId } from '@groupe-medisup/element/src/utils/util';
 
 export default {
   name: 'ElPopover',

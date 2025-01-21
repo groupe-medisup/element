@@ -17,16 +17,16 @@
 <script>
 import CascaderMenu from './cascader-menu';
 import Store from './store';
-import merge from '@jack-agency/element/src/utils/merge';
-import AriaUtils from '@jack-agency/element/src/utils/aria-utils';
-import scrollIntoView from '@jack-agency/element/src/utils/scroll-into-view';
+import merge from '@groupe-medisup/element/src/utils/merge';
+import AriaUtils from '@groupe-medisup/element/src/utils/aria-utils';
+import scrollIntoView from '@groupe-medisup/element/src/utils/scroll-into-view';
 import {
   noop,
   coerceTruthyValueToArray,
   isEqual,
   isEmpty,
   valueEquals
-} from '@jack-agency/element/src/utils/util';
+} from '@groupe-medisup/element/src/utils/util';
 
 const { keys: KeyCode } = AriaUtils;
 const DefaultProps = {

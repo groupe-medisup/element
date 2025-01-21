@@ -169,11 +169,11 @@
     extractDateFormat,
     extractTimeFormat,
     timeWithinRange
-  } from '@jack-agency/element/src/utils/date-util';
-  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
-  import Locale from '@jack-agency/element/src/mixins/locale';
-  import ElInput from '@jack-agency/element/packages/input';
-  import ElButton from '@jack-agency/element/packages/button';
+  } from '@groupe-medisup/element/src/utils/date-util';
+  import Clickoutside from '@groupe-medisup/element/src/utils/clickoutside';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
+  import ElInput from '@groupe-medisup/element/packages/input';
+  import ElButton from '@groupe-medisup/element/packages/button';
   import TimePicker from './time';
   import YearTable from '../basic/year-table';
   import SchoolyearTable from '../basic/schoolyear-table';

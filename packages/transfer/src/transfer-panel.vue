@@ -52,10 +52,10 @@
 </template>
 
 <script>
-  import ElCheckboxGroup from '@jack-agency/element/packages/checkbox-group';
-  import ElCheckbox from '@jack-agency/element/packages/checkbox';
-  import ElInput from '@jack-agency/element/packages/input';
-  import Locale from '@jack-agency/element/src/mixins/locale';
+  import ElCheckboxGroup from '@groupe-medisup/element/packages/checkbox-group';
+  import ElCheckbox from '@groupe-medisup/element/packages/checkbox';
+  import ElInput from '@groupe-medisup/element/packages/input';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
 
   export default {
     mixins: [Locale],

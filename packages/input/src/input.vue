@@ -109,11 +109,11 @@
   </div>
 </template>
 <script>
-  import emitter from '@jack-agency/element/src/mixins/emitter';
-  import Migrating from '@jack-agency/element/src/mixins/migrating';
+  import emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import Migrating from '@groupe-medisup/element/src/mixins/migrating';
   import calcTextareaHeight from './calcTextareaHeight';
-  import merge from '@jack-agency/element/src/utils/merge';
-  import {isKorean} from '@jack-agency/element/src/utils/shared';
+  import merge from '@groupe-medisup/element/src/utils/merge';
+  import {isKorean} from '@groupe-medisup/element/src/utils/shared';
 
   export default {
     name: 'ElInput',

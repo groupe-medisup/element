@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { autoprefixer } from '@jack-agency/element/src/utils/util';
+  import { autoprefixer } from '@groupe-medisup/element/src/utils/util';
   const CARD_SCALE = 0.83;
   export default {
     name: 'ElCarouselItem',

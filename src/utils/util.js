@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { isString, isObject } from '@jack-agency/element/src/utils/types';
+import { isString, isObject } from '@groupe-medisup/element/src/utils/types';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 const OBJECT_NUMERIC_KEY = /^\d+$/;

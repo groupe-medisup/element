@@ -7,7 +7,7 @@
   </form>
 </template>
 <script>
-  import objectAssign from '@jack-agency/element/src/utils/merge';
+  import objectAssign from '@groupe-medisup/element/src/utils/merge';
 
   export default {
     name: 'ElForm',

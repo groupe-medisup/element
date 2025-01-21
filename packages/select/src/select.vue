@@ -146,23 +146,23 @@
 </template>
 
 <script type="text/babel">
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
-  import Focus from '@jack-agency/element/src/mixins/focus';
-  import Locale from '@jack-agency/element/src/mixins/locale';
-  import ElInput from '@jack-agency/element/packages/input';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import Focus from '@groupe-medisup/element/src/mixins/focus';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
+  import ElInput from '@groupe-medisup/element/packages/input';
   import ElSelectMenu from './select-dropdown.vue';
   import ElOption from './option.vue';
-  import ElTag from '@jack-agency/element/packages/tag';
-  import ElScrollbar from '@jack-agency/element/packages/scrollbar';
+  import ElTag from '@groupe-medisup/element/packages/tag';
+  import ElScrollbar from '@groupe-medisup/element/packages/scrollbar';
   // import debounce from 'throttle-debounce/debounce';
   import { debounce } from 'throttle-debounce';
-  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
-  import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
-  import scrollIntoView from '@jack-agency/element/src/utils/scroll-into-view';
-  import { getValueByPath, valueEquals, isIE, isEdge } from '@jack-agency/element/src/utils/util';
-  import { isObject } from '@jack-agency/element/src/utils/types';
+  import Clickoutside from '@groupe-medisup/element/src/utils/clickoutside';
+  import { addResizeListener, removeResizeListener } from '@groupe-medisup/element/src/utils/resize-event';
+  import scrollIntoView from '@groupe-medisup/element/src/utils/scroll-into-view';
+  import { getValueByPath, valueEquals, isIE, isEdge } from '@groupe-medisup/element/src/utils/util';
+  import { isObject } from '@groupe-medisup/element/src/utils/types';
   import NavigationMixin from './navigation-mixin';
-  import { isKorean } from '@jack-agency/element/src/utils/shared';
+  import { isKorean } from '@groupe-medisup/element/src/utils/shared';
 
   export default {
     mixins: [Emitter, Locale, Focus('reference'), NavigationMixin],

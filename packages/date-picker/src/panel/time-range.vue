@@ -62,8 +62,8 @@
     modifyDate,
     clearMilliseconds,
     timeWithinRange
-  } from '@jack-agency/element/src/utils/date-util';
-  import Locale from '@jack-agency/element/src/mixins/locale';
+  } from '@groupe-medisup/element/src/utils/date-util';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
   import TimeSpinner from '../basic/time-spinner';
 
   const MIN_TIME = parseDate('00:00:00', 'HH:mm:ss');

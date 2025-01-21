@@ -1,4 +1,4 @@
-import VuePopup from '@jack-agency/element/src/utils/popup';
+import VuePopup from '@groupe-medisup/element/src/utils/popup';
 import { createTest, destroyVM } from '../util';
 
 const Popup = Object.assign({}, VuePopup, {

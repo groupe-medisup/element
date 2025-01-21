@@ -1,4 +1,4 @@
-import { getPropByPath } from '@jack-agency/element/src/utils/util';
+import { getPropByPath } from '@groupe-medisup/element/src/utils/util';
 
 export const cellStarts = {
   default: {

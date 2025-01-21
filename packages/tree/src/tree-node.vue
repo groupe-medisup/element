@@ -72,9 +72,9 @@
 </template>
 
 <script type="text/jsx">
-  import ElCollapseTransition from '@jack-agency/element/src/transitions/collapse-transition';
-  import ElCheckbox from '@jack-agency/element/packages/checkbox';
-  import emitter from '@jack-agency/element/src/mixins/emitter';
+  import ElCollapseTransition from '@groupe-medisup/element/src/transitions/collapse-transition';
+  import ElCheckbox from '@groupe-medisup/element/packages/checkbox';
+  import emitter from '@groupe-medisup/element/src/mixins/emitter';
   import { getNodeKey } from './model/util';
 
   export default {

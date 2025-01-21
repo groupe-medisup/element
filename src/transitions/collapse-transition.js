@@ -1,4 +1,4 @@
-import { addClass, removeClass } from '@jack-agency/element/src/utils/dom';
+import { addClass, removeClass } from '@groupe-medisup/element/src/utils/dom';
 
 class Transition {
   beforeEnter(el) {

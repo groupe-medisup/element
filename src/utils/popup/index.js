@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import merge from '@jack-agency/element/src/utils/merge';
-import PopupManager from '@jack-agency/element/src/utils/popup/popup-manager';
+import merge from '@groupe-medisup/element/src/utils/merge';
+import PopupManager from '@groupe-medisup/element/src/utils/popup/popup-manager';
 import getScrollBarWidth from '../scrollbar-width';
 import { getStyle, addClass, removeClass, hasClass } from '../dom';
 

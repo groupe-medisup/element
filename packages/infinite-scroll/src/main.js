@@ -5,10 +5,10 @@ import {
   isFunction,
   isUndefined,
   isDefined
-} from '@jack-agency/element/src/utils/types';
+} from '@groupe-medisup/element/src/utils/types';
 import {
   getScrollContainer
-} from '@jack-agency/element/src/utils/dom';
+} from '@groupe-medisup/element/src/utils/dom';
 
 const getStyleComputedProperty = (element, property) => {
   if (element === window) {

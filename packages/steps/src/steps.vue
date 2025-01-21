@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Migrating from '@jack-agency/element/src/mixins/migrating';
+import Migrating from '@groupe-medisup/element/src/mixins/migrating';
 
 export default {
   name: 'ElSteps',

@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import loadingVue from './loading.vue';
-import { addClass, removeClass, getStyle } from '@jack-agency/element/src/utils/dom';
-import { PopupManager } from '@jack-agency/element/src/utils/popup';
-import afterLeave from '@jack-agency/element/src/utils/after-leave';
-import merge from '@jack-agency/element/src/utils/merge';
+import { addClass, removeClass, getStyle } from '@groupe-medisup/element/src/utils/dom';
+import { PopupManager } from '@groupe-medisup/element/src/utils/popup';
+import afterLeave from '@groupe-medisup/element/src/utils/after-leave';
+import merge from '@groupe-medisup/element/src/utils/merge';
 
 const LoadingConstructor = Vue.extend(loadingVue);
 

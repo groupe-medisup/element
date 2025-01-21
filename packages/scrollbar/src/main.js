@@ -1,8 +1,8 @@
 // reference https://github.com/noeldelgado/gemini-scrollbar/blob/master/index.js
 
-import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
-import scrollbarWidth from '@jack-agency/element/src/utils/scrollbar-width';
-import { toObject } from '@jack-agency/element/src/utils/util';
+import { addResizeListener, removeResizeListener } from '@groupe-medisup/element/src/utils/resize-event';
+import scrollbarWidth from '@groupe-medisup/element/src/utils/scrollbar-width';
+import { toObject } from '@groupe-medisup/element/src/utils/util';
 import Bar from './bar';
 
 /* istanbul ignore next */

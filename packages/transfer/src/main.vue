@@ -42,11 +42,11 @@
 </template>
 
 <script>
-  import ElButton from '@jack-agency/element/packages/button';
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
-  import Locale from '@jack-agency/element/src/mixins/locale';
+  import ElButton from '@groupe-medisup/element/packages/button';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
   import TransferPanel from './transfer-panel.vue';
-  import Migrating from '@jack-agency/element/src/mixins/migrating';
+  import Migrating from '@groupe-medisup/element/src/mixins/migrating';
 
   export default {
     name: 'ElTransfer',

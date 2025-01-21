@@ -185,13 +185,13 @@
     nextDate,
     extractDateFormat,
     extractTimeFormat
-  } from '@jack-agency/element/src/utils/date-util';
-  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
-  import Locale from '@jack-agency/element/src/mixins/locale';
+  } from '@groupe-medisup/element/src/utils/date-util';
+  import Clickoutside from '@groupe-medisup/element/src/utils/clickoutside';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
   import TimePicker from './time';
   import DateTable from '../basic/date-table';
-  import ElInput from '@jack-agency/element/packages/input';
-  import ElButton from '@jack-agency/element/packages/button';
+  import ElInput from '@groupe-medisup/element/packages/input';
+  import ElButton from '@groupe-medisup/element/packages/button';
 
   const calcDefaultValue = (defaultValue) => {
     if (Array.isArray(defaultValue)) {

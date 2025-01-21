@@ -18,7 +18,7 @@
 
 <script>
 import ImgEmpty from './img-empty.vue';
-import { t } from '@jack-agency/element/src/locale';
+import { t } from '@groupe-medisup/element/src/locale';
 
 export default {
   name: 'ElEmpty',

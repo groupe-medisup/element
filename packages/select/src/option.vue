@@ -16,8 +16,8 @@
 </template>
 
 <script type="text/babel">
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
-  import { getValueByPath, escapeRegexpString } from '@jack-agency/element/src/utils/util';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import { getValueByPath, escapeRegexpString } from '@groupe-medisup/element/src/utils/util';
 
   export default {
     mixins: [Emitter],

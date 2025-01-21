@@ -33,9 +33,9 @@
 </template>
 
 <script>
-  import { hasClass } from '@jack-agency/element/src/utils/dom';
-  import { isObject } from '@jack-agency/element/src/utils/types';
-  import Migrating from '@jack-agency/element/src/mixins/migrating';
+  import { hasClass } from '@groupe-medisup/element/src/utils/dom';
+  import { isObject } from '@groupe-medisup/element/src/utils/types';
+  import Migrating from '@groupe-medisup/element/src/mixins/migrating';
 
   export default {
     name: 'ElRate',

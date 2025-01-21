@@ -1,6 +1,6 @@
 <script>
   import TabBar from './tab-bar';
-  import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
+  import { addResizeListener, removeResizeListener } from '@groupe-medisup/element/src/utils/resize-event';
 
   function noop() {}
   const firstUpperCase = str => {

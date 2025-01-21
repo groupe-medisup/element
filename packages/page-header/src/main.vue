@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { t } from '@jack-agency/element/src/locale';
+import { t } from '@groupe-medisup/element/src/locale';
 export default {
   name: 'ElPageHeader',
 

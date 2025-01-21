@@ -152,7 +152,7 @@ if (isProd) {
     cacheGroups: {
       vendor: {
         test: /\/src\//,
-        name: '@jack-agency/element',
+        name: '@groupe-medisup/element',
         chunks: 'all'
       }
     }

@@ -60,13 +60,13 @@
 <script>
   // import debounce from 'throttle-debounce/debounce';
   import { debounce } from 'throttle-debounce';
-  import ElInput from '@jack-agency/element/packages/input';
-  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
+  import ElInput from '@groupe-medisup/element/packages/input';
+  import Clickoutside from '@groupe-medisup/element/src/utils/clickoutside';
   import ElAutocompleteSuggestions from './autocomplete-suggestions.vue';
-  import Emitter from '@jack-agency/element/src/mixins/emitter';
-  import Migrating from '@jack-agency/element/src/mixins/migrating';
-  import { generateId } from '@jack-agency/element/src/utils/util';
-  import Focus from '@jack-agency/element/src/mixins/focus';
+  import Emitter from '@groupe-medisup/element/src/mixins/emitter';
+  import Migrating from '@groupe-medisup/element/src/mixins/migrating';
+  import { generateId } from '@groupe-medisup/element/src/utils/util';
+  import Focus from '@groupe-medisup/element/src/mixins/focus';
 
   export default {
     name: 'ElAutocomplete',

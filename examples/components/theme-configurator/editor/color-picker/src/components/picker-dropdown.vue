@@ -51,10 +51,10 @@
   import AlphaSlider from './alpha-slider';
   import Predefine from './predefine';
   import ColorList from './color-list';
-  import Popper from '@jack-agency/element/src/utils/vue-popper';
-  import Locale from '@jack-agency/element/src/mixins/locale';
-  import ElInput from '@jack-agency/element/packages/input';
-  import ElButton from '@jack-agency/element/packages/button';
+  import Popper from '@groupe-medisup/element/src/utils/vue-popper';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
+  import ElInput from '@groupe-medisup/element/packages/input';
+  import ElButton from '@groupe-medisup/element/packages/button';
 
   export default {
     name: 'el-color-picker-dropdown',

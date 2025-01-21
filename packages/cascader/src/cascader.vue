@@ -112,21 +112,21 @@
 </template>
 
 <script>
-import Popper from '@jack-agency/element/src/utils/vue-popper';
-import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
-import Emitter from '@jack-agency/element/src/mixins/emitter';
-import Locale from '@jack-agency/element/src/mixins/locale';
-import Migrating from '@jack-agency/element/src/mixins/migrating';
-import ElInput from '@jack-agency/element/packages/input';
-import ElTag from '@jack-agency/element/packages/tag';
-import ElScrollbar from '@jack-agency/element/packages/scrollbar';
-import ElCascaderPanel from '@jack-agency/element/packages/cascader-panel';
-import AriaUtils from '@jack-agency/element/src/utils/aria-utils';
-import { t } from '@jack-agency/element/src/locale';
-import { isEqual, isEmpty, kebabCase } from '@jack-agency/element/src/utils/util';
-import { isUndefined, isFunction } from '@jack-agency/element/src/utils/types';
-import { isDef } from '@jack-agency/element/src/utils/shared';
-import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
+import Popper from '@groupe-medisup/element/src/utils/vue-popper';
+import Clickoutside from '@groupe-medisup/element/src/utils/clickoutside';
+import Emitter from '@groupe-medisup/element/src/mixins/emitter';
+import Locale from '@groupe-medisup/element/src/mixins/locale';
+import Migrating from '@groupe-medisup/element/src/mixins/migrating';
+import ElInput from '@groupe-medisup/element/packages/input';
+import ElTag from '@groupe-medisup/element/packages/tag';
+import ElScrollbar from '@groupe-medisup/element/packages/scrollbar';
+import ElCascaderPanel from '@groupe-medisup/element/packages/cascader-panel';
+import AriaUtils from '@groupe-medisup/element/src/utils/aria-utils';
+import { t } from '@groupe-medisup/element/src/locale';
+import { isEqual, isEmpty, kebabCase } from '@groupe-medisup/element/src/utils/util';
+import { isUndefined, isFunction } from '@groupe-medisup/element/src/utils/types';
+import { isDef } from '@groupe-medisup/element/src/utils/shared';
+import { addResizeListener, removeResizeListener } from '@groupe-medisup/element/src/utils/resize-event';
 // import debounce from 'throttle-debounce/debounce';
 import { debounce } from 'throttle-debounce';
 

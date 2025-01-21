@@ -63,8 +63,8 @@
   </transition-group>
 </template>
 <script>
-  import Locale from '@jack-agency/element/src/mixins/locale';
-  import ElProgress from '@jack-agency/element/packages/progress';
+  import Locale from '@groupe-medisup/element/src/mixins/locale';
+  import ElProgress from '@groupe-medisup/element/packages/progress';
 
   export default {
 
