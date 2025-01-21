@@ -29,6 +29,7 @@
           </button>
         </div>
         <div class="el-dialog__body" v-if="rendered"><slot></slot></div>
+        <slot name="afterBody" v-if="rendered" />
         <div class="el-dialog__footer" v-if="$slots.footer">
           <slot name="footer"></slot>
         </div>
@@ -38,9 +39,9 @@
 </template>
 
 <script>
-  import Popup from 'element-ui/src/utils/popup';
-  import Migrating from 'element-ui/src/mixins/migrating';
-  import emitter from 'element-ui/src/mixins/emitter';
+  import Popup from '@jack-agency/element/src/utils/popup';
+  import Migrating from '@jack-agency/element/src/mixins/migrating';
+  import emitter from '@jack-agency/element/src/mixins/emitter';
 
   export default {
     name: 'ElDialog',

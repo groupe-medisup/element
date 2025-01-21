@@ -45,9 +45,9 @@
   </div>
 </template>
 <script>
-  import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition';
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import { generateId } from 'element-ui/src/utils/util';
+  import ElCollapseTransition from '@jack-agency/element/src/transitions/collapse-transition';
+  import Emitter from '@jack-agency/element/src/mixins/emitter';
+  import { generateId } from '@jack-agency/element/src/utils/util';
 
   export default {
     name: 'ElCollapseItem',

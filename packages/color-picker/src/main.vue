@@ -24,6 +24,7 @@
        @pick="confirmValue"
        @clear="clearValue"
        :color="color"
+       :hide-clear="hideClear"
        :show-alpha="showAlpha"
        :predefine="predefine">
     </picker-dropdown>
@@ -33,8 +34,8 @@
 <script>
   import Color from './color';
   import PickerDropdown from './components/picker-dropdown.vue';
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
-  import Emitter from 'element-ui/src/mixins/emitter';
+  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
+  import Emitter from '@jack-agency/element/src/mixins/emitter';
 
   export default {
     name: 'ElColorPicker',
@@ -48,7 +49,8 @@
       disabled: Boolean,
       size: String,
       popperClass: String,
-      predefine: Array
+      predefine: Array,
+      hideClear: Boolean
     },
 
     inject: {

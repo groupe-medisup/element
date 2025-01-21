@@ -1,12 +1,12 @@
 @use "sass:math";
 @import "mixins/mixins";
-@import "common/var";
+///VAR @import "common/var";
 @import "input";
 
 @include b(input-number) {
   position: relative;
   display: inline-block;
-  width: 180px;
+  // width: 180px;
   line-height: #{$--input-height - 2};
 
   .el-input {

@@ -1,6 +1,6 @@
 @import "mixins/mixins";
 @import "mixins/utils";
-@import "common/var";
+///VAR @import "common/var";
 @import "select-dropdown";
 @import "input";
 @import "tag";
@@ -12,6 +12,9 @@
   display: inline-block;
   position: relative;
 
+  // @include width-map();
+  // @include input-require-indicator();
+
   .el-select__tags
     >span {
       display: contents;
@@ -20,6 +23,10 @@
   &:hover {
     .el-input__inner {
       border-color: $--select-border-color-hover;
+
+      // @at-root .is-error & {
+      //   border-color: $--color-danger;
+      // }
     }
   }
 
@@ -128,25 +135,34 @@
     box-sizing: border-box;
     border-color: transparent;
     margin: 2px 0 2px 6px;
-    background-color: #f0f2f5;
+    background-color: $--cascader-tag-background;
     display: flex;
     max-width: 100%;
     align-items: center;
 
+    // &--closable {
+    //   .el-select__tags-text {
+    //     margin-top: -2px;
+    //   }
+    // }
+
     &__close.el-icon-close {
-      background-color: $--color-text-placeholder;
-      top: 0;
+      // background-color: $--color-text-placeholder;
+      // right: -5px;
+      // top: 0;
+      // margin-top: 0;
       color: $--color-white;
       flex-shrink: 0;
+      background-color: transparent;
 
       &:hover {
         background-color: $--color-text-secondary;
       }
 
-      &::before {
-        display: block;
-        transform: translate(0, .5px);
-      }
+      // &::before {
+      //   display: block;
+      //   transform: translate(0, .5px);
+      // }
     }
   }
 }

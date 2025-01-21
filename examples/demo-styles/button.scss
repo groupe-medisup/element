@@ -1,3 +1,10 @@
+.demo-line {
+  &.el-row {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .demo-block.demo-button {
   .el-row {
     margin-bottom: 20px;

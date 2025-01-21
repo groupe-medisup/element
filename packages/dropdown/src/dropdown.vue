@@ -1,10 +1,10 @@
 <script>
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import Migrating from 'element-ui/src/mixins/migrating';
-  import ElButton from 'element-ui/packages/button';
-  import ElButtonGroup from 'element-ui/packages/button-group';
-  import { generateId } from 'element-ui/src/utils/util';
+  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
+  import Emitter from '@jack-agency/element/src/mixins/emitter';
+  import Migrating from '@jack-agency/element/src/mixins/migrating';
+  import ElButton from '@jack-agency/element/packages/button';
+  import ElButtonGroup from '@jack-agency/element/packages/button-group';
+  import { generateId } from '@jack-agency/element/src/utils/util';
 
   export default {
     name: 'ElDropdown',
@@ -63,6 +63,10 @@
       disabled: {
         type: Boolean,
         default: false
+      },
+      icon: {
+        type: String,
+        default: ''
       }
     },
 
@@ -205,6 +209,7 @@
       },
       initEvent() {
         let { trigger, show, hide, handleClick, splitButton, handleTriggerKeyDown, handleItemKeyDown } = this;
+
         this.triggerElm = splitButton
           ? this.$refs.trigger.$el
           : this.$slots.default[0].elm;
@@ -254,17 +259,17 @@
     },
 
     render(h) {
-      let { hide, splitButton, type, dropdownSize, disabled } = this;
+      let triggerElm = null;
+      let { hide, splitButton, type, dropdownSize, disabled, icon } = this;
 
       const handleMainButtonClick = (event) => {
         this.$emit('click', event);
         hide();
       };
 
-      let triggerElm = null;
       if (splitButton) {
         triggerElm = <el-button-group>
-          <el-button type={type} size={dropdownSize} nativeOn-click={handleMainButtonClick} disabled={disabled}>
+          <el-button type={type} size={dropdownSize} nativeOn-click={handleMainButtonClick} disabled={disabled} icon={icon}>
             {this.$slots.default}
           </el-button>
           <el-button ref="trigger" type={type} size={dropdownSize} class="el-dropdown__caret-button" disabled={disabled}>
@@ -280,7 +285,10 @@
           vnodeData.attrs = attrs;
         }
       }
-      const menuElm = disabled ? null : this.$slots.dropdown;
+
+      const menuElm = disabled
+        ? null
+        : (typeof this.$scopedSlots.dropdown === 'function' ? this.$scopedSlots.dropdown() : this.$slots.dropdown);
 
       return (
         <div class="el-dropdown" v-clickoutside={hide} aria-disabled={disabled}>

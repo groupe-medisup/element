@@ -1,6 +1,6 @@
 @use "sass:math";
 @import "mixins/mixins";
-@import "common/var";
+///VAR @import "common/var";
 
 @include b(badge) {
   position: relative;

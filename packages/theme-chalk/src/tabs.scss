@@ -1,11 +1,11 @@
 @import "mixins/mixins";
-@import "common/var";
+///VAR @import "common/var";
 
 @include b(tabs) {
   @include e(header) {
     padding: 0;
     position: relative;
-    margin: 0 0 15px;
+    display: flex;
   }
   @include e(active-bar) {
     position: absolute;
@@ -18,21 +18,34 @@
     list-style: none;
   }
   @include e(new-tab) {
-    float: right;
-    border: 1px solid #d3dce6;
-    height: 18px;
-    width: 18px;
-    line-height: 18px;
-    margin: 12px 0 9px 10px;
-    border-radius: 3px;
+    // float: right;
+    display: block;
+    border-left: 1px solid $--border-color-base;
+    height: 36px;
+    min-width: 36px;
+    line-height: 36px;
+    // margin: 12px 0 9px 10px;
+    // border-radius: 3px;
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     color: #d3dce6;
     cursor: pointer;
     transition: all .15s;
+    transform: translateX(-1px);
 
-    .el-icon-plus {
-      transform: scale(0.8, 0.8);
+    @at-root .el-tabs--border-card & {
+      border-right: 1px solid $--border-color-base;
+    }
+
+    &.has-label {
+      padding-right: 12px;
+      padding-left: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+
+      .el-tabs__new-tab__icon {
+        margin-right: 8px;
+      }
     }
 
     &:hover {
@@ -56,7 +69,7 @@
     }
 
     @include when(scrollable) {
-      padding: 0 20px;
+      padding: 0 24px;
       box-sizing: border-box;
     }
   }
@@ -93,10 +106,10 @@
     }
   }
   @include e(item) {
-    padding: 0 20px;
-    height: 40px;
+    padding: 0 24px;
+    height: 36px;
     box-sizing: border-box;
-    line-height: 40px;
+    line-height: 36px;
     display: inline-block;
     list-style: none;
     font-size: 14px;
@@ -144,20 +157,38 @@
     }
   }
   @include e(content) {
-    overflow: hidden;
+    // overflow: hidden;
     position: relative;
+
+    @at-root .el-tabs.flex & {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      > .el-tab-pane {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
   }
   @include m(card) {
+    width: 100%;
+    > .el-tabs__content {
+      margin-top: -1px;
+    }
     > .el-tabs__header {
-      border-bottom: 1px solid $--border-color-light;
+      // border-bottom: 1px solid $--border-color-base;
     }
     > .el-tabs__header .el-tabs__nav-wrap::after {
       content: none;
     }
     > .el-tabs__header .el-tabs__nav {
-      border: 1px solid $--border-color-light;
+      border: 1px solid $--border-color-base;
       border-bottom: none;
-      border-radius: 4px 4px 0 0;
+      // border-radius: 4px 4px 0 0;
       box-sizing: border-box;
     }
     > .el-tabs__header .el-tabs__active-bar {
@@ -177,15 +208,30 @@
     }
     > .el-tabs__header .el-tabs__item {
       border-bottom: 1px solid transparent;
-      border-left: 1px solid $--border-color-light;
+      border-left: 1px solid $--border-color-base;
       transition: color .3s cubic-bezier(.645,.045,.355,1), padding .3s cubic-bezier(.645,.045,.355,1);
+      color: $--tab-item-text-default;
+      border-bottom: 1px solid $--border-color-base;
+
+      &.is-active {
+        color: $--tab-item-text-active;
+        background-color: $--color-white;
+        border-bottom-color: #FFF;
+      }
+      &:not(.is-disabled):hover {
+        color: $--tab-item-text-active;
+      }
+      &.is-disabled {
+        color: $--disabled-color-base;
+      }
+
       &:first-child {
         border-left: none;
       }
       &.is-closable {
         &:hover {
-          padding-left: 13px;
-          padding-right: 13px;
+          padding-left: 24px;
+          padding-right: 24px;
 
           & .el-icon-close {
             width: 14px;
@@ -196,28 +242,40 @@
         border-bottom-color: $--color-white;
 
         &.is-closable {
-          padding-left: 20px;
-          padding-right: 20px;
+          padding-left: 24px;
+          padding-right: 24px;
 
           .el-icon-close {
             width: 14px;
           }
         }
       }
+      // &:not(.is-active) {
+      //   background-color: #eff1f5;
+      // }
     }
   }
   @include m(border-card) {
-    background: $--color-white;
-    border: 1px solid $--border-color-base;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.04);
+    // background: $--color-white;
+    // border: 1px solid $--border-color-base;
+    // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.04);
 
     > .el-tabs__content {
-      padding: 15px;
+      // margin-top: -1px;
+      padding: 16px 24px 32px;
+      border: 1px solid $--border-color-base;
     }
     > .el-tabs__header {
-      background-color: $--background-color-base;
-      border-bottom: 1px solid $--border-color-light;
+      // background-color: $--background-color-base;
+      border-left: 1px solid $--border-color-base;
       margin: 0;
+
+      &.is-top {
+        .el-tabs__nav-wrap,
+        .el-tabs__new-tab {
+          border-top: 1px solid $--border-color-base;
+        }
+      }
     }
     > .el-tabs__header .el-tabs__nav-wrap::after {
       content: none;
@@ -226,7 +284,9 @@
       transition: all .3s cubic-bezier(.645,.045,.355,1);
       border: 1px solid transparent;
       margin-top: -1px;
-      color: $--color-text-secondary;
+      color: $--tab-item-text-default;
+      border-right-color: $--border-color-base;
+      border-left-color: $--border-color-base;
 
       &:first-child {
         margin-left: -1px;
@@ -237,13 +297,12 @@
       }
 
       &.is-active {
-        color: $--color-primary;
+        color: $--tab-item-text-active;
         background-color: $--color-white;
-        border-right-color: $--border-color-base;
-        border-left-color: $--border-color-base;
+        border-bottom-color: #FFF;
       }
       &:not(.is-disabled):hover {
-        color: $--color-primary;
+        color: $--tab-item-text-active;
       }
       &.is-disabled {
         color: $--disabled-color-base;
@@ -268,10 +327,10 @@
     .el-tabs--left, .el-tabs--right {
       > .el-tabs__header {
         .el-tabs__item:nth-child(2) {
-          padding-left: 20px;
+          padding-left: 24px;
         }
         .el-tabs__item:last-child {
-          padding-right: 20px;
+          padding-right: 24px;
         }
       }
     }
@@ -392,7 +451,7 @@
         border-left: none;
         border-right: 1px solid $--border-color-light;
         border-bottom: none;
-        border-top: 1px solid $--border-color-light;
+        border-top: 1px solid red;
         text-align: left;
       }
       .el-tabs__item.is-left:first-child {
@@ -414,13 +473,9 @@
       }
 
       .el-tabs__nav {
-        border-radius: 4px 0 0 4px;
+        // border-radius: 4px 0 0 4px;
         border-bottom: 1px solid $--border-color-light;
         border-right: none;
-      }
-
-      .el-tabs__new-tab {
-        float: none;
       }
     }
 
@@ -486,7 +541,7 @@
       }
 
       .el-tabs__nav {
-        border-radius: 0 4px 4px 0;
+        // border-radius: 0 4px 4px 0;
         border-bottom: 1px solid $--border-color-light;
         border-left: none;
       }

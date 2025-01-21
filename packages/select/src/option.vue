@@ -6,18 +6,18 @@
     v-show="visible"
     :class="{
       'selected': itemSelected,
-      'is-disabled': disabled || groupDisabled || limitReached,
+      'is-disabled': disabled || groupDisabled,
       'hover': hover
     }">
-    <slot>
+    <slot v-bind="{ currentLabel }">
       <span>{{ currentLabel }}</span>
     </slot>
   </li>
 </template>
 
 <script type="text/babel">
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import { getValueByPath, escapeRegexpString } from 'element-ui/src/utils/util';
+  import Emitter from '@jack-agency/element/src/mixins/emitter';
+  import { getValueByPath, escapeRegexpString } from '@jack-agency/element/src/utils/util';
 
   export default {
     mixins: [Emitter],

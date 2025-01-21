@@ -4,20 +4,57 @@
       'is-error': validateState === 'error',
       'is-validating': validateState === 'validating',
       'is-success': validateState === 'success',
+      'is-no-label': !(label || $slots.label),
       'is-required': isRequired || required,
-      'is-no-asterisk': elForm && elForm.hideRequiredAsterisk
+      'is-no-asterisk': elForm && elForm.hideRequiredAsterisk,
+      'is-xsmall': xs,
+      'is-small': sm,
+      'is-medium': md
     },
     sizeClass ? 'el-form-item--' + sizeClass : ''
   ]">
     <label-wrap
       :is-auto-width="labelStyle && labelStyle.width === 'auto'"
-      :update-all="form.labelWidth === 'auto'">
+      :update-all="form.labelWidth === 'auto'"
+    >
       <label :for="labelFor" class="el-form-item__label" :style="labelStyle" v-if="label || $slots.label">
-        <slot name="label">{{label + form.labelSuffix}}</slot>
+        <slot name="label" :label="label" :suffix="form.labelSuffix">{{label + form.labelSuffix}}</slot>
       </label>
     </label-wrap>
+
     <div class="el-form-item__content" :style="contentStyle">
+      <!-- hint before -->
+      <slot v-if="hintPosition === 'before'" name="hint" :hint="hint">
+        <div
+          v-if="hint"
+          class="el-form-item__hint el-form-item__hint--before"
+          :class="{
+              'el-form-item__hint--inline': typeof inlineMessage === 'boolean'
+                ? inlineMessage
+                : (elForm && elForm.inlineMessage || false)
+            }"
+        >
+          {{hint}}
+        </div>
+      </slot>
+
       <slot></slot>
+
+      <!-- hint after -->
+      <slot v-if="hintPosition === 'after'" name="hint" :hint="hint">
+        <div
+          v-if="hint"
+          class="el-form-item__hint el-form-item__hint--after"
+          :class="{
+              'el-form-item__hint--inline': typeof inlineMessage === 'boolean'
+                ? inlineMessage
+                : (elForm && elForm.inlineMessage || false)
+            }"
+        >
+          {{hint}}
+        </div>
+      </slot>
+
       <transition name="el-zoom-in-top">
         <slot
           v-if="validateState === 'error' && showMessage && form.showMessage"
@@ -40,9 +77,9 @@
 </template>
 <script>
   import AsyncValidator from 'async-validator';
-  import emitter from 'element-ui/src/mixins/emitter';
-  import objectAssign from 'element-ui/src/utils/merge';
-  import { noop, getPropByPath } from 'element-ui/src/utils/util';
+  import emitter from '@jack-agency/element/src/mixins/emitter';
+  import objectAssign from '@jack-agency/element/src/utils/merge';
+  import { noop, getPropByPath } from '@jack-agency/element/src/utils/util';
   import LabelWrap from './label-wrap';
   export default {
     name: 'ElFormItem',
@@ -79,7 +116,15 @@
         type: Boolean,
         default: true
       },
-      size: String
+      size: String,
+      hint: String,
+      hintPosition: {
+        type: String,
+        default: 'after'
+      },
+      xs: Boolean,
+      sm: Boolean,
+      md: Boolean
     },
     components: {
       // use this component to calculate auto width
@@ -207,9 +252,14 @@
         const validator = new AsyncValidator(descriptor);
         const model = {};
 
+        let messages;
+        if (this.$asyncValidator && typeof this.$asyncValidator.messages === 'function') {
+          messages = this.$asyncValidator.messages();
+        }
+
         model[this.prop] = this.fieldValue;
 
-        validator.validate(model, { firstFields: true }, (errors, invalidFields) => {
+        validator.validate(model, { suppressWarning: true, firstFields: true, messages }, (errors, invalidFields) => {
           this.validateState = !errors ? 'success' : 'error';
           this.validateMessage = errors ? errors[0].message : '';
 

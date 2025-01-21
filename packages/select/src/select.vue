@@ -11,34 +11,41 @@
       :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%' }">
       <span v-if="collapseTags && selected.length">
         <el-tag
-          :closable="!selectDisabled"
-          :size="collapseTagSize"
+          :closable="closable ? closable(item.value): tagClosable"
+          :size="tagProps.size || collapseTagSize"
           :hit="selected[0].hitState"
-          type="info"
+          :type="tagProps.type || 'info'"
+          @click="clickTag($event, selected[0])"
           @close="deleteTag($event, selected[0])"
-          disable-transitions>
-          <span class="el-select__tags-text">{{ selected[0].currentLabel }}</span>
+          disable-transitions
+          v-bind="tagProps">
+          <span class="el-select__tags-text">{{ isObject(selected[0][tagLabelKey]) ? selected[0][tagLabelKey][valueKey] : selected[0][tagLabelKey] }}</span>
         </el-tag>
         <el-tag
           v-if="selected.length > 1"
           :closable="false"
-          :size="collapseTagSize"
-          type="info"
-          disable-transitions>
+          :size="tagProps.size || collapseTagSize"
+          :type="tagProps.type || 'info'"
+          disable-transitions
+          v-bind="tagProps">
           <span class="el-select__tags-text">+ {{ selected.length - 1 }}</span>
         </el-tag>
       </span>
-      <transition-group @after-leave="resetInputHeight" v-if="!collapseTags">
+      <transition-group @after-leave="resetInputHeight" v-if="!collapseTags && multipleLimit !== 1">
         <el-tag
           v-for="item in selected"
           :key="getValueKey(item)"
-          :closable="!selectDisabled"
-          :size="collapseTagSize"
+          :closable="closable ? closable(item.value): tagClosable"
+          :size="tagProps.size || collapseTagSize"
           :hit="item.hitState"
-          type="info"
+          :type="tagProps.type || 'info'"
+          @click="clickTag($event, item)"
           @close="deleteTag($event, item)"
-          disable-transitions>
-          <span class="el-select__tags-text">{{ item.currentLabel }}</span>
+          disable-transitions
+          v-bind="tagProps">
+          <slot name="tag" v-bind="{ item: item.value }">
+            <span class="el-select__tags-text">{{ isObject(item[tagLabelKey]) ? item[tagLabelKey][valueKey] : item[tagLabelKey] }}</span>
+          </slot>
         </el-tag>
       </transition-group>
 
@@ -98,14 +105,16 @@
         <slot name="prefix"></slot>
       </template>
       <template slot="suffix">
-        <i v-show="!showClose" :class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"></i>
-        <i v-if="showClose" class="el-select__caret el-input__icon el-icon-circle-close" @click="handleClearClick"></i>
+        <i v-show="(multipleLimit === 1 && hasValue) ? false : !showClose" :class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"></i>
+        <i v-if="(multipleLimit === 1 && hasValue) || showClose" class="el-select__caret el-input__icon el-icon-circle-close" @click="handleClearClick"></i>
       </template>
     </el-input>
     <transition
       name="el-zoom-in-top"
+      @after-enter="handleMenuAfterEnter"
       @before-enter="handleMenuEnter"
-      @after-leave="doDestroy">
+      @after-leave="doDestroy"
+    >
       <el-select-menu
         ref="popper"
         :append-to-body="popperAppendToBody"
@@ -118,6 +127,7 @@
           :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0 }"
           v-show="options.length > 0 && !loading">
           <el-option
+            :label="allowCreateLabel && allowCreateLabel(query)"
             :value="query"
             created
             v-if="showNewOption">
@@ -136,21 +146,23 @@
 </template>
 
 <script type="text/babel">
-  import Emitter from 'element-ui/src/mixins/emitter';
-  import Focus from 'element-ui/src/mixins/focus';
-  import Locale from 'element-ui/src/mixins/locale';
-  import ElInput from 'element-ui/packages/input';
+  import Emitter from '@jack-agency/element/src/mixins/emitter';
+  import Focus from '@jack-agency/element/src/mixins/focus';
+  import Locale from '@jack-agency/element/src/mixins/locale';
+  import ElInput from '@jack-agency/element/packages/input';
   import ElSelectMenu from './select-dropdown.vue';
   import ElOption from './option.vue';
-  import ElTag from 'element-ui/packages/tag';
-  import ElScrollbar from 'element-ui/packages/scrollbar';
-  import debounce from 'throttle-debounce/debounce';
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
-  import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
-  import scrollIntoView from 'element-ui/src/utils/scroll-into-view';
-  import { getValueByPath, valueEquals, isIE, isEdge } from 'element-ui/src/utils/util';
+  import ElTag from '@jack-agency/element/packages/tag';
+  import ElScrollbar from '@jack-agency/element/packages/scrollbar';
+  // import debounce from 'throttle-debounce/debounce';
+  import { debounce } from 'throttle-debounce';
+  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
+  import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
+  import scrollIntoView from '@jack-agency/element/src/utils/scroll-into-view';
+  import { getValueByPath, valueEquals, isIE, isEdge } from '@jack-agency/element/src/utils/util';
+  import { isObject } from '@jack-agency/element/src/utils/types';
   import NavigationMixin from './navigation-mixin';
-  import { isKorean } from 'element-ui/src/utils/shared';
+  import { isKorean } from '@jack-agency/element/src/utils/shared';
 
   export default {
     mixins: [Emitter, Locale, Focus('reference'), NavigationMixin],
@@ -184,19 +196,22 @@
         return !this.filterable || this.multiple || (!isIE() && !isEdge() && !this.visible);
       },
 
-      showClose() {
-        let hasValue = this.multiple
+      hasValue() {
+        return this.multiple
           ? Array.isArray(this.value) && this.value.length > 0
           : this.value !== undefined && this.value !== null && this.value !== '';
+      },
+
+      showClose() {
         let criteria = this.clearable &&
           !this.selectDisabled &&
           this.inputHovering &&
-          hasValue;
+          this.hasValue;
         return criteria;
       },
 
       iconClass() {
-        return this.remote && this.filterable ? '' : (this.visible ? 'arrow-up is-reverse' : 'arrow-up');
+        return this.visible ? 'arrow-up is-reverse' : 'arrow-up';
       },
 
       debounce() {
@@ -212,6 +227,10 @@
             return this.noMatchText || this.t('el.select.noMatch');
           }
           if (this.options.length === 0) {
+            if (this.noEmptyText) {
+              return this.query ? this.noEmptyText : false;
+            }
+
             return this.noDataText || this.t('el.select.noData');
           }
         }
@@ -220,7 +239,7 @@
 
       showNewOption() {
         let hasExistingOption = this.options.filter(option => !option.created)
-          .some(option => option.currentLabel === this.query);
+          .some(option => option[this.tagLabelKey] === this.query);
         return this.filterable && this.allowCreate && this.query !== '' && !hasExistingOption;
       },
 
@@ -239,6 +258,10 @@
       },
       propPlaceholder() {
         return typeof this.placeholder !== 'undefined' ? this.placeholder : this.t('el.select.placeholder');
+      },
+
+      tagClosable() {
+        return this.tagAllowClose && !this.selectDisabled;
       }
     },
 
@@ -304,6 +327,30 @@
       popperAppendToBody: {
         type: Boolean,
         default: true
+      },
+      tagLabelKey: {
+        type: String,
+        validator(value) {
+          return ['currentLabel', 'currentValue'].indexOf(value) !== -1;
+        },
+        default: 'currentLabel'
+      },
+      tagProps: {
+        type: Object,
+        default: () => ({})
+      },
+      allowCreateLabel: Function,
+      tagAllowClose: {
+        type: Boolean,
+        default: true
+      },
+      noEmptyText: {
+        type: [ String, Boolean ],
+        default: false
+      },
+      closable: {
+        type: Function,
+        default: undefined
       }
     },
 
@@ -373,7 +420,9 @@
           if (this.$refs.input) {
             this.$refs.input.blur();
           }
-          this.query = '';
+          if (!this.reserveKeyword) {
+            this.query = '';
+          }
           this.previousQuery = null;
           this.selectedLabel = '';
           this.inputLength = 20;
@@ -394,7 +443,7 @@
               } else {
                 this.selectedLabel = this.selected.currentLabel;
               }
-              if (this.filterable) this.query = this.selectedLabel;
+              if (this.filterable && !this.reserveKeyword && this.multipleLimit !== 1) this.query = this.selectedLabel;
             }
 
             if (this.filterable) {
@@ -404,7 +453,9 @@
         } else {
           this.broadcast('ElSelectDropdown', 'updatePopper');
           if (this.filterable) {
-            this.query = this.remote ? '' : this.selectedLabel;
+            if (!this.reserveKeyword) {
+              this.query = this.remote ? '' : this.selectedLabel;
+            }
             this.handleQueryChange(this.query);
             if (this.multiple) {
               this.$refs.input.focus();
@@ -443,6 +494,7 @@
     },
 
     methods: {
+      isObject,
       handleNavigate(direction) {
         if (this.isOnComposition) return;
 
@@ -509,6 +561,10 @@
         this.$nextTick(() => this.scrollToOption(this.selected));
       },
 
+      handleMenuAfterEnter() {
+        this.$emit('after-enter');
+      },
+
       emitChange(val) {
         if (!valueEquals(this.value, val)) {
           this.$emit('change', val);
@@ -536,7 +592,8 @@
           ? String(value) : '';
         let newOption = {
           value: value,
-          currentLabel: label
+          currentLabel: isObject ? getValueByPath(value, this.valueKey) : label,
+          currentValue: isObject ? getValueByPath(value, this.valueKey) : value
         };
         if (this.multiple) {
           newOption.hitState = false;
@@ -582,6 +639,10 @@
         } else {
           this.softFocus = false;
         }
+
+        // if (this.reserveKeyword && this.multipleLimit === 1) {
+        //   this.emitChange([ this.query ].filter(value => !!value))
+        // }
       },
 
       blur() {
@@ -601,11 +662,13 @@
       },
 
       handleClearClick(event) {
+        this.query = '';
         this.deleteSelected(event);
       },
 
       doDestroy() {
         this.$refs.popper && this.$refs.popper.doDestroy();
+        this.$emit('after-leave');
       },
 
       handleClose() {
@@ -659,7 +722,7 @@
           input.style.height = this.selected.length === 0
             ? sizeInMap + 'px'
             : Math.max(
-              tags ? (tagsHeight + (tagsHeight > sizeInMap ? 6 : 0)) : 0,
+              tags ? (tagsHeight + (tagsHeight > sizeInMap ? 12 : 0)) : 0,
               sizeInMap
             ) + 'px';
           if (this.visible && this.emptyText !== false) {
@@ -684,8 +747,9 @@
 
       handleOptionSelect(option, byClick) {
         if (this.multiple) {
-          const value = (this.value || []).slice();
+          let value = (this.value || []).slice();
           const optionIndex = this.getValueIndex(value, option.value);
+
           if (optionIndex > -1) {
             value.splice(optionIndex, 1);
           } else if (this.multipleLimit <= 0 || value.length < this.multipleLimit) {
@@ -694,7 +758,9 @@
           this.$emit('input', value);
           this.emitChange(value);
           if (option.created) {
-            this.query = '';
+            if (this.reserveKeyword && this.multipleLimit !== 1) {
+              this.query = '';
+            }
             this.handleQueryChange('');
             this.inputLength = 20;
           }
@@ -778,6 +844,14 @@
           this.$emit('input', value);
           this.emitChange(value);
           this.$emit('remove-tag', tag.value);
+        }
+        event.stopPropagation();
+      },
+
+      clickTag(event, tag) {
+        let index = this.selected.indexOf(tag);
+        if (index > -1 && !this.selectDisabled) {
+          this.$emit('tag-click', tag, event);
         }
         event.stopPropagation();
       },
@@ -869,6 +943,15 @@
     mounted() {
       if (this.multiple && Array.isArray(this.value) && this.value.length > 0) {
         this.currentPlaceholder = '';
+
+        // if (this.multipleLimit === 1 && this.hasValue) {
+        //   const option = this.multiple
+        //     ? this.value[0]
+        //     : this.value;
+        //   this.query = isObject(option)
+        //     ? option[this.valueKey]
+        //     : option;
+        // }
       }
       addResizeListener(this.$el, this.handleResize);
 
@@ -876,7 +959,7 @@
       if (reference && reference.$el) {
         const sizeMap = {
           medium: 36,
-          small: 32,
+          small: 36,
           mini: 28
         };
         const input = reference.$el.querySelector('input');

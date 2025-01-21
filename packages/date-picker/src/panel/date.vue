@@ -47,7 +47,7 @@
           </div>
           <div
             class="el-date-picker__header"
-            :class="{ 'el-date-picker__header--bordered': currentView === 'year' || currentView === 'month' }"
+            :class="{ 'el-date-picker__header--bordered': currentView === 'year' ||  currentView === 'schoolyear' || currentView === 'month' }"
             v-show="currentView !== 'time'">
             <button
               type="button"
@@ -86,7 +86,6 @@
               class="el-picker-panel__icon-btn el-date-picker__next-btn el-icon-arrow-right">
             </button>
           </div>
-
           <div class="el-picker-panel__content">
             <date-table
               v-show="currentView === 'date'"
@@ -107,6 +106,15 @@
               :date="date"
               :disabled-date="disabledDate">
             </year-table>
+            <schoolyear-table
+              v-show="currentView === 'schoolyear'"
+              @pick="handleYearPick"
+              :selection-mode="selectionMode"
+              :value="value"
+              :default-value="defaultValue ? new Date(defaultValue) : null"
+              :date="date"
+              :disabled-date="disabledDate">
+            </schoolyear-table>
             <month-table
               v-show="currentView === 'month'"
               @pick="handleMonthPick"
@@ -121,13 +129,13 @@
 
       <div
         class="el-picker-panel__footer"
-        v-show="footerVisible && currentView === 'date'">
+        v-show="footerVisible && (currentView === 'date')">
         <el-button
           size="mini"
           type="text"
           class="el-picker-panel__link-btn"
           @click="changeToNow"
-          v-show="selectionMode !== 'dates'">
+          v-show="!(selectionMode === 'dates' || selectionMode === 'schoolyears')">
           {{ t('el.datepicker.now') }}
         </el-button>
         <el-button
@@ -161,13 +169,14 @@
     extractDateFormat,
     extractTimeFormat,
     timeWithinRange
-  } from 'element-ui/src/utils/date-util';
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
-  import Locale from 'element-ui/src/mixins/locale';
-  import ElInput from 'element-ui/packages/input';
-  import ElButton from 'element-ui/packages/button';
+  } from '@jack-agency/element/src/utils/date-util';
+  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
+  import Locale from '@jack-agency/element/src/mixins/locale';
+  import ElInput from '@jack-agency/element/packages/input';
+  import ElButton from '@jack-agency/element/packages/button';
   import TimePicker from './time';
   import YearTable from '../basic/year-table';
+  import SchoolyearTable from '../basic/schoolyear-table';
   import MonthTable from '../basic/month-table';
   import DateTable from '../basic/date-table';
 
@@ -189,7 +198,7 @@
       },
 
       value(val) {
-        if (this.selectionMode === 'dates' && this.value) return;
+        if (this.selectionMode === 'dates' && this.selectionMode === 'schoolyears' && this.value) return;
         if (isDate(val)) {
           this.date = new Date(val);
         } else {
@@ -210,11 +219,13 @@
       selectionMode(newVal) {
         if (newVal === 'month') {
           /* istanbul ignore next */
-          if (this.currentView !== 'year' || this.currentView !== 'month') {
+          if (this.currentView !== 'year' || this.currentView !== 'schoolyear' || this.currentView !== 'month') {
             this.currentView = 'month';
           }
         } else if (newVal === 'dates') {
           this.currentView = 'date';
+        } else if (newVal === 'schoolyears') {
+          this.currentView = 'schoolyear';
         }
       }
     },
@@ -263,7 +274,10 @@
       },
 
       showYearPicker() {
-        this.currentView = 'year';
+        this.currentView = this.selectionMode;
+      },
+      showSchoolYearPicker() {
+        this.currentView = 'schoolyear';
       },
 
       // XXX: 没用到
@@ -284,7 +298,7 @@
       },
 
       prevYear() {
-        if (this.currentView === 'year') {
+        if (this.currentView === 'year' || this.currentView === 'schoolyear' || this.currentView === 'schoolyears') {
           this.date = prevYear(this.date, 10);
         } else {
           this.date = prevYear(this.date);
@@ -292,7 +306,7 @@
       },
 
       nextYear() {
-        if (this.currentView === 'year') {
+        if (this.currentView === 'year' || this.currentView === 'schoolyear' || this.currentView === 'schoolyears') {
           this.date = nextYear(this.date, 10);
         } else {
           this.date = nextYear(this.date);
@@ -355,9 +369,11 @@
       },
 
       handleYearPick(year) {
-        if (this.selectionMode === 'year') {
+        if (this.selectionMode === 'year' || this.selectionMode === 'schoolyear') {
           this.date = modifyDate(this.date, year, 0, 1);
           this.emit(this.date);
+        } else if (this.selectionMode === 'schoolyears') {
+          this.emit(year, true); // set false to keep panel open
         } else {
           this.date = changeYearMonthAndClampDate(this.date, year, this.month);
           // TODO: should emit intermediate value ??
@@ -376,7 +392,7 @@
       },
 
       confirm() {
-        if (this.selectionMode === 'dates') {
+        if (this.selectionMode === 'dates' || this.selectionMode === 'schoolyears') {
           this.emit(this.value);
         } else {
           // value were emitted in handle{Date,Time}Pick, nothing to update here
@@ -394,6 +410,8 @@
           this.currentView = 'month';
         } else if (this.selectionMode === 'year') {
           this.currentView = 'year';
+        } else if (this.selectionMode === 'schoolyear' || this.selectionMode === 'schoolyears') {
+          this.currentView = 'schoolyear';
         } else {
           this.currentView = 'date';
         }
@@ -500,7 +518,7 @@
     },
 
     components: {
-      TimePicker, YearTable, MonthTable, DateTable, ElInput, ElButton
+      TimePicker, YearTable, SchoolyearTable, MonthTable, DateTable, ElInput, ElButton
     },
 
     data() {
@@ -546,7 +564,7 @@
       },
 
       footerVisible() {
-        return this.showTime || this.selectionMode === 'dates';
+        return this.showTime;
       },
 
       visibleTime() {
@@ -567,7 +585,7 @@
 
       yearLabel() {
         const yearTranslation = this.t('el.datepicker.year');
-        if (this.currentView === 'year') {
+        if (this.currentView === 'year' || this.currentView === 'schoolyear') {
           const startYear = Math.floor(this.year / 10) * 10;
           if (yearTranslation) {
             return startYear + ' ' + yearTranslation + ' - ' + (startYear + 9) + ' ' + yearTranslation;

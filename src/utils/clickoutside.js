@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { on } from 'element-ui/src/utils/dom';
+import { on } from '@jack-agency/element/src/utils/dom';
 
 const nodeList = [];
 const ctx = '@@clickoutsideContext';
@@ -29,9 +29,9 @@ function createDocumentHandler(el, binding, vnode) {
     if (binding.expression &&
       el[ctx].methodName &&
       vnode.context[el[ctx].methodName]) {
-      vnode.context[el[ctx].methodName]();
+      vnode.context[el[ctx].methodName](mousedown);
     } else {
-      el[ctx].bindingFn && el[ctx].bindingFn();
+      el[ctx].bindingFn && el[ctx].bindingFn(mousedown);
     }
   };
 }

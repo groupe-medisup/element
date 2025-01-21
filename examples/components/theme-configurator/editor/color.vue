@@ -30,9 +30,6 @@
 </template>
 
 <style>
-input {
-  cursor: pointer;
-}
 .colorPicker {
   margin-left: 10px;
   vertical-align: bottom;

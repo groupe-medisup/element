@@ -73,7 +73,7 @@ Border card tabs.
 :::demo Set `type` to `border-card`.
 
 ```html
-<el-tabs type="border-card">
+<el-tabs type="border-card" add-label="Ajouter un ensemble de formation" addable>
   <el-tab-pane label="User">User</el-tab-pane>
   <el-tab-pane label="Config">Config</el-tab-pane>
   <el-tab-pane label="Role">Role</el-tab-pane>

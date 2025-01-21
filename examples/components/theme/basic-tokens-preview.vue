@@ -15,30 +15,50 @@
     margin: 0;
   }
   .color {
+    margin-top: -10px;
     margin-right: -12%;
   }
 }
 </style>
 <template>
   <div class="component-preview">
+
+    <h4>Typography</h4>
+    <el-row :gutter="12">
+      <el-col :span="6" class="heading">
+        <div :style="{ fontSize: font_size_extra_large }">Heading1</div>
+        <div :style="{ fontSize: font_size_large }">Heading2</div>
+        <div :style="{ fontSize: font_size_medium }">Heading3</div>
+        <div :style="{ fontSize: font_size_base }">Heading4</div>
+        <div :style="{ fontSize: font_size_small }">Heading5</div>
+        <div :style="{ fontSize: font_size_extra_small }">Heading6</div>
+      </el-col>
+      <el-col :span="9">
+        <div class="title">Example body text</div>
+        <p 
+          class="paragraph"
+          :style="{ 
+            fontSize: font_size_base,
+            fontWeight: font_weight_primary, 
+            lineHeight: font_line_height_primary
+          }" >
+          With MySpace becoming more popular every day, there is the constant need to be different. There are millions of users. If MySpace layouts are chosen well, then you can enhance your profile a great deal.</p>
+      </el-col>
+      <el-col :span="9">
+        <div class="title">Example small text</div>
+        <p 
+          class="paragraph"
+          :style="{ 
+            fontSize: font_size_small,
+            fontWeight: font_weight_secondary, 
+            lineHeight: font_line_height_secondary
+          }" >
+          Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their desktops, while delivery people scan bar codes with handhelds and workers in the field stay in touch with the central office via their notebooks. Computer hardware weaves itself through the fabric of our lives.</p>
+      </el-col>
+    </el-row>
+    
     <h4>Color</h4>
     <div class="color">
-      <el-row :gutter="12">
-        <el-col :span="4" v-for="(color, key) in colorLine" :key="key">
-          <div class="demo-color-box" :style="{ background: dataProxy(color) }">
-            {{color}}
-            <div class="value">{{dataProxy(color)}}</div>
-            <div class="bg-color-sub">
-              <div
-                class="bg-success-sub-item"
-                v-for="(item, key) in Array(2)"
-                :key="key"
-                :style="{ background: tintColor(dataProxy(color), (key + 8) / 10) }"
-              ></div>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
       <el-row :gutter="12">
         <el-col :span="4">
           <div class="demo-color-box demo-color-box-other" :style="{ background: color_text_primary }">
@@ -47,21 +67,25 @@
           </div>
         </el-col>
         <el-col :span="4">
-          <div class="demo-color-box demo-color-box-other" :style="{ background: color_text_regular }">
-            Regular Text
-            <div class="value">{{color_text_regular}}</div>
-          </div>
-        </el-col>
-        <el-col :span="4">
           <div class="demo-color-box demo-color-box-other" :style="{ background: color_text_secondary }">
             Secondary Text
             <div class="value">{{color_text_secondary}}</div>
           </div>
         </el-col>
-        <el-col :span="4">
-          <div class="demo-color-box demo-color-box-other" :style="{ background: color_text_placeholder }">
-            Placeholder
-            <div class="value">{{color_text_placeholder}}</div>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="4" v-for="(color, key) in colorLine" :key="key">
+          <div class="demo-color-box demo-color-box-other" :style="{ background: dataProxy(color) }">
+            {{color}}
+            <div class="value">{{dataProxy(color)}}</div>
+            <!-- <div class="bg-color-sub">
+              <div
+                class="bg-success-sub-item"
+                v-for="(item, key) in Array(2)"
+                :key="key"
+                :style="{ background: tintColor(dataProxy(color), (key + 8) / 10) }"
+              ></div>
+            </div> -->
           </div>
         </el-col>
       </el-row>
@@ -97,71 +121,41 @@
         <el-col :span="4">
           <div
             class="demo-color-box demo-color-box-other demo-color-box-lite"
-            :style="{ background: border_color_extra_light }"
+            :style="{ background: bg_color_hover, border: `1px solid ${bg_color_base}` }"
           >
-            Border Extralight
-            <div class="value">{{border_color_extra_light}}</div>
+            Border Hover
+            <div class="value">{{bg_color_base}}</div>
           </div>
         </el-col>
       </el-row>
 
       <el-row :gutter="12">
         <el-col :span="4">
-          <div class="demo-color-box demo-color-box-other" :style="{ background: color_black }">
-            Background B
-            <div class="value">{{color_black}}</div>
+          <div class="demo-color-box demo-color-box-other demo-color-box-lite" :style="{ background: bg_color_base }">
+            Background Base
+            <div class="value">{{bg_color_base}}</div>
           </div>
         </el-col>
         <el-col :span="4">
           <div
-            class="demo-color-box demo-color-box-other"
-            :style="{ background: color_white, color: '#303133', border: '1px solid #eee' }"
+            class="demo-color-box demo-color-box-other demo-color-box-lite"
+            :style="{ background: bg_color_light }"
           >
-            Background W
-            <div class="value">{{color_white}}</div>
+            Background Light
+            <div class="value">{{bg_color_light}}</div>
           </div>
         </el-col>
         <el-col :span="4">
-          <div class="demo-color-box demo-color-box-other bg-transparent">
-            Background
-            <div class="value">Transparent</div>
+          <div
+            class="demo-color-box demo-color-box-other demo-color-box-lite"
+            :style="{ background: bg_color_hover }"
+          >
+            Background Hover
+            <div class="value">{{bg_color_hover}}</div>
           </div>
         </el-col>
       </el-row>
     </div>
-    <h4>Typography</h4>
-    <el-row :gutter="12">
-      <el-col :span="6" class="heading">
-        <div :style="{ fontSize: font_size_extra_large }">Heading1</div>
-        <div :style="{ fontSize: font_size_large }">Heading2</div>
-        <div :style="{ fontSize: font_size_medium }">Heading3</div>
-        <div :style="{ fontSize: font_size_base }">Heading4</div>
-        <div :style="{ fontSize: font_size_small }">Heading5</div>
-        <div :style="{ fontSize: font_size_extra_small }">Heading6</div>
-      </el-col>
-      <el-col :span="9">
-        <div class="title">Example body text</div>
-        <p 
-          class="paragraph"
-          :style="{ 
-            fontSize: font_size_base,
-            fontWeight: font_weight_primary, 
-            lineHeight: font_line_height_primary
-          }" >
-          With MySpace becoming more popular every day, there is the constant need to be different. There are millions of users. If MySpace layouts are chosen well, then you can enhance your profile a great deal.</p>
-      </el-col>
-      <el-col :span="9">
-        <div class="title">Example small text</div>
-        <p 
-          class="paragraph"
-          :style="{ 
-            fontSize: font_size_small,
-            fontWeight: font_weight_secondary, 
-            lineHeight: font_line_height_secondary
-          }" >
-          Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in front of their desktops, while delivery people scan bar codes with handhelds and workers in the field stay in touch with the central office via their notebooks. Computer hardware weaves itself through the fabric of our lives.</p>
-      </el-col>
-    </el-row>
   </div>
 </template>
 
@@ -174,20 +168,23 @@ import {
 } from './constant.js';
 
 const original = {
-  'color_primary': '#409EFF',
-  'color_success': '#67C23A',
-  'color_warning': '#E6A23C',
-  'color_danger': '#F56C6C',
+  'color_text_primary': '#000000',
+  'color_text_secondary': '#8E8E8E',
+  'color_primary': '#2C4B6F',
+  'color_color7': '#F4F4F5',
+  'color_success': '#21B510',
+  'color_warning': '#E5B01F',
+  'color_danger': '#D80000',
   'color_info': '#909399',
   'color_white': '#FFFFFF',
   'color_black': '#000000',
-  'color_text_primary': '#303133',
-  'color_text_regular': '#606266',
-  'color_text_secondary': '#909399',
+  'bg_color_base': '#E7EAEF',
+  'bg_color_hover': '#F7F8FA',
+  'bg_color_light': '#F4F4F5',
   'color_text_placeholder': '#C0C4CC',
-  'border_color_base': '#DCDFE6',
-  'border_color_light': '#E4E7ED',
-  'border_color_lighter': '#EBEEF5',
+  'border_color_base': '#E4E7ED',
+  'border_color_light': '#F4F4F5',
+  'border_color_lighter': '#F7F8FA',
   'border_color_extra_light': '#F2F6FC',
   'font_size_extra_large': '20px',
   'font_size_large': '18px',
@@ -248,17 +245,20 @@ export default {
   data() {
     return {
       global: {},
-      colorLine: ['Primary', 'Success', 'Warning', 'Danger', 'Info'],
+      colorLine: ['Primary', 'Success', 'Warning', 'Danger'],
+      'color_text_primary': '',
+      'color_text_secondary': '',
       'color_primary': '',
+      'color_color7': '',
       'color_success': '',
       'color_warning': '',
       'color_danger': '',
       'color_info': '',
       'color_white': '',
       'color_black': '',
-      'color_text_primary': '',
-      'color_text_regular': '',
-      'color_text_secondary': '',
+      'bg_color_base': '',
+      'bg_color_hover': '',
+      'bg_color_light': '',
       'color_text_placeholder': '',
       'border_color_base': '',
       'border_color_light': '',

@@ -20,6 +20,7 @@
           </el-input>
         </span>
         <el-button
+          v-if="!hideClear"
           size="mini"
           type="text"
           class="el-color-dropdown__link-btn"
@@ -43,10 +44,10 @@
   import HueSlider from './hue-slider';
   import AlphaSlider from './alpha-slider';
   import Predefine from './predefine';
-  import Popper from 'element-ui/src/utils/vue-popper';
-  import Locale from 'element-ui/src/mixins/locale';
-  import ElInput from 'element-ui/packages/input';
-  import ElButton from 'element-ui/packages/button';
+  import Popper from '@jack-agency/element/src/utils/vue-popper';
+  import Locale from '@jack-agency/element/src/mixins/locale';
+  import ElInput from '@jack-agency/element/packages/input';
+  import ElButton from '@jack-agency/element/packages/button';
 
   export default {
     name: 'el-color-picker-dropdown',
@@ -67,6 +68,7 @@
         required: true
       },
       showAlpha: Boolean,
+      hideClear: Boolean,
       predefine: Array
     },
 

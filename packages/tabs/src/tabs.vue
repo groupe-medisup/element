@@ -10,6 +10,8 @@
 
     props: {
       type: String,
+      addLabel: String,
+      addIcon: { type: String, default: 'el-icon-plus' },
       activeName: String,
       closable: Boolean,
       addable: Boolean,
@@ -57,8 +59,11 @@
     methods: {
       calcPaneInstances(isForceUpdate = false) {
         if (this.$slots.default) {
-          const paneSlots = this.$slots.default.filter(vnode => vnode.tag &&
-            vnode.componentOptions && vnode.componentOptions.Ctor.options.name === 'ElTabPane');
+          const paneSlots = this.$slots.default.filter(vnode => (
+            vnode.tag &&
+            vnode.componentOptions &&
+            vnode.componentOptions.Ctor.options.name === 'ElTabPane'
+          ));
           // update indeed
           const panes = paneSlots.map(({ componentInstance }) => componentInstance);
           const panesChanged = !(panes.length === this.panes.length && panes.every((pane, index) => pane === this.panes[index]));
@@ -120,18 +125,21 @@
         editable,
         addable,
         tabPosition,
-        stretch
+        stretch,
+        addLabel,
+        addIcon
       } = this;
 
       const newButton = editable || addable
         ? (
           <span
-            class="el-tabs__new-tab"
+            class={ [ 'el-tabs__new-tab', !!addLabel && 'has-label' ] }
             on-click={ handleTabAdd }
             tabindex="0"
             on-keydown={ (ev) => { if (ev.keyCode === 13) { handleTabAdd(); }} }
           >
-            <i class="el-icon-plus"></i>
+            { addIcon && <i class={[ 'el-tabs__new-tab__icon', addIcon ]} />}
+            { addLabel && <span class="el-tabs__new-tab__label">{ addLabel }</span> }
           </span>
         )
         : null;
@@ -150,8 +158,9 @@
       };
       const header = (
         <div class={['el-tabs__header', `is-${tabPosition}`]}>
-          {newButton}
+          {this.$slots.beforeNav}
           <tab-nav { ...navData }></tab-nav>
+          {newButton}
         </div>
       );
       const panels = (
@@ -171,7 +180,7 @@
         </div>
       );
     },
-  
+
     created() {
       if (!this.currentName) {
         this.setCurrentName('0');

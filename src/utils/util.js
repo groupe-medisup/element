@@ -1,7 +1,8 @@
 import Vue from 'vue';
-import { isString, isObject } from 'element-ui/src/utils/types';
+import { isString, isObject } from '@jack-agency/element/src/utils/types';
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
+const OBJECT_NUMERIC_KEY = /^\d+$/;
 
 export function noop() {};
 
@@ -54,6 +55,26 @@ export function getPropByPath(obj, path, strict) {
   for (let len = keyArr.length; i < len - 1; ++i) {
     if (!tempObj && !strict) break;
     let key = keyArr[i];
+
+    // supports index notation for model with array value
+    // model: { items: [ {name: 'foo'} ] }
+    // prop: items.0.name
+    // value: foo
+    if (strict === true && OBJECT_NUMERIC_KEY.test(key)) {
+      const parentPath = keyArr.slice(0, i).join('.');
+      const parentObj = getPropByPath(obj, parentPath, strict).v;
+
+      if (!Array.isArray(parentObj)) {
+        throw new Error(`model key "${keyArr.slice(0, i).join('.')}" is not an array`);
+      }
+
+      const childIdx = i + 1;
+      const childObj = parentObj[key] || {};
+      const childPath = keyArr.slice(childIdx).join('.');
+
+      return getPropByPath(childObj, childPath, strict);
+    }
+
     if (key in tempObj) {
       tempObj = tempObj[key];
     } else {

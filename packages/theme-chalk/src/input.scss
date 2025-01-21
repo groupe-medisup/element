@@ -1,5 +1,5 @@
 @import "mixins/mixins";
-@import "common/var";
+///VAR @import "common/var";
 
 @include b(textarea) {
   position: relative;
@@ -8,10 +8,12 @@
   vertical-align: bottom;
   font-size: $--font-size-base;
 
+  @include input-require-indicator();
+
   @include e(inner) {
     display: block;
     resize: vertical;
-    padding: 5px 15px;
+    padding: $--input-padding-vertical $--input-padding-horizontal;
     line-height: 1.5;
     box-sizing: border-box;
     width: 100%;
@@ -22,6 +24,9 @@
     border: $--input-border;
     border-radius: $--input-border-radius;
     transition: $--border-transition-base;
+
+    @include width-map();
+    @include input-require-indicator();
 
     &::placeholder {
       color: $--input-placeholder-color;
@@ -76,6 +81,7 @@
   display: inline-block;
   width: 100%;
   @include scroll-bar;
+  @include input-require-indicator();
 
   & .el-input__clear {
     color: $--input-icon-color;
@@ -112,13 +118,16 @@
     box-sizing: border-box;
     color: $--input-font-color;
     display: inline-block;
-    font-size: inherit;
+    // font-size: inherit;
     height: $--input-height;
     line-height: $--input-height;
     outline: none;
-    padding: 0 15px;
+    padding: 0 $--input-padding-horizontal;
     transition: $--border-transition-base;
     width: 100%;
+    position: relative;
+
+    @include width-map();
 
     &::-ms-reveal {
       display: none;

@@ -451,18 +451,18 @@
         return /^home/.test(this.$route.name);
       }
     },
-    mounted() {
-      const testInnerImg = new Image();
-      testInnerImg.onload = () => {
-        this.$isEle = true;
-        ga('send', 'event', 'DocView', 'Ali', 'Inner');
-      };
-      testInnerImg.onerror = (err) => {
-        ga('send', 'event', 'DocView', 'Ali', 'Outer');
-        console.error(err);
-      };
-      testInnerImg.src = `https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/rmsportal/VmvVUItLdPNqKlNGuRHi.png?t=${Date.now()}`;
-    },
+    // mounted() {
+    //   const testInnerImg = new Image();
+    //   testInnerImg.onload = () => {
+    //     this.$isEle = true;
+    //     ga('send', 'event', 'DocView', 'Ali', 'Inner');
+    //   };
+    //   testInnerImg.onerror = (err) => {
+    //     ga('send', 'event', 'DocView', 'Ali', 'Outer');
+    //     console.error(err);
+    //   };
+    //   testInnerImg.src = `https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/rmsportal/VmvVUItLdPNqKlNGuRHi.png?t=${Date.now()}`;
+    // },
     methods: {
       switchVersion(version) {
         if (version === this.version) return;

@@ -1,5 +1,5 @@
 @import "mixins/mixins";
-@import "common/var";
+///VAR @import "common/var";
 
 @include b(select-group) {
   $gap: 20px;
@@ -13,20 +13,20 @@
     margin: 0;
     padding: 0;
 
-    &:not(:last-of-type) {
-      padding-bottom: 24px;
+    // &:not(:last-of-type) {
+    //   padding-bottom: 24px;
 
-      &::after {
-        content: '';
-        position: absolute;
-        display: block;
-        left: $gap;
-        right: $gap;
-        bottom: 12px;
-        height: 1px;
-        background: $--border-color-light;
-      }
-    }
+    //   &::after {
+    //     content: '';
+    //     position: absolute;
+    //     display: block;
+    //     left: $gap;
+    //     right: $gap;
+    //     bottom: 12px;
+    //     height: 1px;
+    //     background: $--border-color-light;
+    //   }
+    // }
   }
 
   @include e(title) {
@@ -34,6 +34,7 @@
     font-size: $--select-group-font-size;
     color: $--select-group-color;
     line-height: $--select-group-height;
+    font-weight: $--select-group-font-weight;
   }
 
   & .el-select-dropdown__item {

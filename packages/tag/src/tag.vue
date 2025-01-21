@@ -2,7 +2,7 @@
   export default {
     name: 'ElTag',
     props: {
-      text: String,
+      text: [ String, Number ],
       closable: Boolean,
       type: String,
       hit: Boolean,
@@ -15,7 +15,8 @@
         validator(val) {
           return ['dark', 'light', 'plain'].indexOf(val) !== -1;
         }
-      }
+      },
+      borderColor: String
     },
     methods: {
       handleClose(event) {
@@ -32,20 +33,23 @@
       }
     },
     render(h) {
-      const { type, tagSize, hit, effect } = this;
+      const { type, tagSize, hit, effect, closable, text } = this;
       const classes = [
         'el-tag',
         type ? `el-tag--${type}` : '',
         tagSize ? `el-tag--${tagSize}` : '',
         effect ? `el-tag--${effect}` : '',
+        closable ? 'el-tag--closable' : '',
         hit && 'is-hit'
       ];
       const tagEl = (
         <span
           class={ classes }
-          style={{ backgroundColor: this.color }}
+          style={{ backgroundColor: this.color, borderColor: this.borderColor }}
           on-click={ this.handleClick }>
-          { this.$slots.default }
+          { text ? (
+            <span class="el-tag__text">{ text }</span>
+          ) : this.$slots.default }
           {
             this.closable && <i class="el-tag__close el-icon-close" on-click={ this.handleClose }></i>
           }

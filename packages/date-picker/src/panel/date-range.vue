@@ -166,23 +166,6 @@
           </div>
         </div>
       </div>
-      <div class="el-picker-panel__footer" v-if="showTime">
-        <el-button
-          size="mini"
-          type="text"
-          class="el-picker-panel__link-btn"
-          @click="handleClear">
-          {{ t('el.datepicker.clear') }}
-        </el-button>
-        <el-button
-          plain
-          size="mini"
-          class="el-picker-panel__link-btn"
-          :disabled="btnDisabled"
-          @click="handleConfirm(false)">
-          {{ t('el.datepicker.confirm') }}
-        </el-button>
-      </div>
     </div>
   </transition>
 </template>
@@ -202,13 +185,13 @@
     nextDate,
     extractDateFormat,
     extractTimeFormat
-  } from 'element-ui/src/utils/date-util';
-  import Clickoutside from 'element-ui/src/utils/clickoutside';
-  import Locale from 'element-ui/src/mixins/locale';
+  } from '@jack-agency/element/src/utils/date-util';
+  import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
+  import Locale from '@jack-agency/element/src/mixins/locale';
   import TimePicker from './time';
   import DateTable from '../basic/date-table';
-  import ElInput from 'element-ui/packages/input';
-  import ElButton from 'element-ui/packages/button';
+  import ElInput from '@jack-agency/element/packages/input';
+  import ElButton from '@jack-agency/element/packages/button';
 
   const calcDefaultValue = (defaultValue) => {
     if (Array.isArray(defaultValue)) {
@@ -226,10 +209,6 @@
     directives: { Clickoutside },
 
     computed: {
-      btnDisabled() {
-        return !(this.minDate && this.maxDate && !this.selecting && this.isValidValue([this.minDate, this.maxDate]));
-      },
-
       leftLabel() {
         return this.leftDate.getFullYear() + ' ' + this.t('el.datepicker.year') + ' ' + this.t(`el.datepicker.month${ this.leftDate.getMonth() + 1 }`);
       },
@@ -440,13 +419,6 @@
     },
 
     methods: {
-      handleClear() {
-        this.minDate = null;
-        this.maxDate = null;
-        this.leftDate = calcDefaultValue(this.defaultValue)[0];
-        this.rightDate = nextMonth(this.leftDate);
-        this.$emit('pick', null);
-      },
 
       handleChangeRange(val) {
         this.minDate = val.minDate;
@@ -551,8 +523,8 @@
           this.maxDate = maxDate;
           this.minDate = minDate;
         }, 10);
-        if (!close || this.showTime) return;
-        this.handleConfirm();
+        if (!close) return;
+        this.handleConfirm(true);
       },
 
       handleShortcutClick(shortcut) {
@@ -561,8 +533,7 @@
         }
       },
 
-      handleMinTimePick(value, visible, first) {
-        this.minDate = this.minDate || new Date();
+      handleMinTimePick(value, visible, first) {        this.minDate = this.minDate || new Date();
         if (value) {
           this.minDate = modifyTime(this.minDate, value.getHours(), value.getMinutes(), value.getSeconds());
         }
@@ -574,6 +545,7 @@
         if (!this.maxDate || this.maxDate && this.maxDate.getTime() < this.minDate.getTime()) {
           this.maxDate = new Date(this.minDate);
         }
+        this.handleConfirm(true)
       },
 
       handleMinTimeClose() {
@@ -592,6 +564,7 @@
         if (this.maxDate && this.minDate && this.minDate.getTime() > this.maxDate.getTime()) {
           this.minDate = new Date(this.maxDate);
         }
+        this.handleConfirm(true)
       },
 
       handleMaxTimeClose() {

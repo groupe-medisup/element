@@ -1,5 +1,5 @@
 @import "mixins/mixins";
-@import "common/var";
+///VAR @import "common/var";
 
 @mixin genTheme($backgroundColorWeight, $borderColorWeight, $fontColorWeight, $hoverColorWeight) {
   background-color: mix($--tag-primary-color, $--color-white, $backgroundColorWeight);
@@ -92,20 +92,41 @@
 }
 
 @include b(tag) {
-  @include genTheme(10%, 20%, 100%, 100%);
-  display: inline-block;
-  height: 32px;
-  padding: $--tag-padding;
-  line-height: 30px;
+  // @include genTheme(10%, 20%, 100%, 100%);
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  height: 17px;
+  padding: 0 4px;
+  line-height: 15px;
   font-size: $--tag-font-size;
-  color: $--tag-primary-color;
+  // color: $--tag-primary-color;
   border-width: 1px;
   border-style: solid;
-  border-radius: $--tag-border-radius;
+  // border-radius: $--tag-border-radius;
+  border-radius: 2px;
   box-sizing: border-box;
   white-space: nowrap;
+  position: relative;
+
+  // @include e(text) {
+  //   margin-top: -2px;
+  // }
+
+  // &--closable {
+  //   .el-tag__text {
+  //     margin-top: -2px;
+  //   }
+  // }
+
+  // &--small {
+  //   .el-tag__text {
+  //     margin-top: -1px;
+  //   }
+  // }
 
   .el-icon-close {
+    display: inline-block;
     border-radius: 50%;
     text-align: center;
     position: relative;
@@ -114,8 +135,9 @@
     height: 16px;
     width: 16px;
     line-height: 16px;
-    vertical-align: middle;
-    top: -1px;
+    // vertical-align: middle;
+    margin-top: 1px;
+    // top: -1px;
     right: -5px;
 
     &::before {
@@ -123,22 +145,22 @@
     }
   }
 
-  @include m(dark) {
-    @include genTheme(100%, 100%, 0, 80%);
-  }
+  // @include m(dark) {
+  //   @include genTheme(100%, 100%, 0, 80%);
+  // }
 
-  @include m(plain) {
-    @include genTheme(0, 40%, 100%, 100%);
-  }
+  // @include m(plain) {
+  //   @include genTheme(0, 40%, 100%, 100%);
+  // }
 
-  @include m(medium) {
-    height: 28px;
-    line-height: 26px;
+  // @include m(medium) {
+  //   height: 28px;
+  //   line-height: 26px;
 
-    .el-icon-close {
-      transform: scale(.8);
-    }
-  }
+  //   .el-icon-close {
+  //     transform: scale(.8);
+  //   }
+  // }
 
   @include m(small) {
     height: 24px;
@@ -152,12 +174,12 @@
 
   @include m(mini) {
     height: 20px;
-    padding: 0 5px;
-    line-height: 19px;
+    padding: 0 6px;
+    line-height: 16px;
 
-    .el-icon-close {
-      margin-left: -3px;
-      transform: scale(.7);
-    }
+    // .el-icon-close {
+    //   margin-left: -3px;
+    //   transform: scale(.7);
+    // }
   }
 }

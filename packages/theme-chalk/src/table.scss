@@ -1,8 +1,8 @@
 @import "mixins/mixins";
+///VAR @import "common/var";
 @import "checkbox";
 @import "tag";
 @import "tooltip";
-@import "common/var";
 
 @include b(table) {
   position: relative;
@@ -12,7 +12,7 @@
   width: 100%;
   max-width: 100%;
   background-color: $--color-white;
-  font-size: 14px;
+  font-size: 13px;
   color: $--table-font-color;
 
   // 数据为空
@@ -118,7 +118,7 @@
   }
 
   .el-table__cell {
-    padding: 12px 0;
+    padding: 3px 0 5px;
     min-width: 0;
     box-sizing: border-box;
     text-overflow: ellipsis;
@@ -150,21 +150,21 @@
 
   @include m(medium) {
     .el-table__cell {
-      padding: 10px 0;
+      padding: 3px 0 5px;
     }
   }
 
   @include m(small) {
-    font-size: 12px;
+    font-size: 13px;
     .el-table__cell {
-      padding: 8px 0;
+      padding: 3px 0 5px;
     }
   }
 
   @include m(mini) {
-    font-size: 12px;
+    font-size: 13px;
     .el-table__cell {
-      padding: 6px 0;
+      padding: 3px 0 5px;
     }
   }
 
@@ -195,8 +195,8 @@
       box-sizing: border-box;
       position: relative;
       vertical-align: middle;
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: 8px;
+      padding-right: 8px;
       width: 100%;
 
       &.highlight {
@@ -233,8 +233,8 @@
     white-space: normal;
     word-break: break-all;
     line-height: 23px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
 
     &.el-tooltip {
       white-space: nowrap;
@@ -285,7 +285,7 @@
       border-right: $--table-border;
 
       &:first-child .cell {
-        padding-left: 10px;
+        padding-left: 8px;
       }
     }
 

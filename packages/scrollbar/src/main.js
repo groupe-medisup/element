@@ -1,8 +1,8 @@
 // reference https://github.com/noeldelgado/gemini-scrollbar/blob/master/index.js
 
-import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
-import scrollbarWidth from 'element-ui/src/utils/scrollbar-width';
-import { toObject } from 'element-ui/src/utils/util';
+import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
+import scrollbarWidth from '@jack-agency/element/src/utils/scrollbar-width';
+import { toObject } from '@jack-agency/element/src/utils/util';
 import Bar from './bar';
 
 /* istanbul ignore next */
@@ -45,11 +45,12 @@ export default {
 
     if (gutter) {
       const gutterWith = `-${gutter}px`;
-      const gutterStyle = `margin-bottom: ${gutterWith}; margin-right: ${gutterWith};`;
+      const gutterStyle = `margin-bottom: ${gutterWith}; margin-right: ${gutterWith}; height: calc(100% + ${gutter}px);`;
 
       if (Array.isArray(this.wrapStyle)) {
         style = toObject(this.wrapStyle);
         style.marginRight = style.marginBottom = gutterWith;
+        style.height = `calc(100% + ${gutter}px)`;
       } else if (typeof this.wrapStyle === 'string') {
         style += gutterStyle;
       } else {

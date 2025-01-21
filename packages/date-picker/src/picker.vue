@@ -1,40 +1,76 @@
 <template>
-  <el-input
-    class="el-date-editor"
-    :class="'el-date-editor--' + type"
-    :readonly="!editable || readonly || type === 'dates' || type === 'week'"
-    :disabled="pickerDisabled"
-    :size="pickerSize"
-    :name="name"
-    v-bind="firstInputId"
+  <div
     v-if="!ranged"
+    ref="reference"
     v-clickoutside="handleClose"
-    :placeholder="placeholder"
-    @focus="handleFocus"
-    @keydown.native="handleKeydown"
-    :value="displayValue"
-    @input="value => userInput = value"
-    @change="handleChange"
-    @mouseenter.native="handleMouseEnter"
-    @mouseleave.native="showClose = false"
-    :validateEvent="false"
-    ref="reference">
-    <i slot="prefix"
-      class="el-input__icon"
-      :class="triggerClass"
-      @click="handleFocus">
-    </i>
-    <i slot="suffix"
-      class="el-input__icon"
-      @click="handleClickIcon"
-      :class="[showClose ? '' + clearIcon : '']"
-      v-if="haveTrigger">
-    </i>
-  </el-input>
+    class="el-date-editor"
+    :class="'el-date-editor--' +  (type === 'schoolyear' ? 'year' : type)"
+  >
+    <div ref="tags" class="el-date-editor__tags">
+      <template v-if="ready && tagsVisible">
+        <el-tag
+          v-for="(tag, index) in tags"
+          @close="deleteTag(index)"
+          :key="`tag_${index}`"
+          closable
+          disable-transitions
+          size="mini"
+          type="primary"
+          v-bind="tagProps"
+        >
+          <span
+            class="label"
+          >{{ tag.label }}</span>
+        </el-tag>
+      </template>
+
+      <input
+        tabindex="0"
+        @focus="handleFocus"
+        @input="event => userInput = event.target.value"
+        @keydown.delete="deletePrevTag"
+        @keydown="handleKeydown"
+        ref="input"
+        class="el-select__input"
+        :disabled="pickerDisabled"
+        :name="name"
+        :readonly="!editable || readonly || type === 'dates' || type === 'schoolyears' || type === 'week'"
+        :style="{ 'flex-grow': '1', width: inputLength / (inputWidth - 22) + '%', 'max-width': inputWidth - 32 + 'px' }"
+        type="text"
+        :value="(![ 'schoolyears', 'dates' ].includes(type) && displayValue) || ''"
+      >
+    </div>
+
+    <el-input
+      @focus="handleFocus"
+      ref="wrapper"
+      v-bind="firstInputId"
+      :disabled="pickerDisabled"
+      :placeholder="(!value && !userInput && (!ready || (ready && !tags.length)) && placeholder) || ''"
+      :size="pickerSize"
+      :validateEvent="false"
+      tabindex="1"
+    >
+      <i slot="prefix"
+        v-if="prefixIcon"
+        class="el-input__icon"
+        :class="triggerClass"
+        @click="handleFocus"
+      />
+
+      <i slot="suffix"
+        v-if="haveTrigger && type !== 'schoolyears'"
+        class="el-input__icon"
+        @click="handleClickIcon"
+        :class="[showClose ? '' + clearIcon : '']"
+      />
+    </el-input>
+  </div>
+
   <div
     class="el-date-editor el-range-editor el-input__inner"
     :class="[
-      'el-date-editor--' + type,
+      'el-date-editor--' + (type === 'schoolyear' ? 'year' : type),
       pickerSize ? `el-range-editor--${ pickerSize }` : '',
       pickerDisabled ? 'is-disabled' : '',
       pickerVisible ? 'is-active' : ''
@@ -46,7 +82,7 @@
     ref="reference"
     v-clickoutside="handleClose"
     v-else>
-    <i :class="['el-input__icon', 'el-range__icon', triggerClass]"></i>
+    <i v-if="prefixIcon" :class="['el-input__icon', 'el-range__icon', triggerClass]"></i>
     <input
       autocomplete="off"
       :placeholder="startPlaceholder"
@@ -85,12 +121,13 @@
 
 <script>
 import Vue from 'vue';
-import Clickoutside from 'element-ui/src/utils/clickoutside';
-import { formatDate, parseDate, isDateObject, getWeekNumber } from 'element-ui/src/utils/date-util';
-import Popper from 'element-ui/src/utils/vue-popper';
-import Emitter from 'element-ui/src/mixins/emitter';
-import ElInput from 'element-ui/packages/input';
-import merge from 'element-ui/src/utils/merge';
+import Clickoutside from '@jack-agency/element/src/utils/clickoutside';
+import { formatDate, parseDate, isDateObject, getWeekNumber } from '@jack-agency/element/src/utils/date-util';
+import Popper from '@jack-agency/element/src/utils/vue-popper';
+import Emitter from '@jack-agency/element/src/mixins/emitter';
+import ElInput from '@jack-agency/element/packages/input';
+import merge from '@jack-agency/element/src/utils/merge';
+import { addResizeListener, removeResizeListener } from '@jack-agency/element/src/utils/resize-event';
 
 const NewPopper = {
   props: {
@@ -116,7 +153,9 @@ const DEFAULT_FORMATS = {
   daterange: 'yyyy-MM-dd',
   monthrange: 'yyyy-MM',
   datetimerange: 'yyyy-MM-dd HH:mm:ss',
-  year: 'yyyy'
+  year: 'yyyy',
+  schoolyear: 'yyyy',
+  schoolyears: 'yyyy'
 };
 const HAVE_TRIGGER_TYPES = [
   'date',
@@ -126,6 +165,8 @@ const HAVE_TRIGGER_TYPES = [
   'week',
   'month',
   'year',
+  'schoolyear',
+  'schoolyears',
   'daterange',
   'monthrange',
   'timerange',
@@ -136,9 +177,22 @@ const DATE_FORMATTER = function(value, format) {
   if (format === 'timestamp') return value.getTime();
   return formatDate(value, format);
 };
+const SCHOOLYEAR_FORMATTER = function(value, format) {
+  if (format === 'timestamp') return value.getTime();
+  const dateStr = Date.parse(value.toISOString());
+  const start = new Date(dateStr);
+  const end = new Date(dateStr);
+  end.setUTCFullYear(end.getUTCFullYear() + 1);
+  return formatDate(start, format) + '-' + formatDate(end, format);
+};
 const DATE_PARSER = function(text, format) {
   if (format === 'timestamp') return new Date(Number(text));
   return parseDate(text, format);
+};
+const SCHOOLYEAR_PARSER = function(text, format) {
+  const y = text.split('-')[0];
+  if (format === 'timestamp') return new Date(Number(y));
+  return parseDate(y, format);
 };
 const RANGE_FORMATTER = function(value, format) {
   if (Array.isArray(value) && value.length === 2) {
@@ -231,6 +285,23 @@ const TYPE_VALUE_RESOLVER_MAP = {
     formatter: DATE_FORMATTER,
     parser: DATE_PARSER
   },
+  schoolyear: {
+    formatter: SCHOOLYEAR_FORMATTER,
+    parser: SCHOOLYEAR_PARSER
+  },
+  schoolyears: {
+    formatter(value, format) {
+      if (!Array.isArray(value)) {
+        return SCHOOLYEAR_FORMATTER(value, format);
+      }
+
+      return value.map(date => SCHOOLYEAR_FORMATTER(date, format));
+    },
+    parser(value, format) {
+      return (typeof value === 'string' ? value.split(', ') : value)
+        .map(date => date instanceof Date ? date : SCHOOLYEAR_PARSER(date, format));
+    }
+  },
   number: {
     formatter(value) {
       if (!value) return '';
@@ -248,6 +319,10 @@ const TYPE_VALUE_RESOLVER_MAP = {
   },
   dates: {
     formatter(value, format) {
+      if (!Array.isArray(value)) {
+        return DATE_FORMATTER(value, format);
+      }
+
       return value.map(date => DATE_FORMATTER(date, format));
     },
     parser(value, format) {
@@ -278,6 +353,7 @@ const formatAsFormatAndType = (value, customFormat, type) => {
     TYPE_VALUE_RESOLVER_MAP[type] ||
     TYPE_VALUE_RESOLVER_MAP['default']
   ).formatter;
+
   const format = customFormat || DEFAULT_FORMATS[type];
   return formatter(value, format);
 };
@@ -330,6 +406,29 @@ const validator = function(val) {
   );
 };
 
+const formatStringToDateString = (string, format) => {
+  const dateFormat = format;
+  const inputString = string;
+
+  let remainingChars = inputString;
+  const formatSeparator = dateFormat.match(/[^a-zA-Z]/)[0];
+
+  let formattedResult = '';
+
+  dateFormat.split(formatSeparator).forEach((formatPart, index) => {
+    const segment = remainingChars.slice(0, formatPart.length);
+    remainingChars = remainingChars.slice(formatPart.length);
+
+    formattedResult += segment;
+
+    if (index < dateFormat.split(formatSeparator).length - 1) {
+      formattedResult += formatSeparator;
+    }
+  });
+
+  return formattedResult;
+}
+
 export default {
   mixins: [Emitter, NewPopper],
 
@@ -342,6 +441,11 @@ export default {
     }
   },
 
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
+
   props: {
     size: String,
     format: String,
@@ -350,7 +454,10 @@ export default {
     placeholder: String,
     startPlaceholder: String,
     endPlaceholder: String,
-    prefixIcon: String,
+    prefixIcon: {
+      type: [ String, null ],
+      default: ''
+    },
     clearIcon: {
       type: String,
       default: 'el-icon-circle-close'
@@ -388,6 +495,14 @@ export default {
     validateEvent: {
       type: Boolean,
       default: true
+    },
+    tagsVisible: {
+      type: Boolean,
+      default: false
+    },
+    tagProps: {
+      type: Object,
+      default: () => ({})
     }
   },
 
@@ -401,7 +516,11 @@ export default {
       showClose: false,
       userInput: null,
       valueOnOpen: null, // value when picker opens, used to determine whether to emit change
-      unwatchPickerOptions: null
+      unwatchPickerOptions: null,
+      ready: false,
+      inputWidth: 0,
+      inputLength: 20,
+      inputInitialHeight: 28
     };
   },
 
@@ -425,9 +544,15 @@ export default {
     parsedValue: {
       immediate: true,
       handler(val) {
+        this.deletePrevTagCount = 0;
+
         if (this.picker) {
           this.picker.value = val;
         }
+
+        this.$nextTick(() => {
+          this.updateStyle();
+        });
       }
     },
     defaultValue(val) {
@@ -477,7 +602,7 @@ export default {
     },
 
     triggerClass() {
-      return this.prefixIcon || (this.type.indexOf('time') !== -1 ? 'el-icon-time' : 'el-icon-date');
+      return (this.prefixIcon !== null && this.prefixIcon) || (this.type.indexOf('time') !== -1 ? 'el-icon-time' : 'el-icon-date');
     },
 
     selectionMode() {
@@ -487,6 +612,10 @@ export default {
         return 'month';
       } else if (this.type === 'year') {
         return 'year';
+      } else if (this.type === 'schoolyear') {
+        return 'schoolyear';
+      } else if (this.type === 'schoolyears') {
+        return 'schoolyears';
       } else if (this.type === 'dates') {
         return 'dates';
       }
@@ -511,7 +640,7 @@ export default {
       } else if (this.userInput !== null) {
         return this.userInput;
       } else if (formattedValue) {
-        return this.type === 'dates'
+        return this.type === 'dates' || this.type === 'schoolyears'
           ? formattedValue.join(', ')
           : formattedValue;
       } else {
@@ -569,6 +698,16 @@ export default {
       }
       if (id) obj.id = id;
       return obj;
+    },
+
+    tags() {
+      if (!this.tagsVisible) {
+        return [];
+      }
+
+      const format = value => formatAsFormatAndType(value, this.tagsFormat || this.format, this.type, this.rangeSeparator);
+
+      return Array.isArray(this.parsedValue) ? this.parsedValue.map(value => ({ label: format(value) })) : [];
     }
   },
 
@@ -581,6 +720,25 @@ export default {
     this.placement = PLACEMENT_MAP[this.align] || PLACEMENT_MAP.left;
 
     this.$on('fieldReset', this.handleFieldReset);
+  },
+
+  mounted() {
+    this.deletePrevTagCount = 0;
+
+    this.$nextTick(() => {
+      if (!this.ranged) {
+        addResizeListener(this.$el, this.updateStyle);
+      }
+
+      this.updateStyle();
+      this.ready = true;
+    });
+  },
+
+  beforeDestroy() {
+    if (!this.ranged) {
+      removeResizeListener(this.$el, this.updateStyle);
+    }
   },
 
   methods: {
@@ -635,7 +793,14 @@ export default {
 
     handleChange() {
       if (this.userInput) {
-        const value = this.parseString(this.displayValue);
+        let value;
+        if ( this.type === 'date' && this.userInput.match(/^\d+$/)) {
+          value = this.parseString(formatStringToDateString(this.userInput, this.format))
+        } else {
+          value = this.parseString(this.userInput);
+        }
+        // console.log(formatStringToDateString(this.userInput, this.format));
+        // console.log("🚀 ~ file: picker.vue:775 ~ handleChange ~ value:", value)
         if (value) {
           this.picker.value = value;
           if (this.isValidValue(value)) {
@@ -712,7 +877,6 @@ export default {
     handleClose() {
       if (!this.pickerVisible) return;
       this.pickerVisible = false;
-
       if (this.type === 'dates') {
         // restore to former value
         const oldValue = parseAsFormatAndType(this.valueOnOpen, this.valueFormat, this.type, this.rangeSeparator) || this.valueOnOpen;
@@ -724,7 +888,11 @@ export default {
       this.userInput = initialValue === '' ? null : initialValue;
     },
 
-    handleFocus() {
+    handleFocus(e) {
+      if (this.tagsVisible && this.$refs.input) {
+        this.$refs.input.focus();
+      }
+
       const type = this.type;
 
       if (HAVE_TRIGGER_TYPES.indexOf(type) !== -1 && !this.pickerVisible) {
@@ -776,7 +944,9 @@ export default {
 
       // if user is typing, do not let picker handle key input
       if (this.userInput) {
+        this.resetInputState();
         event.stopPropagation();
+
         return;
       }
 
@@ -868,8 +1038,9 @@ export default {
       this.picker.$on('dodestroy', this.doDestroy);
       this.picker.$on('pick', (date = '', visible = false) => {
         this.userInput = null;
-        this.pickerVisible = this.picker.visible = visible;
+        this.pickerVisible = this.picker.visible = [ 'schoolyears', 'year' ].includes(this.type) || visible;
         this.emitInput(date);
+        this.emitChange(date);
         this.picker.resetView && this.picker.resetView();
       });
 
@@ -900,6 +1071,7 @@ export default {
       // determine user real change only
       if (!valueEquals(val, this.valueOnOpen)) {
         this.$emit('change', val);
+        this.updatePopper();
         this.valueOnOpen = val;
         if (this.validateEvent) {
           this.dispatch('ElFormItem', 'el.form.change', val);
@@ -911,6 +1083,10 @@ export default {
       const formatted = this.formatToValue(val);
       if (!valueEquals(this.value, formatted)) {
         this.$emit('input', formatted);
+        this.$emit('change', formatted);
+
+        this.resetTransformOrigin();
+        this.$nextTick(this.updatePopper);
       }
     },
 
@@ -922,6 +1098,67 @@ export default {
         return value && this.picker.isValidValue(value);
       } else {
         return true;
+      }
+    },
+
+    deleteTag(index) {
+      const value = [ ...(this.value || []) ];
+
+      value.splice(index, 1);
+      this.$emit('change', value);
+    },
+
+    resetInputState(e) {
+      this.inputLength = this.$refs.input.value.length * 15 + 20;
+      this.updateStyle();
+    },
+
+    resetInputWidth() {
+      this.inputWidth = this.$refs.wrapper.$el.getBoundingClientRect().width;
+    },
+
+    updateStyle() {
+      const { $el } = this;
+      if (this.$isServer || !$el) return;
+      const inputInner = $el.querySelector('.el-input__inner');
+
+      if (!inputInner) return;
+
+      const tags = this.$refs.tags;
+
+      if (tags) {
+        const sizeInMap = 36 || 40;
+
+        inputInner.style.height = this.tags.length === 0
+          ? sizeInMap + 'px'
+          : Math.max(
+            tags ? (tags.clientHeight + (tags.clientHeight > sizeInMap ? 12 : 0)) : 0,
+            sizeInMap
+          ) + 'px';
+
+        this.resetInputWidth();
+        this.updatePopper();
+      }
+    },
+
+    deletePrevTag(e) {
+      if (!this.tagsVisible) {
+        return
+      }
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (e.target.value.length <= 0) {
+        this.deletePrevTagCount = this.deletePrevTagCount + 1;
+      }
+
+      if (this.deletePrevTagCount >= 2) {
+        const index = this.tags.length - 1;
+
+        if (index >= 0) {
+          this.deleteTag(index);
+        }
       }
     }
   }

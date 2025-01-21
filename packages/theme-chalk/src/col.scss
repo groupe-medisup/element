@@ -1,6 +1,7 @@
 @use "sass:math";
-@import "./common/var.scss";
+///CACA@import "./common/var.scss";
 @import "./mixins/mixins.scss";
+///VAR @import "common/var";
 
 [class*="el-col-"] {
   float: left;

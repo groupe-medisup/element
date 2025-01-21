@@ -13,13 +13,16 @@
         'is-loading': loading,
         'is-plain': plain,
         'is-round': round,
-        'is-circle': circle
+        'is-circle': circle,
+        'is-light': light,
+        'is-text': text
       }
     ]"
   >
     <i class="el-icon-loading" v-if="loading"></i>
     <i :class="icon" v-if="icon && !loading"></i>
     <span v-if="$slots.default"><slot></slot></span>
+    <slot name="afterDefault" />
   </button>
 </template>
 <script>
@@ -54,7 +57,9 @@
       plain: Boolean,
       autofocus: Boolean,
       round: Boolean,
-      circle: Boolean
+      circle: Boolean,
+      light: Boolean,
+      text: Boolean
     },
 
     computed: {

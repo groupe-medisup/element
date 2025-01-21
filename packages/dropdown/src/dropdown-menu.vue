@@ -6,7 +6,7 @@
   </transition>
 </template>
 <script>
-  import Popper from 'element-ui/src/utils/vue-popper';
+  import Popper from '@jack-agency/element/src/utils/vue-popper';
 
   export default {
     name: 'ElDropdownMenu',
@@ -44,11 +44,13 @@
     },
 
     mounted() {
-      this.dropdown.popperElm = this.popperElm = this.$el;
-      this.referenceElm = this.dropdown.$el;
-      // compatible with 2.6 new v-slot syntax
-      // issue link https://github.com/ElemeFE/element/issues/14345
-      this.dropdown.initDomOperation();
+      this.$nextTick(() => {
+        this.dropdown.popperElm = this.popperElm = this.$el;
+        this.referenceElm = this.dropdown.$el;
+        // compatible with 2.6 new v-slot syntax
+        // issue link https://github.com/ElemeFE/element/issues/14345
+        this.dropdown.initDomOperation();
+      });
     },
 
     watch: {
